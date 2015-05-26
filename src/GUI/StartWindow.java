@@ -14,7 +14,7 @@ public class StartWindow extends JFrame {
 		Container c=getContentPane();
 		Dimension size;
 		
-		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+		//Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -42,10 +42,11 @@ public class StartWindow extends JFrame {
 		
 		//WIDTH=nPlayerBox.getX()+nPlayerBox.getWidth()+xPadd;
 		//HEIGHT=nPlayerBox.getHeight()+yPadd+30;
-		updateSize(0,30);
+		updateSize(0,20);
+		setResizable(false);
 		setSize(WIDTH,HEIGHT+30);
-		setLocation(new Point((screenSize.width-WIDTH)/2,(screenSize.height-HEIGHT)/2));
-
+		//setLocation(new Point((screenSize.width-WIDTH)/2,(screenSize.height-HEIGHT)/2));
+		setLocationRelativeTo(null);
 	}
 	
 	private void updateSize (int x, int y){
