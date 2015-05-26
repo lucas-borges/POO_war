@@ -2,22 +2,33 @@ package GUI;
 
 
 import javax.swing.*;
+
+import com.sun.media.sound.ModelAbstractOscillator;
+
 import java.awt.*;
 
 public class MainWindow extends JFrame {
-	public final int WIDTH_DEFAULT=1200;
-	public final int HEIGHT_DEFAULT=800;
+	public final int MAP_WIDTH=1024;
+	public final int MAP_HEIGHT=768;
 	JPanel bg_panel=new MapPanel();
 	
 	public MainWindow(String title){
 		super(title);
-		
+		Container c=getContentPane();
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 		
-		setSize(WIDTH_DEFAULT,HEIGHT_DEFAULT);
-		setLocation(new Point((screenSize.width-WIDTH_DEFAULT)/2,(screenSize.height-HEIGHT_DEFAULT)/2));
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		getContentPane().add(bg_panel);
+		
+		/* Map panel */
+		bg_panel.setPreferredSize(new Dimension(MAP_WIDTH,MAP_HEIGHT));
+		c.add(bg_panel);
+		
+		
+		/* fit to panels and determine location */
+		pack();
+		setLocation(new Point((screenSize.width-getWidth())/2,(screenSize.height-getHeight())/2));
+
 	}
 }
