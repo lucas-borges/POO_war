@@ -18,12 +18,14 @@ public class StartWindow extends JFrame {
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		/* Label */
 		JLabel text=new JLabel("Número de jogadores: ");
 		size=text.getPreferredSize();
 		text.setBounds(xPadd/2,yPadd/2,size.width,size.height);
 		updateSize(xPadd+text.getWidth(),yPadd);
 		c.add(text);
 		
+		/* Combo Box */
 		final String[] nPlayers={"3","4","5","6"};
 		JComboBox<String> nPlayerBox = new JComboBox<String>(nPlayers);
 		size=nPlayerBox.getPreferredSize();
@@ -31,6 +33,7 @@ public class StartWindow extends JFrame {
 		updateSize(nPlayerBox.getWidth()+10,nPlayerBox.getHeight());
 		c.add(nPlayerBox);
 		
+		/* Button */
 		JButton startBut = new JButton("Começar jogo!");
 		size=startBut.getPreferredSize();
 		startBut.setBounds((WIDTH-size.width)/2,HEIGHT,size.width,size.height);
