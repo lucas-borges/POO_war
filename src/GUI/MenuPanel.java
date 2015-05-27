@@ -1,3 +1,5 @@
+//OBSOLETA
+
 package GUI;
 
 import java.awt.*;

@@ -6,6 +6,33 @@ import javax.swing.*;
 
 public class BottomMenuPanel {
 	
+	JFrame diceWindow;
+	JButton rollDicesBut;
+	
+	public BottomMenuPanel(){
+		diceWindow = new DicesWindow("Resultado");
+		rollDicesBut = new JButton("Rolar Dados");
+	}
+	
+	public JPanel getGUI(){
+		JPanel p=new JPanel();
+		
+		rollDicesBut.addActionListener(new RollDiceAction());
+		
+		p.add(rollDicesBut);
+		
+		return p;
+	}
+	
+	private class RollDiceAction implements ActionListener {
+		public void actionPerformed(ActionEvent e){
+			//Execute when button is pressed
+        	diceWindow.setVisible(true);
+            System.out.println("You clicked the button");
+		}
+	}
+	
+	/*
 private BottomMenuPanel(){
 		
 	}
@@ -27,5 +54,5 @@ private BottomMenuPanel(){
 		p.add(rollDicesBut);
 		return p;
 	}
-
+*/
 }
