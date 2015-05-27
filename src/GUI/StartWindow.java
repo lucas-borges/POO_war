@@ -8,7 +8,7 @@ public class StartWindow {
 	private JFrame topLevelFrame;
 	private JLabel text;
 	private final String[] nString={"3","4","5","6"};
-	private JComboBox nPlayerBox;
+	private JComboBox<String> nPlayerBox;
 	private JButton startBut;
 	final int xPadd=100;
 	final int yPadd=60;
