@@ -11,7 +11,7 @@ public class MainWindow extends JFrame {
 	public final int MAP_WIDTH=1024;
 	public final int MAP_HEIGHT=768;
 	JPanel bg_panel=new MapPanel();
-	JPanel top_menu_panel=new TopMenuPanel();
+	JPanel top_menu_panel=TopMenuPanel.getGUI();
 	
 	public MainWindow(String title){
 		super(title);
