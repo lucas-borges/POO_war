@@ -1,13 +1,53 @@
 package GUI;
 import java.awt.*;
+
 import javax.swing.*;
 
 
-public class StartWindow extends JFrame {
+public class StartWindow {
+	private JFrame topLevelFrame;
+	private JLabel text;
+	private final String[] nString={"3","4","5","6"};
+	private JComboBox nPlayerBox;
+	private JButton startBut;
 	final int xPadd=100;
 	final int yPadd=60;
 	int WIDTH, HEIGHT;
 	
+	public StartWindow (){
+		this.topLevelFrame = new JFrame("Novo Jogo");
+		this.text = new JLabel("Número de jogadores");
+		this.nPlayerBox = new JComboBox<String>(nString);
+		this.startBut = new JButton("Começar jogo");
+	}
+	
+	public void createGUI(){
+		Container c = this.topLevelFrame.getContentPane();
+		c.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.gridx=0;
+		gbc.gridy=0;
+		gbc.insets=new Insets(10,10,10,10);
+		c.add(text, gbc);
+		
+		gbc.gridx=1;
+		gbc.gridy=0;
+		gbc.ipadx=25;
+		c.add(nPlayerBox,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=1;
+		gbc.ipadx=0;
+		gbc.gridwidth=2;
+		c.add(startBut,gbc);
+
+		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.topLevelFrame.setResizable(false);
+		this.topLevelFrame.pack();
+		this.topLevelFrame.setLocationRelativeTo(null);
+		this.topLevelFrame.setVisible(true);
+	}/*
 	public StartWindow(String title){
 		super(title);
 		setLayout(null);
@@ -18,14 +58,14 @@ public class StartWindow extends JFrame {
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		/* Label */
+		/* Label 
 		JLabel text=new JLabel("Número de jogadores: ");
 		size=text.getPreferredSize();
 		text.setBounds(xPadd/2,yPadd/2,size.width,size.height);
 		updateSize(xPadd+text.getWidth(),yPadd);
 		c.add(text);
 		
-		/* Combo Box */
+		/* Combo Box 
 		final String[] nPlayers={"3","4","5","6"};
 		JComboBox<String> nPlayerBox = new JComboBox<String>(nPlayers);
 		size=nPlayerBox.getPreferredSize();
@@ -33,7 +73,7 @@ public class StartWindow extends JFrame {
 		updateSize(nPlayerBox.getWidth()+10,nPlayerBox.getHeight());
 		c.add(nPlayerBox);
 		
-		/* Button */
+		/* Button 
 		JButton startBut = new JButton("Começar jogo!");
 		size=startBut.getPreferredSize();
 		startBut.setBounds((WIDTH-size.width)/2,HEIGHT,size.width,size.height);
@@ -52,6 +92,6 @@ public class StartWindow extends JFrame {
 	private void updateSize (int x, int y){
 		WIDTH+=x;
 		HEIGHT+=y;
-	}
+	}*/
 
 }
