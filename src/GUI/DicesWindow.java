@@ -52,6 +52,7 @@ public class DicesWindow extends JFrame {
 		getContentPane().add(dices[1]);
 		getContentPane().add(dices[2]);
 		getContentPane().add(rollDicesBut);
+		pack();
 		
 	}
 	
@@ -63,7 +64,7 @@ public class DicesWindow extends JFrame {
 		for(int i=0;i<3;i++)
 		{
 			dice = dicesNumber.nextInt(6) + 1;
-			dices[i].setIcon(new ImageIcon("dado_" + s + "_"+dice+".png"));		
+			dices[i].setIcon(new ImageIcon("Dados/dado_" + s + "_"+dice+".png"));		
 			//System.out.println(dice);
 		}
 	}

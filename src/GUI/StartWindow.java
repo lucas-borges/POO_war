@@ -55,6 +55,7 @@ public class StartWindow {
 	
 	private class StartGameAction implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			topLevelFrame.dispose();
 			int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
 			JOptionPane.showMessageDialog(null,"Que começe o jogo! ("+i+")");
 		}
