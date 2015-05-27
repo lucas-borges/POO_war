@@ -34,12 +34,10 @@ public class DicesWindow extends JFrame {
             	diceColor = "defesa";
             	
             	RollDices(diceColor);
-            	
             		
-                System.out.println("You clicked the button");
+                //System.out.println("You clicked the button");
             }
         });
-		getContentPane().add(rollDicesBut);
 		
 		
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -49,6 +47,11 @@ public class DicesWindow extends JFrame {
 		
 		if(!clicked)
 			RollDices(diceColor);
+		
+		getContentPane().add(dices[0]);
+		getContentPane().add(dices[1]);
+		getContentPane().add(dices[2]);
+		getContentPane().add(rollDicesBut);
 		
 	}
 	
@@ -60,9 +63,8 @@ public class DicesWindow extends JFrame {
 		for(int i=0;i<3;i++)
 		{
 			dice = dicesNumber.nextInt(6) + 1;
-			dices[i].setIcon(new ImageIcon("dado_" + s + "_"+dice+".png"));
-			getContentPane().add(dices[i]);
-			System.out.println(dice);
+			dices[i].setIcon(new ImageIcon("dado_" + s + "_"+dice+".png"));		
+			//System.out.println(dice);
 		}
 	}
 }
