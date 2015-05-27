@@ -5,22 +5,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class TopMenuPanel implements ActionListener {
+public class TopMenuPanel {
 
-	private static JButton newGameBut;
+	private JButton newGameBut;
 	
 	
-	private TopMenuPanel(){
+	public TopMenuPanel(){
+		this.newGameBut=new JButton("Novo Jogo");
 	}
 	
-	static public JPanel getGUI(){
+	public JPanel getGUI(){
 		JPanel p=new JPanel();
 		
-		newGameBut = new JButton("Novo Jogo");
-		newGameBut.setActionCommand("newGame");
 		
 		//Listen
-		newGameBut.addActionListener(TopMenuPanel);		
+		newGameBut.addActionListener(new NewGameAction());		
 		
 		//Add components
 		p.add(newGameBut);
@@ -29,10 +28,25 @@ public class TopMenuPanel implements ActionListener {
 		return p;
 	}
 	
+	/*
 	public void actionPerformed(ActionEvent e){
 		if("newGame".equals(e.getActionCommand())){
 			JOptionPane.showMessageDialog(null,"novo jogo criado");
 		}
-	}
+	}*/
 	
+	private class NewGameAction implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			JOptionPane.showMessageDialog(null,"novo jogo criado");
+		}
+	}
+	/*
+	private static ActionListener newGameListener(){
+		ActionListener x=new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JOptionPane.showMessageDialog(null,"novo jogo criado");
+			}
+		};
+		return x;
+	}*/
 }

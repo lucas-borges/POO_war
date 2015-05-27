@@ -12,13 +12,13 @@ public class MenuPanel {
 	static public JPanel getGUI(){
 		JPanel p=new JPanel();
 		
-		JPanel top_menu_panel=TopMenuPanel.getGUI();
+		TopMenuPanel top_menu_panel=new TopMenuPanel();
 		JPanel bottom_menu_panel = BottomMenuPanel.getGUI();
 			
 		
 		/* Top menu panel */
-		top_menu_panel.setPreferredSize(new Dimension(200,768/2));
-		p.add(top_menu_panel,BorderLayout.NORTH);
+		//top_menu_panel.setPreferredSize(new Dimension(200,768/2));
+		p.add(top_menu_panel.getGUI(),BorderLayout.NORTH);
 		
 		/* Bottom menu panel */
 		bottom_menu_panel.setPreferredSize(new Dimension(200,768/2));
