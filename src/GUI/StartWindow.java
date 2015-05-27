@@ -1,5 +1,8 @@
 package GUI;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -28,7 +31,7 @@ public class StartWindow {
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		gbc.insets=new Insets(10,10,10,10);
+		gbc.insets.set(10,10,10,10);
 		c.add(text, gbc);
 		
 		gbc.gridx=1;
@@ -41,14 +44,25 @@ public class StartWindow {
 		gbc.ipadx=0;
 		gbc.gridwidth=2;
 		c.add(startBut,gbc);
+		startBut.addActionListener(new StartGameAction());
 
 		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
 		this.topLevelFrame.pack();
 		this.topLevelFrame.setLocationRelativeTo(null);
 		this.topLevelFrame.setVisible(true);
-	}/*
-	public StartWindow(String title){
+	}
+	
+	private class StartGameAction implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
+			JOptionPane.showMessageDialog(null,"Que começe o jogo! ("+i+")");
+		}
+	}
+	
+	
+	
+	/*public StartWindow(String title){
 		super(title);
 		setLayout(null);
 		Container c=getContentPane();
