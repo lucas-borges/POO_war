@@ -11,7 +11,7 @@ public class MainWindow extends JFrame {
 	public final int MAP_WIDTH=1024;
 	public final int MAP_HEIGHT=768;
 	JPanel bg_panel=new MapPanel();
-	JPanel top_menu_panel=TopMenuPanel.getGUI();
+	JPanel menu_panel = MenuPanel.getGUI();
 	
 	public MainWindow(String title){
 		super(title);
@@ -26,9 +26,10 @@ public class MainWindow extends JFrame {
 		bg_panel.setPreferredSize(new Dimension(MAP_WIDTH,MAP_HEIGHT));
 		c.add(bg_panel, BorderLayout.WEST);
 		
-		/* Top menu panel */
-		top_menu_panel.setPreferredSize(new Dimension(200,768/2));
-		c.add(top_menu_panel,BorderLayout.EAST);
+		
+		/* Menu Panel*/ 
+		menu_panel.setPreferredSize(new Dimension(400,768/2));
+		c.add(menu_panel,BorderLayout.EAST);
 		
 		/* fit to panels and determine location */
 		pack();
