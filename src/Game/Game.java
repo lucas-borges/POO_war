@@ -1,15 +1,18 @@
 package Game;
 
-import etc.*;
+//import etc.*;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Observable;
 import java.util.Random;
 
 public class Game {
 	private int nPlayers;
 	private Player[] players;
 	private int currentPlayerIndex;
+	private int turn;
 	
 	public Game (int n){
 		nPlayers=n;
@@ -17,7 +20,9 @@ public class Game {
 		
 		int d=0;
 		
-		ArrayList<Color> colors=new ArrayList<Color>(Arrays.asList(Color.values()));
+		ArrayList<Color> colors=new ArrayList<Color>(Arrays.asList(
+				new Color[]{Color.blue, Color.black, Color.white,Color.green,
+						Color.red,Color.yellow}));
 		Random randGen = new Random();
 		
 		
@@ -28,7 +33,17 @@ public class Game {
 		}
 		
 		currentPlayerIndex=0;
+		turn=0;
 		
+	}
+	public void nextTurn (){
+		turn++;
+		if(currentPlayerIndex==nPlayers-1){
+			currentPlayerIndex=0;
+		}
+		else {
+			currentPlayerIndex++;
+		}
 	}
 	
 	public Color[] getColorOrder(){
@@ -39,9 +54,18 @@ public class Game {
 			order[i]=p.getColor();
 			i++;
 		}
-		for(Color c:order){
+		/*for(Color c:order){
 			System.out.println(c.name());
-		}
+		}*/
 		return order;
+	}
+	public int getNPlayers(){
+		return nPlayers;
+	}
+	public int getTurn(){
+		return turn;
+	}
+	public int getCurrentPlayer(){
+		return currentPlayerIndex+1;
 	}
 }

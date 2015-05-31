@@ -2,9 +2,12 @@ package GUI;
 
 
 import javax.swing.*;
-import java.awt.*;
 
-public class MainWindow  {
+import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
+
+public class MainWindow extends Observable{
 	private JFrame topLevelFrame;
 	public final int MAP_WIDTH=1024;
 	public final int MAP_HEIGHT=768;
@@ -35,6 +38,10 @@ public class MainWindow  {
 		this.topLevelFrame.pack();
 		this.topLevelFrame.setLocationRelativeTo(null);
 		this.topLevelFrame.setVisible(true);
+	}
+	public void addObserver(Observer o){
+		super.addObserver(o);
+		top_menu_panel.addObserver(o);
 	}
 	
 	/*public MainWindow(String title){

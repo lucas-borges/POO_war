@@ -1,6 +1,9 @@
 package Game;
 
-import etc.*;
+import java.awt.Color;
+
+//import etc.*;
+
 
 public class Player {
 	private Color color;

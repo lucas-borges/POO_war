@@ -3,24 +3,30 @@ package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
-
-//import etc.Color;
-
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.LayoutManager;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
 
-public class TopMenuPanel {
+import Game.GameFacade;
+
+public class TopMenuPanel extends Observable
+							implements ActionListener {
 
 	private JButton newGameBut;
 	private ColorPanel orderPanel;
+	private JButton nextTurnBut;
+	
+	
 	
 	public TopMenuPanel(){
 		this.newGameBut=new JButton("Novo Jogo");
-		newGameBut.addActionListener(new NewGameAction());
+		newGameBut.setActionCommand("newGame");
+		newGameBut.addActionListener(this);
 		this.orderPanel=new ColorPanel(3,new Color[]{Color.black,Color.blue,Color.red});
+		this.nextTurnBut=new JButton("Prox Turno");
+		nextTurnBut.setActionCommand("nextTurn");
+		nextTurnBut.addActionListener(this);
 	}
 	
 	public JPanel getGUI(){
@@ -33,6 +39,10 @@ public class TopMenuPanel {
 		gbc.gridy=0;
 		p.add(newGameBut,gbc);
 		
+		gbc.gridx=1;
+		gbc.gridy=0;
+		p.add(nextTurnBut,gbc);
+		
 		gbc.gridx=0;
 		gbc.gridy=1;		
 		p.add(orderPanel,gbc);
@@ -42,11 +52,18 @@ public class TopMenuPanel {
 	}
 	
 	
-	private class NewGameAction implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			JOptionPane.showMessageDialog(null,"novo jogo criado");
+	
+	public void actionPerformed(ActionEvent e){
+		String s=e.getActionCommand();
+		if(s.equals("newGame")){
+			JOptionPane.showMessageDialog(null,"nao implementado");
+		}
+		else if(s.equals("nextTurn")){
+			setChanged();
+			notifyObservers("nextTurn");
 		}
 	}
+		
 	private class ColorPanel extends JPanel {
 		public int n;
 		public Color[] colors;

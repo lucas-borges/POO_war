@@ -3,11 +3,13 @@ package GUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.*;
 
 
-public class StartWindow {
+public class StartWindow extends Observable
+						implements ActionListener{
 	private JFrame topLevelFrame;
 	private JLabel text;
 	private final String[] nString={"3","4","5","6"};
@@ -44,7 +46,7 @@ public class StartWindow {
 		gbc.ipadx=0;
 		gbc.gridwidth=2;
 		c.add(startBut,gbc);
-		startBut.addActionListener(new StartGameAction());
+		startBut.addActionListener(this);//new StartGameAction());
 
 		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
@@ -53,13 +55,18 @@ public class StartWindow {
 		this.topLevelFrame.setVisible(true);
 	}
 	
-	private class StartGameAction implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			topLevelFrame.dispose();
-			int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
-			JOptionPane.showMessageDialog(null,"Que começe o jogo! ("+i+")");
-		}
+	
+	public void actionPerformed(ActionEvent e){
+		topLevelFrame.dispose();
+		//int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
+		//JOptionPane.showMessageDialog(null,"Que começe o jogo! ("+i+")");
+		setChanged();
+		notifyObservers(new String("startGame"));
 	}
+		
+		public int getComboValue(){
+			return Integer.parseInt((String)nPlayerBox.getSelectedItem());
+		}
 	
 	
 	
