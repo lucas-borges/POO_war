@@ -2,9 +2,6 @@ package GUI;
 
 
 import javax.swing.*;
-
-import com.sun.media.sound.ModelAbstractOscillator;
-
 import java.awt.*;
 
 public class MainWindow  {
