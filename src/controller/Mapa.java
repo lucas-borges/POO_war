@@ -14,8 +14,8 @@ public class Mapa extends JPanel {
 	private List<Territorio> lstTerritorios = new ArrayList<Territorio>();
 	
 	// deslocaX e deslocaY é utilizado para alinhar os polígonos criados em cima da imagem dos territorios.
-	private final int deslocaX = -60;
-	private final int deslocaY = -60;
+	private final int deslocaX = 0;
+	private final int deslocaY = 0;
 
 	// Bloco de inicialização dos territórios
 	// Estou assumindo que a classe territorio tem um nome e um poligono definindo sua área de clique.
@@ -741,7 +741,7 @@ public class Mapa extends JPanel {
 					// Se o ponto clicado for contido pelo poligono do territorio	
 					if(t.getPoligono().contains(e.getX(), e.getY())) {
 							// faz alguma coisa
-							System.out.println("País:"+ t.getNome());
+							JOptionPane.showMessageDialog(null, "País:"+ t.getNome());							
 						}
 					}
 					
