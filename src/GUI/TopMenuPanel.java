@@ -21,7 +21,7 @@ public class TopMenuPanel extends Observable
 		this.newGameBut=new JButton("Novo Jogo");
 		newGameBut.setActionCommand("newGame");
 		newGameBut.addActionListener(this);
-		this.orderPanel=new ColorPanel(0,null);//3,new Color[]{Color.black,Color.blue,Color.red});
+		this.orderPanel=new ColorPanel(6,new Color[]{Color.black,Color.black,Color.black,Color.black,Color.black,Color.black});//3,new Color[]{Color.black,Color.blue,Color.red});
 		this.nextTurnBut=new JButton("Prox Turno");
 		nextTurnBut.setActionCommand("nextTurn");
 		nextTurnBut.addActionListener(this);
@@ -42,7 +42,8 @@ public class TopMenuPanel extends Observable
 		p.add(nextTurnBut,gbc);
 		
 		gbc.gridx=0;
-		gbc.gridy=1;		
+		gbc.gridy=1;	
+		gbc.gridwidth=GridBagConstraints.REMAINDER;
 		p.add(orderPanel,gbc);
 		
 		
@@ -84,7 +85,7 @@ public class TopMenuPanel extends Observable
 			//this.setPreferredSize(new Dimension(n*RECT_WIDTH+2*RECT_PADD*(n+1),RECT_HEIGHT+2*RECT_OFFS+2*RECT_PADD));
 			this.updateSize();
 			this.colors=colors;
-			this.current=2;
+			this.current=0;
 		}
 		
 		public void updateSize(){

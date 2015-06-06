@@ -48,8 +48,8 @@ public class MainWindow extends Observable{
 	}
 	public void repaint(){
 		topLevelFrame.repaint();
-		topLevelFrame.getContentPane().repaint();
-		System.out.println("aaa");
+		System.out.println("gameWin repaint");
+		topLevelFrame.pack();
 	}
 	
 	/*public MainWindow(String title){
