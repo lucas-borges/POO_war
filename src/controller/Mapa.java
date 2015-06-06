@@ -2,6 +2,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.*;
+import java.awt.*;
 
 import javax.swing.*;
 
@@ -741,7 +742,7 @@ public class Mapa extends JPanel {
 					// Se o ponto clicado for contido pelo poligono do territorio	
 					if(t.getPoligono().contains(e.getX(), e.getY())) {
 							// faz alguma coisa
-							JOptionPane.showMessageDialog(null, "País:"+ t.getNome());							
+							showMessage(t);							
 						}
 					}
 					
@@ -771,5 +772,13 @@ public class Mapa extends JPanel {
 				
 			}
 		});
+	}
+	
+	private void showMessage (Territorio t){
+		JPanel message=new JPanel();
+		message.setBounds(t.getPoligono().getBounds());
+		this.add(message);
+		JOptionPane.showMessageDialog(message, "País:"+ t.getNome());
+		this.remove(message);
 	}
 }
