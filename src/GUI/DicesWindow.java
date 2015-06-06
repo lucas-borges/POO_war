@@ -26,6 +26,7 @@ public class DicesWindow  {
 		this.rollAttackDicesBut = new JButton("Rolar Dados Ataque");
 		this.rollDefenseDicesBut = new JButton("Rolar Dados Defesa");
 		this.clicked = false;
+		rollDefenseDicesBut.setEnabled(false);
 		//this.nAttackDices = 
 		//this.nDefenseDices = 
 	}
@@ -78,12 +79,14 @@ public class DicesWindow  {
 			Dices dice = new Dices();
 			int numDices [] = dice.lancar_dados(nAttackDices);
 			
+			rollAttackDicesBut.setEnabled(false);
+			rollDefenseDicesBut.setEnabled(true);
+			
 			for(int i=0;i<nAttackDices;i++)
 			{
 				AttackDices[i].setIcon(new ImageIcon("Dados/dado_ataque_"+numDices[i]+".png"));		
 			}
         	
-            //System.out.println("You clicked the button");
 		}
 	}
 	
@@ -93,12 +96,13 @@ public class DicesWindow  {
 			Dices dice = new Dices();
 			int numDices [] = dice.lancar_dados(nDefenseDices);
 			
+			rollDefenseDicesBut.setEnabled(false);
+			
 			for(int i=0;i<nDefenseDices;i++)
 			{
 				DefenseDices[i].setIcon(new ImageIcon("Dados/dado_defesa_"+numDices[i]+".png"));		
 			}
-			
-            //System.out.println("You clicked the button");
+	
 		}
 	}
 	
