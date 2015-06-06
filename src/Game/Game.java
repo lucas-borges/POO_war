@@ -5,7 +5,6 @@ package Game;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Observable;
 import java.util.Random;
 
 public class Game {
@@ -17,8 +16,6 @@ public class Game {
 	public Game (int n){
 		nPlayers=n;
 		players=new Player[n];
-		
-		int d=0;
 		
 		ArrayList<Color> colors=new ArrayList<Color>(Arrays.asList(
 				new Color[]{Color.blue, Color.black, Color.white,Color.green,
@@ -34,7 +31,6 @@ public class Game {
 		
 		currentPlayerIndex=0;
 		turn=0;
-		
 	}
 	public void nextTurn (){
 		turn++;

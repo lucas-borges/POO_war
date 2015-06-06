@@ -43,6 +43,14 @@ public class MainWindow extends Observable{
 		super.addObserver(o);
 		top_menu_panel.addObserver(o);
 	}
+	public void setColorPanel(int n,Color[] order){
+		top_menu_panel.setColorPanel(n,order);
+	}
+	public void repaint(){
+		topLevelFrame.repaint();
+		topLevelFrame.getContentPane().repaint();
+		System.out.println("aaa");
+	}
 	
 	/*public MainWindow(String title){
 		super(title);

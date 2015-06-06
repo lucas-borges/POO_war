@@ -4,11 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.*;
-
-import Game.GameFacade;
 
 public class TopMenuPanel extends Observable
 							implements ActionListener {
@@ -16,6 +13,7 @@ public class TopMenuPanel extends Observable
 	private JButton newGameBut;
 	private ColorPanel orderPanel;
 	private JButton nextTurnBut;
+	private JPanel p;
 	
 	
 	
@@ -23,14 +21,14 @@ public class TopMenuPanel extends Observable
 		this.newGameBut=new JButton("Novo Jogo");
 		newGameBut.setActionCommand("newGame");
 		newGameBut.addActionListener(this);
-		this.orderPanel=new ColorPanel(3,new Color[]{Color.black,Color.blue,Color.red});
+		this.orderPanel=new ColorPanel(0,null);//3,new Color[]{Color.black,Color.blue,Color.red});
 		this.nextTurnBut=new JButton("Prox Turno");
 		nextTurnBut.setActionCommand("nextTurn");
 		nextTurnBut.addActionListener(this);
 	}
 	
 	public JPanel getGUI(){
-		JPanel p=new JPanel();
+		p=new JPanel();
 		p.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -52,7 +50,6 @@ public class TopMenuPanel extends Observable
 	}
 	
 	
-	
 	public void actionPerformed(ActionEvent e){
 		String s=e.getActionCommand();
 		if(s.equals("newGame")){
@@ -62,6 +59,14 @@ public class TopMenuPanel extends Observable
 			setChanged();
 			notifyObservers("nextTurn");
 		}
+	}
+	
+	public void setColorPanel(int n,Color[] order){
+		orderPanel.n=n;
+		orderPanel.colors=order;
+		orderPanel.updateSize();
+		//orderPanel.repaint();
+		//System.out.println("repaint no ColorPanel");
 	}
 		
 	private class ColorPanel extends JPanel {
@@ -76,9 +81,15 @@ public class TopMenuPanel extends Observable
 		
 		public ColorPanel (int n, Color[] colors){
 			this.n=n;
-			this.setPreferredSize(new Dimension(n*RECT_WIDTH+2*RECT_PADD*(n+1),RECT_HEIGHT+2*RECT_OFFS+2*RECT_PADD));
+			//this.setPreferredSize(new Dimension(n*RECT_WIDTH+2*RECT_PADD*(n+1),RECT_HEIGHT+2*RECT_OFFS+2*RECT_PADD));
+			this.updateSize();
 			this.colors=colors;
 			this.current=2;
+		}
+		
+		public void updateSize(){
+			this.setPreferredSize(new Dimension(n*RECT_WIDTH+2*RECT_PADD*(n+1),RECT_HEIGHT+2*RECT_OFFS+2*RECT_PADD));
+			System.out.println("n jogad orderpanel " + n);
 		}
 		
 		public void paintComponent (Graphics g){
