@@ -51,6 +51,9 @@ public class MainWindow extends Observable{
 		System.out.println("gameWin repaint");
 		topLevelFrame.pack();
 	}
+	public void nextTurn(){
+		top_menu_panel.nextTurn();
+	}
 	
 	/*public MainWindow(String title){
 		super(title);

@@ -38,6 +38,8 @@ public class GameController implements Observer {
 			game.nextTurn();
 			System.out.println("Turno: " + game.getTurn());
 			System.out.println("Jogador: " + game.getCurrentPlayer());
+			gameWin.nextTurn();
+			gameWin.repaint();
 		}
 	}
 	public int getNPlayers (){

@@ -66,8 +66,9 @@ public class TopMenuPanel extends Observable
 		orderPanel.n=n;
 		orderPanel.colors=order;
 		orderPanel.updateSize();
-		//orderPanel.repaint();
-		//System.out.println("repaint no ColorPanel");
+	}
+	public void nextTurn(){
+		orderPanel.nextTurn();
 	}
 		
 	private class ColorPanel extends JPanel {
@@ -91,6 +92,9 @@ public class TopMenuPanel extends Observable
 		public void updateSize(){
 			this.setPreferredSize(new Dimension(n*RECT_WIDTH+2*RECT_PADD*(n+1),RECT_HEIGHT+2*RECT_OFFS+2*RECT_PADD));
 			System.out.println("n jogad orderpanel " + n);
+		}
+		public void nextTurn(){
+			current++;
 		}
 		
 		public void paintComponent (Graphics g){
