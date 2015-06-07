@@ -30,7 +30,7 @@ public class Game {
 		}
 		
 		currentPlayerIndex=0;
-		turn=0;
+		turn=1;
 	}
 	public void nextTurn (){
 		turn++;

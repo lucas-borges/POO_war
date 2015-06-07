@@ -94,7 +94,12 @@ public class TopMenuPanel extends Observable
 			System.out.println("n jogad orderpanel " + n);
 		}
 		public void nextTurn(){
-			current++;
+			if (current<n-1){
+				current++;
+			}
+			else{
+				current=0;
+			}
 		}
 		
 		public void paintComponent (Graphics g){
