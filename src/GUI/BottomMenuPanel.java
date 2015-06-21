@@ -12,6 +12,7 @@ public class BottomMenuPanel extends Observable
 	
 	DicesWindow diceWindow;
 	JButton rollDicesBut;
+	private JPanel p;
 	
 	public BottomMenuPanel(){
 		this.diceWindow = new DicesWindow();
@@ -19,11 +20,15 @@ public class BottomMenuPanel extends Observable
 	}
 	
 	public JPanel getGUI(){
-		JPanel p=new JPanel();
+		p=new JPanel();
+		p.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		
 		rollDicesBut.addActionListener(this);
 		
-		p.add(rollDicesBut);
+		gbc.gridx=0;
+		gbc.gridy=0;
+		p.add(rollDicesBut,gbc);
 		
 		return p;
 	}
