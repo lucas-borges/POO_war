@@ -9,6 +9,11 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JOptionPane;
+
+import controller.MapClickRedirect;
+import controller.Territorio;
+
 public class GameController implements Observer {
 	private Game game;
 	
@@ -31,12 +36,16 @@ public class GameController implements Observer {
 	public void update (Observable o, Object arg){
 		String x=(String)arg;
 		System.out.println("entrou controller update");
+		
 		if(x.equals("startGame")){
 			int nPlayers=((StartWindow)o).getComboValue();
 			game=new Game(nPlayers);
 			System.out.println("Jogo criado com " + game.getNPlayers());
 			/**/gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
+			
+			/**/game.randomizeStart();
+			/**/game.playerTerr(0);
 		}
 		else if(x.equals("nextTurn")){
 			game.nextTurn();
@@ -45,6 +54,7 @@ public class GameController implements Observer {
 			gameWin.nextTurn();
 			gameWin.repaint();
 		}
+
 		else if(x.equals("RollDices")){
 			BottomMenuPanel p = ((BottomMenuPanel)o);
 			p.createGUIDices();
@@ -56,6 +66,10 @@ public class GameController implements Observer {
 			System.out.printf("%d",result[0]);
 			game.SelectWinner(d.getAttackDices(), d.getDefenseDices(), result);
 			d.setResult(result);
+		}
+		else if(x.equals("click")){
+			MapClickRedirect t=(MapClickRedirect)o;
+			JOptionPane.showMessageDialog(null, "Pa�s:"+ t.getTerritorio().getNome());
 		}
 	}
 	public int getNPlayers (){

@@ -4,7 +4,7 @@ import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Territorio {
+public class Territorio{
 
 	private String Nome;
 	private GeneralPath poligono;
@@ -38,4 +38,5 @@ public class Territorio {
 	public void lstFronteirasAdd(Territorio fronteira){
 		lstFronteiras.add(fronteira);
 	}
+	public List<Territorio> 
 }

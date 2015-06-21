@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
+import controller.*;
 
 public class MainWindow extends Observable{
 	private JFrame topLevelFrame;
@@ -14,12 +15,17 @@ public class MainWindow extends Observable{
 	JPanel bg_panel;
 	TopMenuPanel top_menu_panel;
 	BottomMenuPanel bot_menu_panel;
+	Mapa mapa;
+	MapClickRedirect clickRedirect;
 	
 	public MainWindow(){
 		this.topLevelFrame = new JFrame ("WAR");
-		this.bg_panel = new MapPanel();
+		mapa=new Mapa();
+		this.bg_panel = new MapPanel(mapa);
 		top_menu_panel = new TopMenuPanel();
 		bot_menu_panel = new BottomMenuPanel();
+		clickRedirect=new MapClickRedirect();
+		this.mapa.addRedirect(clickRedirect);
 	}
 	public void createGUI(){
 		Container c = this.topLevelFrame.getContentPane();
@@ -34,7 +40,7 @@ public class MainWindow extends Observable{
 		c.add(p,BorderLayout.EAST);
 		
 		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.topLevelFrame.setResizable(false);
+		this.topLevelFrame.setResizable(false);
 		this.topLevelFrame.pack();
 		this.topLevelFrame.setLocationRelativeTo(null);
 		this.topLevelFrame.setVisible(true);
@@ -43,6 +49,7 @@ public class MainWindow extends Observable{
 		super.addObserver(o);
 		top_menu_panel.addObserver(o);
 		bot_menu_panel.addObserver(o);
+		this.clickRedirect.addObserver(o);
 	}
 	public void setColorPanel(int n,Color[] order){
 		top_menu_panel.setColorPanel(n,order);
