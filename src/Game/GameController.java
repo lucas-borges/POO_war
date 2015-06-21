@@ -1,5 +1,6 @@
 package Game;
 
+import GUI.DicesWindow;
 import GUI.MainWindow;
 import GUI.StartWindow;
 import GUI.BottomMenuPanel;
@@ -45,7 +46,16 @@ public class GameController implements Observer {
 			gameWin.repaint();
 		}
 		else if(x.equals("RollDices")){
-			((BottomMenuPanel)o).createGUIDices();
+			BottomMenuPanel p = ((BottomMenuPanel)o);
+			p.createGUIDices();
+		}
+		else if(x.equals("DadosRolados")){
+			System.out.println("entrou dados rolados");
+			DicesWindow d = (DicesWindow)o;
+			int result[] = {0,0};
+			System.out.printf("%d",result[0]);
+			game.SelectWinner(d.getAttackDices(), d.getDefenseDices(), result);
+			d.setResult(result);
 		}
 	}
 	public int getNPlayers (){

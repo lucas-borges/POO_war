@@ -3,6 +3,7 @@ package GUI;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
 
@@ -37,6 +38,11 @@ public class BottomMenuPanel extends Observable
 		{
 			diceWindow.createGUI();
             System.out.println("You clicked the button");
+		}
+		public void addObserver(Observer o)
+		{
+			super.addObserver(o);
+			diceWindow.addObserver(o);
 		}
 	
 	/*
