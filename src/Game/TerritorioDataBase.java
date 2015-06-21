@@ -6,6 +6,68 @@ import java.util.List;
 import controller.*;
 
 public class TerritorioDataBase {
+	
+	public enum nomePais {
+		Alasca("Alasca"),
+		Calgary("Calgary"),
+		Groelandia("Groelandia"),
+		Vancouver("Vancouver"),
+		Quebec("Quebec"),
+		California("California"),
+		Texas("Texas"),
+		NovaYork("Nova York"),
+		Mexico("Mexico"),
+		Venezuela("Venezuela"),
+		Peru("Peru"),
+		Brasil("Brasil"),
+		Argentina("Argentina"),
+		AfricaDoSul("Africa do Sul"),
+		Angola("Angola"),
+		Argelia("Argelia"),
+		Egito("Egito"),
+		Nigeria("Nigeria"),
+		Somalia("Somalia"),
+		Franca("França"),
+		Italia("Italia"),
+		Polonia("Polônia"),
+		ReinoUnido("Reino Unido"),
+		Romenia("Romênia"),
+		Suecia("Suecia"),
+		Ucrania("Urânia"),
+		ArabiaSaudita("Arábia Saudita"),
+		Bangladesh("Bangladesh"),
+		Cazaquistao("Cazaquistão"),
+		Mongolia("Mongolia"),
+		China("China"),
+		CoreiaDoNorte("Coréia do Norte"),
+		CoreiaDoSul("Coréia do Sul"),
+		Estonia("Estônia"),
+		India("Índia"),
+		Ira("Irã"),
+		Iraque("Iraque"),
+		Japao("Japão"),
+		Jordania("Jordânia"),
+		Letonia("Letônia"),
+		Paquistao("Paquistão"),
+		Russia("Rússia"),
+		Siberia("Sibéria"),
+		Siria("Síria"),
+		Tailandia("Tailândia"),
+		Turquia("Turquia"),
+		Australia("Austrália"),
+		Indonesia("Indonésia"),
+		NovaZelandia("Nova Zelândia"),
+		Perth("Perth");
+		;
+		private String nome;
+		nomePais(String nome){
+			this.nome=nome;
+		}
+		public String getNome(){
+			return nome;
+		}
+		
+	}
 
 	// Lista de territorios
 		static private List<Territorio> lstTerritorios = new ArrayList<Territorio>();
@@ -921,49 +983,49 @@ public class TerritorioDataBase {
 			lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Turquia"));
 			lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Ucrania"));
 			//Paquist�o
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ira"));
+			lstTerritorios.get(41).lstFronteirasAdd(buscaTerritorio("Siria"));
+			lstTerritorios.get(41).lstFronteirasAdd(buscaTerritorio("Turquia"));
+			lstTerritorios.get(41).lstFronteirasAdd(buscaTerritorio("China"));
+			lstTerritorios.get(41).lstFronteirasAdd(buscaTerritorio("India"));
+			lstTerritorios.get(41).lstFronteirasAdd(buscaTerritorio("Ira"));
 			//Russia
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Estonia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siberia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
+			lstTerritorios.get(42).lstFronteirasAdd(buscaTerritorio("Estonia"));
+			lstTerritorios.get(42).lstFronteirasAdd(buscaTerritorio("Siberia"));
+			lstTerritorios.get(42).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
+			lstTerritorios.get(42).lstFronteirasAdd(buscaTerritorio("Letonia"));
 			//Sib�ria
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Russia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Alasca"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
+			lstTerritorios.get(43).lstFronteirasAdd(buscaTerritorio("Russia"));
+			lstTerritorios.get(43).lstFronteirasAdd(buscaTerritorio("Alasca"));
+			lstTerritorios.get(43).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
 			//Siria
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ira"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Jordania"));
+			lstTerritorios.get(44).lstFronteirasAdd(buscaTerritorio("Turquia"));
+			lstTerritorios.get(44).lstFronteirasAdd(buscaTerritorio("Paquistao"));
+			lstTerritorios.get(44).lstFronteirasAdd(buscaTerritorio("Ira"));
+			lstTerritorios.get(44).lstFronteirasAdd(buscaTerritorio("Iraque"));
+			lstTerritorios.get(44).lstFronteirasAdd(buscaTerritorio("Jordania"));
 			//Tail�ndia
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
+			lstTerritorios.get(45).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
+			lstTerritorios.get(45).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
 			//Turquia
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
+			lstTerritorios.get(46).lstFronteirasAdd(buscaTerritorio("Letonia"));
+			lstTerritorios.get(46).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
+			lstTerritorios.get(46).lstFronteirasAdd(buscaTerritorio("China"));
+			lstTerritorios.get(46).lstFronteirasAdd(buscaTerritorio("Paquistao"));
+			lstTerritorios.get(46).lstFronteirasAdd(buscaTerritorio("Siria"));
 			//Austr�lia
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Perth"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nova Zelandia"));
+			lstTerritorios.get(47).lstFronteirasAdd(buscaTerritorio("Perth"));
+			lstTerritorios.get(47).lstFronteirasAdd(buscaTerritorio("Indonesia"));
+			lstTerritorios.get(47).lstFronteirasAdd(buscaTerritorio("Nova Zelandia"));
 			//Indon�sia
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Australia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nova Zelandia"));
+			lstTerritorios.get(48).lstFronteirasAdd(buscaTerritorio("India"));
+			lstTerritorios.get(48).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
+			lstTerritorios.get(48).lstFronteirasAdd(buscaTerritorio("Australia"));
+			lstTerritorios.get(48).lstFronteirasAdd(buscaTerritorio("Nova Zelandia"));
 			//Nova Zel�ndia
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Australia"));
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
+			lstTerritorios.get(49).lstFronteirasAdd(buscaTerritorio("Australia"));
+			lstTerritorios.get(49).lstFronteirasAdd(buscaTerritorio("Indonesia"));
 			//Perth
-			lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Australia"));
+			lstTerritorios.get(50).lstFronteirasAdd(buscaTerritorio("Australia"));
 			
 			
 		}
