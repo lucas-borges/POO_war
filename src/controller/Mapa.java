@@ -735,197 +735,197 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Calgary"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Vancouver"));
 		//Calgary
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Alasca"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Groelandia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Vancouver"));
+		lstTerritorios.get(1).lstFronteirasAdd(buscaTerritorio("Alasca"));
+		lstTerritorios.get(1).lstFronteirasAdd(buscaTerritorio("Groelandia"));
+		lstTerritorios.get(1).lstFronteirasAdd(buscaTerritorio("Vancouver"));
 		//Groelandia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Calgary"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Quebec"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Reino Unido"));
+		lstTerritorios.get(2).lstFronteirasAdd(buscaTerritorio("Calgary"));
+		lstTerritorios.get(2).lstFronteirasAdd(buscaTerritorio("Quebec"));
+		lstTerritorios.get(2).lstFronteirasAdd(buscaTerritorio("Reino Unido"));
 		//Vancouver
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Alasca"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Calgary"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Quebec"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Texas"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("NovaYork"));
+		lstTerritorios.get(3).lstFronteirasAdd(buscaTerritorio("Alasca"));
+		lstTerritorios.get(3).lstFronteirasAdd(buscaTerritorio("Calgary"));
+		lstTerritorios.get(3).lstFronteirasAdd(buscaTerritorio("Quebec"));
+		lstTerritorios.get(3).lstFronteirasAdd(buscaTerritorio("Texas"));
+		lstTerritorios.get(3).lstFronteirasAdd(buscaTerritorio("NovaYork"));
 		//Quebec
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Vancouver"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Texas"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("NovaYork"));		
+		lstTerritorios.get(4).lstFronteirasAdd(buscaTerritorio("Vancouver"));
+		lstTerritorios.get(4).lstFronteirasAdd(buscaTerritorio("Texas"));
+		lstTerritorios.get(4).lstFronteirasAdd(buscaTerritorio("NovaYork"));		
 		//California
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Vancouver"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Texas"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mexico"));
+		lstTerritorios.get(5).lstFronteirasAdd(buscaTerritorio("Vancouver"));
+		lstTerritorios.get(5).lstFronteirasAdd(buscaTerritorio("Texas"));
+		lstTerritorios.get(5).lstFronteirasAdd(buscaTerritorio("Mexico"));
 		//Texas
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Vancouver"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Quebec"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("California"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("NovaYork"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mexico"));
+		lstTerritorios.get(6).lstFronteirasAdd(buscaTerritorio("Vancouver"));
+		lstTerritorios.get(6).lstFronteirasAdd(buscaTerritorio("Quebec"));
+		lstTerritorios.get(6).lstFronteirasAdd(buscaTerritorio("California"));
+		lstTerritorios.get(6).lstFronteirasAdd(buscaTerritorio("NovaYork"));
+		lstTerritorios.get(6).lstFronteirasAdd(buscaTerritorio("Mexico"));
 		//NovaYork
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Quebec"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Texas"));
+		lstTerritorios.get(7).lstFronteirasAdd(buscaTerritorio("Quebec"));
+		lstTerritorios.get(7).lstFronteirasAdd(buscaTerritorio("Texas"));
 		//Mexico
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("California"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Texas"));
+		lstTerritorios.get(8).lstFronteirasAdd(buscaTerritorio("California"));
+		lstTerritorios.get(8).lstFronteirasAdd(buscaTerritorio("Texas"));
 		//Venezuela
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mexico"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Brasil"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Peru"));
+		lstTerritorios.get(9).lstFronteirasAdd(buscaTerritorio("Mexico"));
+		lstTerritorios.get(9).lstFronteirasAdd(buscaTerritorio("Brasil"));
+		lstTerritorios.get(9).lstFronteirasAdd(buscaTerritorio("Peru"));
 		//Peru
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Venezuela"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Brasil"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argentina"));
+		lstTerritorios.get(10).lstFronteirasAdd(buscaTerritorio("Venezuela"));
+		lstTerritorios.get(10).lstFronteirasAdd(buscaTerritorio("Brasil"));
+		lstTerritorios.get(10).lstFronteirasAdd(buscaTerritorio("Argentina"));
 		//Brasil
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Venezuela"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Peru"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argentina"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argelia"));		
+		lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio("Venezuela"));
+		lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio("Peru"));
+		lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio("Argentina"));
+		lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio("Argelia"));		
 		//Argentina
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Peru"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Brasil"));
+		lstTerritorios.get(12).lstFronteirasAdd(buscaTerritorio("Peru"));
+		lstTerritorios.get(12).lstFronteirasAdd(buscaTerritorio("Brasil"));
 		//Africa do Sul
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Angola"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
+		lstTerritorios.get(13).lstFronteirasAdd(buscaTerritorio("Angola"));
+		lstTerritorios.get(13).lstFronteirasAdd(buscaTerritorio("Somalia"));
 		//Angola
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nigeria"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Africa do Sul"));
+		lstTerritorios.get(14).lstFronteirasAdd(buscaTerritorio("Nigeria"));
+		lstTerritorios.get(14).lstFronteirasAdd(buscaTerritorio("Somalia"));
+		lstTerritorios.get(14).lstFronteirasAdd(buscaTerritorio("Africa do Sul"));
 		//Arg�lia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Espanha"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nigeria"));
+		lstTerritorios.get(15).lstFronteirasAdd(buscaTerritorio("Espanha"));
+		lstTerritorios.get(15).lstFronteirasAdd(buscaTerritorio("Italia"));
+		lstTerritorios.get(15).lstFronteirasAdd(buscaTerritorio("Egito"));
+		lstTerritorios.get(15).lstFronteirasAdd(buscaTerritorio("Nigeria"));
 		//Egito
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Romenia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argelia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nigeria"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Jordania"));
+		lstTerritorios.get(16).lstFronteirasAdd(buscaTerritorio("Romenia"));
+		lstTerritorios.get(16).lstFronteirasAdd(buscaTerritorio("Argelia"));
+		lstTerritorios.get(16).lstFronteirasAdd(buscaTerritorio("Nigeria"));
+		lstTerritorios.get(16).lstFronteirasAdd(buscaTerritorio("Somalia"));
+		lstTerritorios.get(16).lstFronteirasAdd(buscaTerritorio("Jordania"));
 		//Nig�ria
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Brasil"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argelia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Angola"));
+		lstTerritorios.get(17).lstFronteirasAdd(buscaTerritorio("Brasil"));
+		lstTerritorios.get(17).lstFronteirasAdd(buscaTerritorio("Argelia"));
+		lstTerritorios.get(17).lstFronteirasAdd(buscaTerritorio("Egito"));
+		lstTerritorios.get(17).lstFronteirasAdd(buscaTerritorio("Somalia"));
+		lstTerritorios.get(17).lstFronteirasAdd(buscaTerritorio("Angola"));
 		//Som�lia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nigeria"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Angola"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Africa do Sul"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
+		lstTerritorios.get(18).lstFronteirasAdd(buscaTerritorio("Egito"));
+		lstTerritorios.get(18).lstFronteirasAdd(buscaTerritorio("Nigeria"));
+		lstTerritorios.get(18).lstFronteirasAdd(buscaTerritorio("Angola"));
+		lstTerritorios.get(18).lstFronteirasAdd(buscaTerritorio("Africa do Sul"));
+		lstTerritorios.get(18).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
 		//Espanha
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argelia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
+		lstTerritorios.get(19).lstFronteirasAdd(buscaTerritorio("Argelia"));
+		lstTerritorios.get(19).lstFronteirasAdd(buscaTerritorio("Franca"));
 		//Fran�a
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Espanha"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Reino Unido"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
+		lstTerritorios.get(20).lstFronteirasAdd(buscaTerritorio("Espanha"));
+		lstTerritorios.get(20).lstFronteirasAdd(buscaTerritorio("Reino Unido"));
+		lstTerritorios.get(20).lstFronteirasAdd(buscaTerritorio("Italia"));
+		lstTerritorios.get(20).lstFronteirasAdd(buscaTerritorio("Suecia"));
 		//It�lia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Romenia"));
+		lstTerritorios.get(21).lstFronteirasAdd(buscaTerritorio("Franca"));
+		lstTerritorios.get(21).lstFronteirasAdd(buscaTerritorio("Suecia"));
+		lstTerritorios.get(21).lstFronteirasAdd(buscaTerritorio("Polonia"));
+		lstTerritorios.get(21).lstFronteirasAdd(buscaTerritorio("Romenia"));
 		//Pol�nia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Romenia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ucrania"));
+		lstTerritorios.get(22).lstFronteirasAdd(buscaTerritorio("Letonia"));
+		lstTerritorios.get(22).lstFronteirasAdd(buscaTerritorio("Italia"));
+		lstTerritorios.get(22).lstFronteirasAdd(buscaTerritorio("Romenia"));
+		lstTerritorios.get(22).lstFronteirasAdd(buscaTerritorio("Ucrania"));
 		//Reino Unido
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Groelandia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
+		lstTerritorios.get(23).lstFronteirasAdd(buscaTerritorio("Groelandia"));
+		lstTerritorios.get(23).lstFronteirasAdd(buscaTerritorio("Franca"));
 		//Rom�nia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ucrania"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
+		lstTerritorios.get(24).lstFronteirasAdd(buscaTerritorio("Italia"));
+		lstTerritorios.get(24).lstFronteirasAdd(buscaTerritorio("Polonia"));
+		lstTerritorios.get(24).lstFronteirasAdd(buscaTerritorio("Ucrania"));
+		lstTerritorios.get(24).lstFronteirasAdd(buscaTerritorio("Egito"));
 		//Su�cia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Estonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
+		lstTerritorios.get(25).lstFronteirasAdd(buscaTerritorio("Franca"));
+		lstTerritorios.get(25).lstFronteirasAdd(buscaTerritorio("Polonia"));
+		lstTerritorios.get(25).lstFronteirasAdd(buscaTerritorio("Estonia"));
+		lstTerritorios.get(25).lstFronteirasAdd(buscaTerritorio("Letonia"));
 		//Ucr�nia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Romenia"));
+		lstTerritorios.get(26).lstFronteirasAdd(buscaTerritorio("Polonia"));
+		lstTerritorios.get(26).lstFronteirasAdd(buscaTerritorio("Letonia"));
+		lstTerritorios.get(26).lstFronteirasAdd(buscaTerritorio("Turquia"));
+		lstTerritorios.get(26).lstFronteirasAdd(buscaTerritorio("Romenia"));
 		//Ar�bia Saudita
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Jordania"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
+		lstTerritorios.get(27).lstFronteirasAdd(buscaTerritorio("Somalia"));
+		lstTerritorios.get(27).lstFronteirasAdd(buscaTerritorio("Jordania"));
+		lstTerritorios.get(27).lstFronteirasAdd(buscaTerritorio("Iraque"));
 		//Bangladesh
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Tailandia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
+		lstTerritorios.get(28).lstFronteirasAdd(buscaTerritorio("India"));
+		lstTerritorios.get(28).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
+		lstTerritorios.get(28).lstFronteirasAdd(buscaTerritorio("Tailandia"));
+		lstTerritorios.get(28).lstFronteirasAdd(buscaTerritorio("Indonesia"));
 		//Cazaquist�o
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Russia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siberia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Japao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mongolia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
+		lstTerritorios.get(29).lstFronteirasAdd(buscaTerritorio("Letonia"));
+		lstTerritorios.get(29).lstFronteirasAdd(buscaTerritorio("Russia"));
+		lstTerritorios.get(29).lstFronteirasAdd(buscaTerritorio("Siberia"));
+		lstTerritorios.get(29).lstFronteirasAdd(buscaTerritorio("Japao"));
+		lstTerritorios.get(29).lstFronteirasAdd(buscaTerritorio("Mongolia"));
+		lstTerritorios.get(29).lstFronteirasAdd(buscaTerritorio("China"));
+		lstTerritorios.get(29).lstFronteirasAdd(buscaTerritorio("Turquia"));
 		//Mong�lia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Japao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
+		lstTerritorios.get(30).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
+		lstTerritorios.get(30).lstFronteirasAdd(buscaTerritorio("Japao"));
+		lstTerritorios.get(30).lstFronteirasAdd(buscaTerritorio("China"));
 		//China
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mongolia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
+		lstTerritorios.get(31).lstFronteirasAdd(buscaTerritorio("Turquia"));
+		lstTerritorios.get(31).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
+		lstTerritorios.get(31).lstFronteirasAdd(buscaTerritorio("Mongolia"));
+		lstTerritorios.get(31).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
+		lstTerritorios.get(31).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
+		lstTerritorios.get(31).lstFronteirasAdd(buscaTerritorio("India"));
+		lstTerritorios.get(31).lstFronteirasAdd(buscaTerritorio("Paquistao"));
 
 		//Cor�ia do Norte
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Japao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
+		lstTerritorios.get(32).lstFronteirasAdd(buscaTerritorio("China"));
+		lstTerritorios.get(32).lstFronteirasAdd(buscaTerritorio("Japao"));
+		lstTerritorios.get(32).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
 		//Cor�ia do Sul
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Tailandia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
+		lstTerritorios.get(33).lstFronteirasAdd(buscaTerritorio("China"));
+		lstTerritorios.get(33).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
+		lstTerritorios.get(33).lstFronteirasAdd(buscaTerritorio("Tailandia"));
+		lstTerritorios.get(33).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
+		lstTerritorios.get(33).lstFronteirasAdd(buscaTerritorio("India"));
 		//Est�nia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Russia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
+		lstTerritorios.get(34).lstFronteirasAdd(buscaTerritorio("Suecia"));
+		lstTerritorios.get(34).lstFronteirasAdd(buscaTerritorio("Russia"));
+		lstTerritorios.get(34).lstFronteirasAdd(buscaTerritorio("Letonia"));
 		//�ndia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
+		lstTerritorios.get(35).lstFronteirasAdd(buscaTerritorio("Paquistao"));
+		lstTerritorios.get(35).lstFronteirasAdd(buscaTerritorio("China"));
+		lstTerritorios.get(35).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
+		lstTerritorios.get(35).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
+		lstTerritorios.get(35).lstFronteirasAdd(buscaTerritorio("Indonesia"));
 		//Ir�
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
+		lstTerritorios.get(36).lstFronteirasAdd(buscaTerritorio("Siria"));
+		lstTerritorios.get(36).lstFronteirasAdd(buscaTerritorio("Paquistao"));
+		lstTerritorios.get(36).lstFronteirasAdd(buscaTerritorio("Iraque"));
 		//Iraque
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Jordania"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ira"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
+		lstTerritorios.get(37).lstFronteirasAdd(buscaTerritorio("Jordania"));
+		lstTerritorios.get(37).lstFronteirasAdd(buscaTerritorio("Siria"));
+		lstTerritorios.get(37).lstFronteirasAdd(buscaTerritorio("Ira"));
+		lstTerritorios.get(37).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
 		//Jap�o
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mongolia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
+		lstTerritorios.get(38).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
+		lstTerritorios.get(38).lstFronteirasAdd(buscaTerritorio("Mongolia"));
+		lstTerritorios.get(38).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
 		//Jord�nia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
+		lstTerritorios.get(39).lstFronteirasAdd(buscaTerritorio("Siria"));
+		lstTerritorios.get(39).lstFronteirasAdd(buscaTerritorio("Iraque"));
+		lstTerritorios.get(39).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
+		lstTerritorios.get(39).lstFronteirasAdd(buscaTerritorio("Egito"));
 		//Let�nia
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Estonia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Russia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
-		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ucrania"));
+		lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Polonia"));
+		lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Suecia"));
+		lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Estonia"));
+		lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Russia"));
+		lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
+		lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Turquia"));
+		lstTerritorios.get(40).lstFronteirasAdd(buscaTerritorio("Ucrania"));
 		//Paquist�o
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
@@ -981,18 +981,9 @@ public class Mapa extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				// Para cada territorio da lista de territorios
-				for(Territorio t : lstTerritorios) {
-					
-					// Se o ponto clicado for contido pelo poligono do territorio	
-					if(t.getPoligono().contains(e.getX(), e.getY())) {
-							// faz alguma coisa
-							//showMessage(t);
-						    clickRedirect.click(t);	
-						}
-					}
-					
-				}
+				clickRedirect.click(e.getX(),e.getY());	
+				
+			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -1002,7 +993,9 @@ public class Mapa extends JPanel {
 					// Se o ponto onde mouse está for contido pelo poligono do territorio	
 					if(t.getPoligono().contains(e.getX(), e.getY())) {
 							// faz alguma coisa
-							//			
+							//for(Territorio f:t.getLstFronteiras()){
+								//f.getPoligono()
+							//}
 					}
 				}				
 				

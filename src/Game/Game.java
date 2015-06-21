@@ -2,7 +2,7 @@ package Game;
 
 //import etc.*;
 //DEBUG
-import controller.Mapa;
+
 //DEBUG
 
 import java.awt.Color;
@@ -18,9 +18,6 @@ public class Game {
 	private int currentPlayerIndex;
 	private int turn;
 	
-	//DEBUG
-	Mapa mapaD=new Mapa();
-	//END DEBUG
 	
 	public Game (int n){
 		nPlayers=n;
@@ -77,7 +74,7 @@ public class Game {
 	
 	//DEBUG
 		public void randomizeStart(){
-			ArrayList<Territorio> tempTerr = mapaD.copyLstTerritorios()/* TODOS OS TERRITORIOS */;
+			ArrayList<Territorio> tempTerr = TerritorioDataBase.copyLstTerritorios()/* TODOS OS TERRITORIOS */;
 			Random randGen = new Random();
 			
 			int terrPPlayer = tempTerr.size()/nPlayers;
@@ -85,12 +82,19 @@ public class Game {
 			
 			for(int i=0;i<terrPPlayer;i++){
 				for (int j=0;j<nPlayers;j++){
-					players[j].addTerr(tempTerr.remove(randGen.nextInt(tempTerr.size())));
+					int index=randGen.nextInt(tempTerr.size());
+					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
+					t.setOwnerColor(players[j].getColor());
+					players[j].addTerr(tempTerr.remove(index));
+					
 				}
 			}
 			for(int i=0;i<resto;i++){
 				for (int j=0;j<nPlayers;j++){
-					players[j].addTerr(tempTerr.remove(randGen.nextInt(tempTerr.size())));
+					int index=randGen.nextInt(tempTerr.size());
+					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
+					t.setOwnerColor(players[j].getColor());
+					players[j].addTerr(tempTerr.remove(index));
 				}
 			}
 		}

@@ -15,17 +15,18 @@ public class MainWindow extends Observable{
 	JPanel bg_panel;
 	TopMenuPanel top_menu_panel;
 	BottomMenuPanel bot_menu_panel;
-	Mapa mapa;
+	//Mapa mapa;
 	MapClickRedirect clickRedirect;
 	
 	public MainWindow(){
 		this.topLevelFrame = new JFrame ("WAR");
-		mapa=new Mapa();
-		this.bg_panel = new MapPanel(mapa);
+		//mapa=new Mapa();
+		clickRedirect=new MapClickRedirect();
+		this.bg_panel = new MapPanel(/*mapa*/clickRedirect);
 		top_menu_panel = new TopMenuPanel();
 		bot_menu_panel = new BottomMenuPanel();
-		clickRedirect=new MapClickRedirect();
-		this.mapa.addRedirect(clickRedirect);
+		
+		//this.bg_panel.addRedirect(clickRedirect);
 	}
 	public void createGUI(){
 		Container c = this.topLevelFrame.getContentPane();

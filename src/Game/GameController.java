@@ -53,8 +53,12 @@ public class GameController implements Observer {
 			gameWin.repaint();
 		}
 		else if(x.equals("click")){
-			MapClickRedirect t=(MapClickRedirect)o;
-			JOptionPane.showMessageDialog(null, "Pa�s:"+ t.getTerritorio().getNome());
+			MapClickRedirect r=(MapClickRedirect)o;
+			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
+				if(t.getPoligono().contains(r.getX(),r.getY())){
+					JOptionPane.showMessageDialog(null, "Pa�s:"+ t.getNome());
+				}
+			}
 		}
 	}
 	public int getNPlayers (){
