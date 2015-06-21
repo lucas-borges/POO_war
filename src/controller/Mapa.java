@@ -1033,4 +1033,8 @@ public class Mapa extends JPanel {
 		}
 		return null;
 	}
+	public ArrayList<Territorio> copyLstTerritorios (){
+		ArrayList<Territorio> newList = new ArrayList<Territorio>(lstTerritorios);
+		return newList;
+	}
 }
