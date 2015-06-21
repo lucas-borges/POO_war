@@ -14,6 +14,7 @@ public class MainWindow extends Observable{
 	public final int MAP_HEIGHT=768;
 	JPanel bg_panel;
 	TopMenuPanel top_menu_panel;
+	CenterMenuPanel center_menu_panel;
 	BottomMenuPanel bot_menu_panel;
 	Mapa mapa;
 	MapClickRedirect clickRedirect;
@@ -23,6 +24,7 @@ public class MainWindow extends Observable{
 		mapa=new Mapa();
 		this.bg_panel = new MapPanel(mapa);
 		top_menu_panel = new TopMenuPanel();
+		center_menu_panel = new CenterMenuPanel();
 		bot_menu_panel = new BottomMenuPanel();
 		clickRedirect=new MapClickRedirect();
 		this.mapa.addRedirect(clickRedirect);
@@ -36,6 +38,7 @@ public class MainWindow extends Observable{
 		JPanel p = new JPanel();
 		p.setLayout(new BorderLayout());
 		p.add(top_menu_panel.getGUI(),BorderLayout.NORTH);
+		p.add(center_menu_panel.getGUI(),BorderLayout.CENTER);
 		p.add(bot_menu_panel.getGUI(),BorderLayout.SOUTH);
 		c.add(p,BorderLayout.EAST);
 		
@@ -60,6 +63,9 @@ public class MainWindow extends Observable{
 	}
 	public void nextTurn(){
 		top_menu_panel.nextTurn();
+	}
+	public void displayT(String t){
+		center_menu_panel.setLabel(t);
 	}
 	
 	/*public MainWindow(String title){

@@ -54,7 +54,7 @@ public class GameController implements Observer {
 		}
 		else if(x.equals("click")){
 			MapClickRedirect t=(MapClickRedirect)o;
-			JOptionPane.showMessageDialog(null, "Pa�s:"+ t.getTerritorio().getNome());
+			gameWin.displayT(t.getTerritorio().getNome());
 		}
 	}
 	public int getNPlayers (){
