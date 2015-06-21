@@ -66,7 +66,7 @@ public class DicesWindow  {
 			c.add(DefenseDices[i], gbc);
 		}
 		
-		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.topLevelFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
 		this.topLevelFrame.pack();
 		this.topLevelFrame.setLocationRelativeTo(null);
