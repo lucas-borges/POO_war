@@ -34,7 +34,7 @@ public class MainWindow extends Observable{
 		c.add(p,BorderLayout.EAST);
 		
 		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.topLevelFrame.setResizable(false);
+		//this.topLevelFrame.setResizable(false);
 		this.topLevelFrame.pack();
 		this.topLevelFrame.setLocationRelativeTo(null);
 		this.topLevelFrame.setVisible(true);
