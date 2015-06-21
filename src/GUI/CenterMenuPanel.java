@@ -31,6 +31,14 @@ public class CenterMenuPanel {
 		
 		gbc.gridx=0;
 		gbc.gridy=1;
+		p.add(corL,gbc);
+		
+		gbc.gridx=1;
+		gbc.gridy=1;
+		p.add(nTropas,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=2;
 		p.add(tropasDist,gbc);
 		
 		return p;

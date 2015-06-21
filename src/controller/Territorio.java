@@ -50,4 +50,7 @@ public class Territorio{
 	public Color getOwnerColor(){
 		return ownerColor;
 	}
+	public int getNTropas (){
+		return numTropas;
+	}
 }
