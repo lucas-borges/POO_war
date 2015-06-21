@@ -1,17 +1,26 @@
 package Game;
 
 //import etc.*;
+//DEBUG
+import controller.Mapa;
+//DEBUG
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import controller.Territorio;
+
 public class Game {
 	private int nPlayers;
 	private Player[] players;
 	private int currentPlayerIndex;
 	private int turn;
+	
+	//DEBUG
+	Mapa mapaD=new Mapa();
+	//END DEBUG
 	
 	public Game (int n){
 		nPlayers=n;
@@ -42,6 +51,7 @@ public class Game {
 		}
 	}
 	
+	
 	public Color[] getColorOrder(){
 		Color order[]=new Color[nPlayers];
 		int i=0;
@@ -64,4 +74,30 @@ public class Game {
 	public int getCurrentPlayer(){
 		return currentPlayerIndex+1;
 	}
+	
+	//DEBUG
+		public void randomizeStart(){
+			ArrayList<Territorio> tempTerr = mapaD.copyLstTerritorios()/* TODOS OS TERRITORIOS */;
+			Random randGen = new Random();
+			
+			int terrPPlayer = tempTerr.size()/nPlayers;
+			int resto = tempTerr.size()%nPlayers;
+			
+			for(int i=0;i<terrPPlayer;i++){
+				for (int j=0;j<nPlayers;j++){
+					players[j].addTerr(tempTerr.remove(randGen.nextInt(tempTerr.size())));
+				}
+			}
+			for(int i=0;i<resto;i++){
+				for (int j=0;j<nPlayers;j++){
+					players[j].addTerr(tempTerr.remove(randGen.nextInt(tempTerr.size())));
+				}
+			}
+		}
+		
+		public void playerTerr(int n){
+			players[n].listTerr();
+		}
+		
+		//END DEBUG
 }

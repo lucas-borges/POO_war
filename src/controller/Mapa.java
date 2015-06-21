@@ -1043,7 +1043,12 @@ public class Mapa extends JPanel {
 		}
 		return null;
 	}
+
 	public void addRedirect (MapClickRedirect m){
 		clickRedirect=m;
+	}
+	public ArrayList<Territorio> copyLstTerritorios (){
+		ArrayList<Territorio> newList = new ArrayList<Territorio>(lstTerritorios);
+		return newList;
 	}
 }

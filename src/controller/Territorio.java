@@ -38,4 +38,5 @@ public class Territorio{
 	public void lstFronteirasAdd(Territorio fronteira){
 		lstFronteiras.add(fronteira);
 	}
+	public List<Territorio> 
 }

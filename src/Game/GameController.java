@@ -34,12 +34,16 @@ public class GameController implements Observer {
 	public void update (Observable o, Object arg){
 		String x=(String)arg;
 		System.out.println("entrou controller update");
+		
 		if(x.equals("startGame")){
 			int nPlayers=((StartWindow)o).getComboValue();
 			game=new Game(nPlayers);
 			System.out.println("Jogo criado com " + game.getNPlayers());
 			/**/gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
+			
+			/**/game.randomizeStart();
+			/**/game.playerTerr(0);
 		}
 		else if(x.equals("nextTurn")){
 			game.nextTurn();
