@@ -74,7 +74,7 @@ public class Game {
 	public int getCurrentPlayer(){
 		return currentPlayerIndex+1;
 	}
-<<<<<<< HEAD
+	
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
 		// result = vetor do resultado posição 0 = exércitos perdidos pelo ataque; posição 1 = exércitos perdidos pela defesa
 		int contAttack=0, contDefense=0;
