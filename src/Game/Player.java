@@ -29,7 +29,7 @@ public class Player {
 			System.out.println(t.getNome());
 		}
 	}
-	public int getNumTerritorios(){
+	public int getNumTropas(){
 		return territorios.size();
 	}
 	//END DEBUG
