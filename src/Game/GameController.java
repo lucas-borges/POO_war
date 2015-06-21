@@ -3,7 +3,7 @@ package Game;
 import GUI.DicesWindow;
 import GUI.MainWindow;
 import GUI.StartWindow;
-import GUI.BottomMenuPanel;
+import GUI.SideMenuPanel;
 
 import java.awt.*;
 import java.util.Observable;
@@ -56,7 +56,7 @@ public class GameController implements Observer {
 		}
 
 		else if(x.equals("RollDices")){
-			BottomMenuPanel p = ((BottomMenuPanel)o);
+			SideMenuPanel p = ((SideMenuPanel)o);
 			p.createGUIDices();
 		}
 		else if(x.equals("DadosRolados")){
