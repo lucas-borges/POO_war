@@ -47,7 +47,7 @@ public class CenterMenuPanel {
 	public void setLabelTerritorio(String t, String cor, int n){
 		territorioL.setText(t);
 		corL.setText(cor);
-		nTropas.setText(Integer.toString(n));
+		nTropas.setText(Integer.toString(n)+ " tropas");
 	}
 	public void setTropasDist (int n) {
 		nTropasDist=n;

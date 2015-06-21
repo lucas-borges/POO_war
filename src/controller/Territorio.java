@@ -53,4 +53,7 @@ public class Territorio{
 	public int getNTropas (){
 		return numTropas;
 	}
+	public void deltaTropas (int n){
+		numTropas+=n;
+	}
 }
