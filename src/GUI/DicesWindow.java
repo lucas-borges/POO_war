@@ -10,22 +10,22 @@ import javax.swing.*;
 
 public class DicesWindow extends Observable implements ActionListener {
 	
-	JFrame topLevelFrame;
+	private JFrame topLevelFrame;
 	final int height = 300;
 	final int width = 500;
-	JLabel AttackDices [] = {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
-	JLabel DefenseDices []= {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
-	JLabel ResultAttack = new JLabel("Ataque perdeu:");
-	JLabel ResultDefense = new JLabel("Defesa perdeu:");
-	int nAttackDices=2, nDefenseDices=1;
-	int result[];
+	private JLabel AttackDices [] = {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
+	private JLabel DefenseDices []= {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
+	private JLabel ResultAttack;
+	private JLabel ResultDefense;
+	private int nAttackDices=3, nDefenseDices=3;
+	private int result[];
 	boolean clicked;// = false;
-	JButton rollAttackDicesBut;	
-	JButton rollDefenseDicesBut;
-	Dices diceAttack = new Dices();
-	int numDicesAttack [];
-	Dices diceDefense = new Dices();
-	int numDicesDefense [];
+	private JButton rollAttackDicesBut;	
+	private JButton rollDefenseDicesBut;
+	private Dices diceAttack = new Dices();
+	private int numDicesAttack [];
+	private Dices diceDefense = new Dices();
+	private int numDicesDefense [];
 	
 	public DicesWindow()
 	{
@@ -34,6 +34,8 @@ public class DicesWindow extends Observable implements ActionListener {
 		this.rollDefenseDicesBut = new JButton("Rolar Dados Defesa");
 		this.clicked = false;
 		rollDefenseDicesBut.setEnabled(false);
+		ResultAttack = new JLabel("Ataque perdeu:");
+		ResultAttack = new JLabel("Ataque perdeu:");
 		//this.nAttackDices = 
 		//this.nDefenseDices = 
 	}
@@ -93,6 +95,11 @@ public class DicesWindow extends Observable implements ActionListener {
 		this.topLevelFrame.setVisible(true);
 	}
 	
+	public void setNumDices (int nAttack, int nDefense)
+	{
+		nAttackDices=nAttack;
+		nDefenseDices=nDefense;
+	}
 	public int[] getAttackDices()
 	{
 		return numDicesAttack;
