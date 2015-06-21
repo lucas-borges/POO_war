@@ -16,8 +16,10 @@ public class GameController implements Observer {
 	public GameController(){
 		/**/gameWin=new MainWindow();
 		/**/startWin=new StartWindow();
+		
 		/**/startWin.addObserver(this);
 		/**/gameWin.addObserver(this);
+		
 		/**/gameWin.createGUI();
 		/**/startWin.createGUI();
 	}
