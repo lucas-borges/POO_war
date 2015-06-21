@@ -1,11 +1,14 @@
 package controller;
 
 import java.awt.geom.GeneralPath;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Territorio {
 
 	private String Nome;
 	private GeneralPath poligono;
+	private List<Territorio> lstFronteiras = new ArrayList<Territorio>();
 
 	public Territorio(String nome, Ponto p[], float x, float y) {
 		super();
@@ -31,5 +34,8 @@ public class Territorio {
 	
 	public String getNome () {
 		return this.Nome;
+	}
+	public void lstFronteirasAdd(Territorio fronteira){
+		lstFronteiras.add(fronteira);
 	}
 }
