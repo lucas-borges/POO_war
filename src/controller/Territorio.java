@@ -4,16 +4,19 @@ import java.awt.Color;
 import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 import java.util.List;
+import Game.TerritorioDataBase;
+import etc.enumTerritorio.nomePais;;
 
 public class Territorio{
 
-	private String Nome;
+	
+	private nomePais Nome;
 	private GeneralPath poligono;
 	private List<Territorio> lstFronteiras = new ArrayList<Territorio>();
 	Color ownerColor;
 	int numTropas;
 
-	public Territorio(String nome, Ponto p[], float x, float y) {
+	public Territorio(nomePais nome, Ponto p[], float x, float y) {
 		super();
 		
 		this.Nome = nome;
@@ -35,7 +38,7 @@ public class Territorio{
 		return this.poligono;
 	}
 	
-	public String getNome () {
+	public nomePais getNome () {
 		return this.Nome;
 	}
 	public void lstFronteirasAdd(Territorio fronteira){
