@@ -4,7 +4,7 @@ import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Territorio {
+public class Territorio{
 
 	private String Nome;
 	private GeneralPath poligono;

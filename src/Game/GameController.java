@@ -7,6 +7,11 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JOptionPane;
+
+import controller.MapClickRedirect;
+import controller.Territorio;
+
 public class GameController implements Observer {
 	private Game game;
 	
@@ -42,6 +47,10 @@ public class GameController implements Observer {
 			System.out.println("Jogador: " + game.getCurrentPlayer());
 			gameWin.nextTurn();
 			gameWin.repaint();
+		}
+		else if(x.equals("click")){
+			MapClickRedirect t=(MapClickRedirect)o;
+			JOptionPane.showMessageDialog(null, "Pa�s:"+ t.getTerritorio().getNome());
 		}
 	}
 	public int getNPlayers (){

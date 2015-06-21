@@ -15,12 +15,13 @@ public class Mapa extends JPanel {
 	// Lista de territorios
 	private List<Territorio> lstTerritorios = new ArrayList<Territorio>();
 	
-	// deslocaX e deslocaY é utilizado para alinhar os polígonos criados em cima da imagem dos territorios.
+	// deslocaX e deslocaY ï¿½ utilizado para alinhar os polï¿½gonos criados em cima da imagem dos territorios.
 	private final int deslocaX = 0;
 	private final int deslocaY = 0;
 
-	// Bloco de inicialização dos territórios
-	// Estou assumindo que a classe territorio tem um nome e um poligono definindo sua área de clique.
+	MapClickRedirect clickRedirect;
+	// Bloco de inicializaï¿½ï¿½o dos territï¿½rios
+	// Estou assumindo que a classe territorio tem um nome e um poligono definindo sua ï¿½rea de clique.
 	{
 		// Adicionando os territorios na lista de territorios.
 		lstTerritorios.add(new Territorio("Alasca", new Ponto[] {
@@ -284,7 +285,7 @@ public class Mapa extends JPanel {
 				new Ponto(440.2, 309.2),
 				new Ponto(415.9, 309.2)}, deslocaX,deslocaY));
 
-		lstTerritorios.add(new Territorio("França", new Ponto[] {
+		lstTerritorios.add(new Territorio("Franï¿½a", new Ponto[] {
 				new Ponto(526.8, 186.6),
 				new Ponto(538.7, 210.4),
 				new Ponto(508.1, 263.1),
@@ -790,7 +791,7 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nigeria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Africa do Sul"));
-		//Argélia
+		//Argï¿½lia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Espanha"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
@@ -801,13 +802,13 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nigeria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Jordania"));
-		//Nigéria
+		//Nigï¿½ria
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Brasil"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argelia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Angola"));
-		//Somália
+		//Somï¿½lia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nigeria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Angola"));
@@ -816,17 +817,17 @@ public class Mapa extends JPanel {
 		//Espanha
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Argelia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
-		//França
+		//Franï¿½a
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Espanha"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Reino Unido"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
-		//Itália
+		//Itï¿½lia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Romenia"));
-		//Polônia
+		//Polï¿½nia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Romenia"));
@@ -834,22 +835,22 @@ public class Mapa extends JPanel {
 		//Reino Unido
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Groelandia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
-		//Romênia
+		//Romï¿½nia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Italia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ucrania"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
-		//Suécia
+		//Suï¿½cia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Franca"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Estonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
-		//Ucrânia
+		//Ucrï¿½nia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Romenia"));
-		//Arábia Saudita
+		//Arï¿½bia Saudita
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Somalia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Jordania"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
@@ -858,7 +859,7 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Tailandia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
-		//Cazaquistão
+		//Cazaquistï¿½o
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Russia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siberia"));
@@ -866,7 +867,7 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mongolia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
-		//Mongólia
+		//Mongï¿½lia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Japao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
@@ -879,27 +880,27 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
 
-		//Coréia do Norte
+		//Corï¿½ia do Norte
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Japao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
-		//Coréia do Sul
+		//Corï¿½ia do Sul
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Tailandia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
-		//Estônia
+		//Estï¿½nia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Russia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
-		//Índia
+		//ï¿½ndia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
-		//Irã
+		//Irï¿½
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
@@ -908,16 +909,16 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ira"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
-		//Japão
+		//Japï¿½o
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Mongolia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Norte"));
-		//Jordânia
+		//Jordï¿½nia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Arabia Saudita"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Egito"));
-		//Letônia
+		//Letï¿½nia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Polonia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Suecia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Estonia"));
@@ -925,7 +926,7 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ucrania"));
-		//Paquistão
+		//Paquistï¿½o
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Turquia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
@@ -936,7 +937,7 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siberia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Letonia"));
-		//Sibéria
+		//Sibï¿½ria
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Russia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Alasca"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Cazaquistao"));
@@ -946,7 +947,7 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Ira"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Iraque"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Jordania"));
-		//Tailândia
+		//Tailï¿½ndia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Coreia do Sul"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
 		//Turquia
@@ -955,16 +956,16 @@ public class Mapa extends JPanel {
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("China"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Paquistao"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Siria"));
-		//Austrália
+		//Austrï¿½lia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Perth"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nova Zelandia"));
-		//Indonésia
+		//Indonï¿½sia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("India"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Bangladesh"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Australia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Nova Zelandia"));
-		//Nova Zelândia
+		//Nova Zelï¿½ndia
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Australia"));
 		lstTerritorios.get(0).lstFronteirasAdd(buscaTerritorio("Indonesia"));
 		//Perth
@@ -976,7 +977,7 @@ public class Mapa extends JPanel {
 	public Mapa() {
 		this.addMouseListener(new MouseListener() {
 			
-			// Evento de click para detectar se o ponto clicado está dentro da area do teritorio.
+			// Evento de click para detectar se o ponto clicado estï¿½ dentro da area do teritorio.
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
@@ -986,7 +987,8 @@ public class Mapa extends JPanel {
 					// Se o ponto clicado for contido pelo poligono do territorio	
 					if(t.getPoligono().contains(e.getX(), e.getY())) {
 							// faz alguma coisa
-							showMessage(t);							
+							//showMessage(t);
+						    clickRedirect.click(t);	
 						}
 					}
 					
@@ -995,6 +997,14 @@ public class Mapa extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
+				for(Territorio t : lstTerritorios) {
+					
+					// Se o ponto onde mouse estÃ¡ for contido pelo poligono do territorio	
+					if(t.getPoligono().contains(e.getX(), e.getY())) {
+							// faz alguma coisa
+							//			
+					}
+				}				
 				
 			}
 
@@ -1022,7 +1032,7 @@ public class Mapa extends JPanel {
 		JPanel message=new JPanel();
 		message.setBounds(t.getPoligono().getBounds());
 		this.add(message);
-		JOptionPane.showMessageDialog(message, "País:"+ t.getNome());
+		JOptionPane.showMessageDialog(message, "Paï¿½s:"+ t.getNome());
 		this.remove(message);
 	}
 	private Territorio buscaTerritorio (String nomeTerritorio){
@@ -1032,5 +1042,8 @@ public class Mapa extends JPanel {
 				return t;
 		}
 		return null;
+	}
+	public void addRedirect (MapClickRedirect m){
+		clickRedirect=m;
 	}
 }

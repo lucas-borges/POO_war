@@ -8,8 +8,8 @@ import javax.imageio.*;
 public class MapPanel extends JPanel {
 	Image bg_img;
 	Mapa map;
-	public MapPanel (){
-		map=new Mapa();
+	public MapPanel (Mapa mapa){
+		map=mapa;
 		map.setOpaque(false);
 		map.setPreferredSize(new Dimension(1024,768));
 		add(map,BorderLayout.WEST);
