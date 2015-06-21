@@ -197,6 +197,7 @@ public class Game {
 					int index=randGen.nextInt(tempTerr.size());
 					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
 					t.setOwnerColor(players[j].getColor());
+					t.deltaTropas(1);
 					players[j].addTerr(tempTerr.remove(index));
 					
 				}
@@ -206,6 +207,7 @@ public class Game {
 					int index=randGen.nextInt(tempTerr.size());
 					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
 					t.setOwnerColor(players[j].getColor());
+					t.deltaTropas(1);
 					players[j].addTerr(tempTerr.remove(index));
 				}
 			}
