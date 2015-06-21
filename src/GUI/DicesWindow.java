@@ -2,23 +2,30 @@ package GUI;
 
 import java.awt.event.*;
 import java.awt.*;
-import java.util.Random;
+import java.util.Observable;
+
 import etc.*;
 
 import javax.swing.*;
 
-public class DicesWindow  {
+public class DicesWindow extends Observable implements ActionListener {
 	
 	JFrame topLevelFrame;
 	final int height = 300;
 	final int width = 500;
 	JLabel AttackDices [] = {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
 	JLabel DefenseDices []= {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
-	int nAttackDices=3, nDefenseDices=3;
+	JLabel ResultAttack = new JLabel("Ataque perdeu:");
+	JLabel ResultDefense = new JLabel("Defesa perdeu:");
+	int nAttackDices=2, nDefenseDices=1;
+	int result[];
 	boolean clicked;// = false;
 	JButton rollAttackDicesBut;	
 	JButton rollDefenseDicesBut;
-	
+	Dices diceAttack = new Dices();
+	int numDicesAttack [];
+	Dices diceDefense = new Dices();
+	int numDicesDefense [];
 	
 	public DicesWindow()
 	{
@@ -33,12 +40,17 @@ public class DicesWindow  {
 	
 	public void createGUI()
 	{
-		Container c = this.topLevelFrame.getContentPane();
-		c.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		Container c;
 		
-		rollAttackDicesBut.addActionListener(new RollAttackDicesAction() );
-		rollDefenseDicesBut.addActionListener(new RollDefenseDicesAction() );
+		c = this.topLevelFrame.getContentPane();
+		c.setLayout(new GridBagLayout());
+		
+		rollAttackDicesBut.setActionCommand("rollAttack");
+		rollAttackDicesBut.addActionListener(this);
+		rollDefenseDicesBut.setActionCommand("rollDefense");
+		rollDefenseDicesBut.addActionListener(this);
+		
 		
 		gbc.gridx=3;
 		gbc.gridy=0;
@@ -66,45 +78,73 @@ public class DicesWindow  {
 			c.add(DefenseDices[i], gbc);
 		}
 		
-		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gbc.gridx=0;
+		gbc.gridy=2;
+		c.add(ResultAttack, gbc);	
+		
+		gbc.gridx=0;
+		gbc.gridy=3;
+		c.add(ResultDefense, gbc);
+		
+		this.topLevelFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
 		this.topLevelFrame.pack();
 		this.topLevelFrame.setLocationRelativeTo(null);
 		this.topLevelFrame.setVisible(true);
 	}
 	
-	private class RollAttackDicesAction implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			//Execute when button is pressed
-			Dices dice = new Dices();
-			int numDices [] = dice.lancar_dados(nAttackDices);
-			
-			rollAttackDicesBut.setEnabled(false);
-			rollDefenseDicesBut.setEnabled(true);
-			
-			for(int i=0;i<nAttackDices;i++)
-			{
-				AttackDices[i].setIcon(new ImageIcon("Dados/dado_ataque_"+numDices[i]+".png"));		
-			}
-        	
-		}
+	public int[] getAttackDices()
+	{
+		return numDicesAttack;
 	}
 	
-	private class RollDefenseDicesAction implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			//Execute when button is pressed
-			Dices dice = new Dices();
-			int numDices [] = dice.lancar_dados(nDefenseDices);
-			
-			rollDefenseDicesBut.setEnabled(false);
-			
-			for(int i=0;i<nDefenseDices;i++)
-			{
-				DefenseDices[i].setIcon(new ImageIcon("Dados/dado_defesa_"+numDices[i]+".png"));		
-			}
-	
-		}
+	public int[] getDefenseDices()
+	{
+		return numDicesDefense;
 	}
+	public void setResult(int[] result)
+	{
+		System.out.println("Entrou set");
+		this.result=result;
+		
+		ResultAttack.setText("Ataque perdeu:" + result[0] );
+		ResultDefense.setText("Defesa perdeu:" + result[1] );
+	}
+	
+		public void actionPerformed(ActionEvent e){
+			
+			String s=e.getActionCommand();
+			
+			if(s.equals("rollAttack"))
+			{
+				numDicesAttack= diceAttack.lancar_dados(nAttackDices);
+			
+				rollAttackDicesBut.setEnabled(false);
+				rollDefenseDicesBut.setEnabled(true);
+			
+				for(int i=0;i<nAttackDices;i++)
+				{
+					AttackDices[i].setIcon(new ImageIcon("Dados/dado_ataque_"+numDicesAttack[i]+".png"));		
+				}
+			}
+			else if(s.equals("rollDefense"))
+			{
+				numDicesDefense = diceDefense.lancar_dados(nDefenseDices);
+				
+				rollDefenseDicesBut.setEnabled(false);
+				
+				for(int i=0;i<nDefenseDices;i++)
+				{
+					DefenseDices[i].setIcon(new ImageIcon("Dados/dado_defesa_"+numDicesDefense[i]+".png"));		
+				}
+				
+				setChanged();
+				notifyObservers(new String ("DadosRolados"));
+				
+				
+			}        	
+		}
+		
 	
 /*	public DicesWindow(String title)
 	{

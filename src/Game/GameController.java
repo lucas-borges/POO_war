@@ -1,7 +1,9 @@
 package Game;
 
+import GUI.DicesWindow;
 import GUI.MainWindow;
 import GUI.StartWindow;
+import GUI.BottomMenuPanel;
 
 import java.awt.*;
 import java.util.Observable;
@@ -51,6 +53,19 @@ public class GameController implements Observer {
 			System.out.println("Jogador: " + game.getCurrentPlayer());
 			gameWin.nextTurn();
 			gameWin.repaint();
+		}
+
+		else if(x.equals("RollDices")){
+			BottomMenuPanel p = ((BottomMenuPanel)o);
+			p.createGUIDices();
+		}
+		else if(x.equals("DadosRolados")){
+			System.out.println("entrou dados rolados");
+			DicesWindow d = (DicesWindow)o;
+			int result[] = {0,0};
+			System.out.printf("%d",result[0]);
+			game.SelectWinner(d.getAttackDices(), d.getDefenseDices(), result);
+			d.setResult(result);
 		}
 		else if(x.equals("click")){
 			MapClickRedirect r=(MapClickRedirect)o;

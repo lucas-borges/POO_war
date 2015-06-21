@@ -49,6 +49,7 @@ public class MainWindow extends Observable{
 	public void addObserver(Observer o){
 		super.addObserver(o);
 		top_menu_panel.addObserver(o);
+		bot_menu_panel.addObserver(o);
 		this.clickRedirect.addObserver(o);
 	}
 	public void setColorPanel(int n,Color[] order){
