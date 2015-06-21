@@ -72,6 +72,11 @@ public class Game {
 		return currentPlayerIndex+1;
 	}
 	
+	public int DistribuirTropas(){
+		
+		return players[currentPlayerIndex].getNumTropasDist()/2;
+		
+	}
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
 		// result = vetor do resultado posição 0 = exércitos perdidos pelo ataque; posição 1 = exércitos perdidos pela defesa
 		int contAttack=0, contDefense=0;
