@@ -2,7 +2,7 @@ package Game;
 
 //import etc.*;
 //DEBUG
-import controller.Mapa;
+
 //DEBUG
 
 import java.awt.Color;
@@ -18,9 +18,6 @@ public class Game {
 	private int currentPlayerIndex;
 	private int turn;
 	
-	//DEBUG
-	Mapa mapaD=new Mapa();
-	//END DEBUG
 	
 	public Game (int n){
 		nPlayers=n;
@@ -75,9 +72,116 @@ public class Game {
 		return currentPlayerIndex+1;
 	}
 	
+	public void SelectWinner(int[] attack, int[] defense, int[] result){
+		// result = vetor do resultado posição 0 = exércitos perdidos pelo ataque; posição 1 = exércitos perdidos pela defesa
+		int contAttack=0, contDefense=0;
+		System.out.println("Entrou no selectWinner");
+		
+		if(attack.length == 1 || defense.length == 1){
+			
+			if(getHighest(attack)>getHighest(defense))
+				contDefense++;
+			else
+				contAttack++;
+		}
+		else if(attack.length == 3 && defense.length == 3)
+		{
+			if(getHighest(attack)>getHighest(defense))
+				contDefense++;
+			else
+				contAttack++;
+			
+			if(getSecond(attack)>getSecond(defense))
+				contDefense++;
+			else
+				contAttack++;
+			
+			if(getLowest(attack)>getLowest(defense))
+				contDefense++;
+			else
+				contAttack++;
+		}
+		else if(attack.length == 3 && defense.length == 2){
+			
+			if(getHighest(attack)>getHighest(defense))
+				contDefense++;
+			else
+				contAttack++;
+			
+			if(getSecond(attack)>getLowest(defense))
+				contDefense++;
+			else
+				contAttack++;
+		}
+		else if(attack.length == 2 && defense.length == 3)
+		{
+			if(getHighest(attack)>getHighest(defense))
+				contDefense++;
+			else
+				contAttack++;
+			
+			if(getLowest(attack)>getSecond(defense))
+				contDefense++;
+			else
+				contAttack++;
+			
+		}
+		else if(attack.length == 2 && defense.length == 2){
+			
+			if(getHighest(attack)>getHighest(defense))
+				contDefense++;
+			else
+				contAttack++;
+			
+			if(getLowest(attack)>getLowest(defense))
+				contDefense++;
+			else
+				contAttack++;
+		}
+		
+		result[0]=contAttack;
+		result[1]=contDefense;
+		
+		System.out.printf("Ataque perdeu %d territorios\n",result[0]);
+		System.out.printf("Defesa perdeu %d territorios",result[1]);
+		
+		
+	}
+	private int getHighest(int[] vet){
+		int highest =0;
+		
+		for(int i: vet){
+			if(i>highest)
+				highest=i;
+		}
+		
+		return highest;
+	}
+	private int getSecond(int[] vet){
+		int second=0;
+		
+		for(int i: vet){
+			if(i!=getHighest(vet) && i>second)
+				second=i;
+		}
+		
+		return second;
+	}
+	private int getLowest(int[] vet){
+		int lowest=7;
+		
+		for(int i:vet){
+			if(i<lowest)
+				lowest=i;
+		}
+		
+		return lowest;
+	}
+
+	
 	//DEBUG
 		public void randomizeStart(){
-			ArrayList<Territorio> tempTerr = mapaD.copyLstTerritorios()/* TODOS OS TERRITORIOS */;
+			ArrayList<Territorio> tempTerr = TerritorioDataBase.copyLstTerritorios()/* TODOS OS TERRITORIOS */;
 			Random randGen = new Random();
 			
 			int terrPPlayer = tempTerr.size()/nPlayers;
@@ -85,12 +189,19 @@ public class Game {
 			
 			for(int i=0;i<terrPPlayer;i++){
 				for (int j=0;j<nPlayers;j++){
-					players[j].addTerr(tempTerr.remove(randGen.nextInt(tempTerr.size())));
+					int index=randGen.nextInt(tempTerr.size());
+					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
+					t.setOwnerColor(players[j].getColor());
+					players[j].addTerr(tempTerr.remove(index));
+					
 				}
 			}
 			for(int i=0;i<resto;i++){
 				for (int j=0;j<nPlayers;j++){
-					players[j].addTerr(tempTerr.remove(randGen.nextInt(tempTerr.size())));
+					int index=randGen.nextInt(tempTerr.size());
+					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
+					t.setOwnerColor(players[j].getColor());
+					players[j].addTerr(tempTerr.remove(index));
 				}
 			}
 		}
@@ -100,4 +211,5 @@ public class Game {
 		}
 		
 		//END DEBUG
+
 }

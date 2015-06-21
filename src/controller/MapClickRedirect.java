@@ -3,13 +3,17 @@ package controller;
 import java.util.Observable;
 
 public class MapClickRedirect extends Observable {
-	private Territorio t;
-	public void click(Territorio t){
-		this.t=t;
+	private int x,y;
+	public void click(int x,int y){
+		this.x=x;
+		this.y=y;
 		setChanged();
 		notifyObservers(new String("click"));
 	}
-	public Territorio getTerritorio(){
-		return t;
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
 	}
 }

@@ -16,18 +16,19 @@ public class MainWindow extends Observable{
 	TopMenuPanel top_menu_panel;
 	CenterMenuPanel center_menu_panel;
 	BottomMenuPanel bot_menu_panel;
-	Mapa mapa;
+	//Mapa mapa;
 	MapClickRedirect clickRedirect;
 	
 	public MainWindow(){
 		this.topLevelFrame = new JFrame ("WAR");
-		mapa=new Mapa();
-		this.bg_panel = new MapPanel(mapa);
+		//mapa=new Mapa();
+		clickRedirect=new MapClickRedirect();
+		this.bg_panel = new MapPanel(/*mapa*/clickRedirect);
 		top_menu_panel = new TopMenuPanel();
 		center_menu_panel = new CenterMenuPanel();
 		bot_menu_panel = new BottomMenuPanel();
-		clickRedirect=new MapClickRedirect();
-		this.mapa.addRedirect(clickRedirect);
+		
+		//this.bg_panel.addRedirect(clickRedirect);
 	}
 	public void createGUI(){
 		Container c = this.topLevelFrame.getContentPane();
@@ -51,6 +52,7 @@ public class MainWindow extends Observable{
 	public void addObserver(Observer o){
 		super.addObserver(o);
 		top_menu_panel.addObserver(o);
+		bot_menu_panel.addObserver(o);
 		this.clickRedirect.addObserver(o);
 	}
 	public void setColorPanel(int n,Color[] order){
