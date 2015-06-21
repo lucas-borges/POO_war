@@ -6,11 +6,18 @@ import java.awt.GridBagLayout;
 import javax.swing.*;
 
 public class CenterMenuPanel {
-	private JLabel t;
+	private JLabel territorioL;
+	private JLabel corL;
+	private JLabel nTropas;
+	private JLabel tropasDist;
+	private int nTropasDist;
 	private JPanel p;
 	
 	public CenterMenuPanel (){
-		t=new JLabel("temp text");
+		territorioL=new JLabel("Clique num territorio");
+		corL=new JLabel();
+		nTropas=new JLabel();
+		tropasDist=new JLabel("Voce tem"+nTropasDist+"para distribuir");
 	}
 	
 	public JPanel getGUI(){
@@ -20,12 +27,21 @@ public class CenterMenuPanel {
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		p.add(t,gbc);
+		p.add(territorioL,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=1;
+		p.add(tropasDist,gbc);
 		
 		return p;
 	}
 	
-	public void setLabel(String text){
-		t.setText(text);
+	public void setLabelTerritorio(String t, String cor, int n){
+		territorioL.setText(t);
+		corL.setText(cor);
+		nTropas.setText(Integer.toString(n));
+	}
+	public void setTropasDist (int n) {
+		nTropasDist=n;
 	}
 }

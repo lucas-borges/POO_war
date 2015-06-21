@@ -66,8 +66,8 @@ public class MainWindow extends Observable{
 	public void nextTurn(){
 		top_menu_panel.nextTurn();
 	}
-	public void displayT(String t){
-		center_menu_panel.setLabel(t);
+	public void displayT(String t, String cor, int nTropas){
+		center_menu_panel.setLabelTerritorio(t,cor,nTropas);
 	}
 	
 	/*public MainWindow(String title){
