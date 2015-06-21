@@ -74,7 +74,7 @@ public class Game {
 	
 	public int DistribuirTropas(){
 		
-		return players[currentPlayerIndex].getNumTropas()/2;
+		return players[currentPlayerIndex].getNumTropasDist()/2;
 		
 	}
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
