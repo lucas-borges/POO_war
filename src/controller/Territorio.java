@@ -11,6 +11,7 @@ public class Territorio{
 	private GeneralPath poligono;
 	private List<Territorio> lstFronteiras = new ArrayList<Territorio>();
 	Color ownerColor;
+	int numTropas;
 
 	public Territorio(String nome, Ponto p[], float x, float y) {
 		super();
@@ -40,7 +41,6 @@ public class Territorio{
 	public void lstFronteirasAdd(Territorio fronteira){
 		lstFronteiras.add(fronteira);
 	}
-
 	public List<Territorio> getLstFronteiras(){
 		return lstFronteiras;
 	}
@@ -50,5 +50,4 @@ public class Territorio{
 	public Color getOwnerColor(){
 		return ownerColor;
 	}
-
 }

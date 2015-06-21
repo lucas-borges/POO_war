@@ -29,5 +29,8 @@ public class Player {
 			System.out.println(t.getNome());
 		}
 	}
+	public int getNumTerritorios(){
+		return territorios.size();
+	}
 	//END DEBUG
 }
