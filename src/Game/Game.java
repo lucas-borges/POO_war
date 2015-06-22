@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import controller.Territorio;
-
+import etc.enumTerritorio.nomePais;
 public class Game {
 	private int nPlayers;
 	private Player[] players;
@@ -78,7 +78,7 @@ public class Game {
 		
 	}
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
-		// result = vetor do resultado posição 0 = exércitos perdidos pelo ataque; posição 1 = exércitos perdidos pela defesa
+		// result = vetor do resultado posiï¿½ï¿½o 0 = exï¿½rcitos perdidos pelo ataque; posiï¿½ï¿½o 1 = exï¿½rcitos perdidos pela defesa
 		int contAttack=0, contDefense=0;
 		System.out.println("Entrou no selectWinner");
 		

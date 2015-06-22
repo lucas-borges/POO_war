@@ -969,7 +969,7 @@ public class TerritorioDataBase {
 			lstTerritorios.get(50).lstFronteirasAdd(buscaTerritorio(nomePais.Australia));			
 		}
 		
-		static public Territorio buscaTerritorio (enumTerritorio.nomePais nomeTerritorio){
+		static public Territorio buscaTerritorio (nomePais nomeTerritorio){
 			
 			for(Territorio t:lstTerritorios){			
 				if(t.getNome()==nomeTerritorio)			

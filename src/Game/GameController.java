@@ -71,7 +71,7 @@ public class GameController implements Observer {
 			MapClickRedirect r=(MapClickRedirect)o;
 			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
 				if(t.getPoligono().contains(r.getX(),r.getY())){
-					gameWin.displayT(t.getNome(),t.getOwnerColor().toString(),t.getNTropas());
+					gameWin.displayT(t.getNome().getNome(),t.getOwnerColor().toString(),t.getNTropas());
 				}
 			}
 		}
