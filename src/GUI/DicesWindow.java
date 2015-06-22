@@ -116,6 +116,9 @@ public class DicesWindow extends Observable implements ActionListener {
 		ResultAttack.setText("Ataque perdeu:" + result[0] );
 		ResultDefense.setText("Defesa perdeu:" + result[1] );
 	}
+	public int[] getResult(){
+		return result;
+	}
 	
 		public void actionPerformed(ActionEvent e){
 			
