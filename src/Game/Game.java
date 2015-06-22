@@ -77,6 +77,9 @@ public class Game {
 		return players[currentPlayerIndex].getNumTropasDist()/2;
 		
 	}
+	public Color getCurrentColor ()	{
+		return players[currentPlayerIndex].getColor();
+	}
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
 		// result = vetor do resultado posi��o 0 = ex�rcitos perdidos pelo ataque; posi��o 1 = ex�rcitos perdidos pela defesa
 		int contAttack=0, contDefense=0;

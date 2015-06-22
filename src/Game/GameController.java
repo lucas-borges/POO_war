@@ -72,6 +72,12 @@ public class GameController implements Observer {
 			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
 				if(t.getPoligono().contains(r.getX(),r.getY())){
 					gameWin.displayT(t.getNome().getNome(),t.getOwnerColor().toString(),t.getNTropas());
+					if(t.getOwnerColor()==game.getCurrentColor()){
+						JOptionPane.showMessageDialog(null,"dono");
+					}
+					else{
+						JOptionPane.showMessageDialog(null,"adversario");
+					}
 				}
 			}
 		}
