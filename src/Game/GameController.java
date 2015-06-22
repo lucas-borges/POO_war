@@ -49,6 +49,8 @@ public class GameController implements Observer {
 		}
 		else if(x.equals("nextTurn")){
 			game.nextTurn();
+			SideMenuPanel p = (SideMenuPanel)o;
+			p.setTropasDist(game.DistribuirTropas());
 			System.out.println("Turno: " + game.getTurn());
 			System.out.println("Jogador: " + game.getCurrentPlayer());
 			gameWin.nextTurn();
@@ -80,6 +82,10 @@ public class GameController implements Observer {
 					}
 				}
 			}
+		}
+		else if(x.equals("AlocarTropas")){
+			SideMenuPanel p = (SideMenuPanel)o;
+			p.clickAlocar();
 		}
 	}
 	public int getNPlayers (){
