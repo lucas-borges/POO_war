@@ -19,6 +19,8 @@ public class GameController implements Observer {
 	private Game game;
 	/**/private MainWindow gameWin;
 	/**/private StartWindow startWin;
+		private Territorio terrCorr;
+		private int gameState=1;
 	
 	public GameController(){
 		/**/gameWin=new MainWindow();
@@ -40,19 +42,25 @@ public class GameController implements Observer {
 		if(x.equals("startGame")){
 			int nPlayers=((StartWindow)o).getComboValue();
 			game=new Game(nPlayers);
+			
 			System.out.println("Jogo criado com " + game.getNPlayers());
 			/**/gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
 			
 			/**/game.randomizeStart();
 			/**/game.playerTerr(0);
+			
+			gameWin.setTropasDist(game.DistribuirTropas());
 		}
 		else if(x.equals("nextTurn")){
 			game.nextTurn();
+			SideMenuPanel p = (SideMenuPanel)o;
+			p.setTropasDist(game.DistribuirTropas());
 			System.out.println("Turno: " + game.getTurn());
 			System.out.println("Jogador: " + game.getCurrentPlayer());
 			gameWin.nextTurn();
 			gameWin.repaint();
+			gameState=1;
 		}
 
 		else if(x.equals("RollDices")){
@@ -71,14 +79,37 @@ public class GameController implements Observer {
 			MapClickRedirect r=(MapClickRedirect)o;
 			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
 				if(t.getPoligono().contains(r.getX(),r.getY())){
-					gameWin.displayT(t.getNome().getNome(),t.getOwnerColor().toString(),t.getNTropas());
+//<<<<<<< HEAD
 					
+					gameWin.displayT(t.getNome().getNome(),t.getOwnerColor(),t.getNTropas());
+					terrCorr = t;
+					
+					
+					if(gameState==1){
+						if(t.getOwnerColor()==game.getCurrentColor()){
+							//JOptionPane.showMessageDialog(null,"dono");
+							gameWin.enableAlocar(true);
+						}
+						else{
+							//JOptionPane.showMessageDialog(null,"adversario");
+							gameWin.enableAlocar(false);
+						}
+					}
+					if(gameState==2){
+					}
+					if(gameState==3){
 					
 					//mover exercitos
-					MovementWindow moverTropas=new MovementWindow(t);
-					moverTropas.addObserver(this);
-					moverTropas.createGUI();					
-					
+						if(t.getOwnerColor()==game.getCurrentColor()){
+							//JOptionPane.showMessageDialog(null,"dono");
+							gameWin.enableMover(true);
+						}
+						else{
+							//JOptionPane.showMessageDialog(null,"adversario");
+							gameWin.enableMover(false);
+						}
+											
+					}
 					//end mover exercitos
 				}
 			}
@@ -89,6 +120,21 @@ public class GameController implements Observer {
 			Territorio destination=m.getDestination();
 			destination.deltaTropas(m.getNTropas());
 			source.deltaTropas(-m.getNTropas());
+		}
+		else if(x.equals("Mover")){
+			MovementWindow moverTropas=new MovementWindow(terrCorr);
+			moverTropas.addObserver(this);
+			moverTropas.createGUI();
+		}
+
+		else if(x.equals("AlocarTropas")){
+			SideMenuPanel p = (SideMenuPanel)o;
+			p.setTropasDist(p.getTropasDist()-1);
+			game.deltaT(terrCorr,1);
+			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
+			if(p.getTropasDist()==0){
+				gameState=3;
+			}
 		}
 	}
 	public int getNPlayers (){

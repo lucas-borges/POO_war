@@ -34,14 +34,17 @@ public class MovementWindow extends Observable implements ActionListener{
 		this.textTropas = new JLabel("Quantidade de tropas a mover:");
 		for(Territorio f:t.getLstFronteiras()){
 			System.out.println("Fronteira:"+f.getNome().getNome());
-			this.nString.add(f.getNome().getNome());
+			if(t.getOwnerColor()==f.getOwnerColor()){
+				this.nString.add(f.getNome().getNome());
+			}
+			
 		}
 		String []nTropas=new String[t.getNTropas()-1];
 		for(int i=1;i<t.getNTropas();i++){
 			nTropas[i-1]=String.valueOf(i);
 			System.out.println(nTropas[i-1]);
 		}
-		String[] arrayString=new String[2];
+		String[] arrayString=new String[1];
 		arrayString=nString.toArray(arrayString);
 		this.FronteirasBox = new JComboBox<String>(arrayString);		
 		this.nTropasBox = new JComboBox<String>(nTropas);
@@ -81,7 +84,7 @@ public class MovementWindow extends Observable implements ActionListener{
 		c.add(moveBut,gbc);
 		moveBut.addActionListener(this);//new StartGameAction());
 
-		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.topLevelFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
 		this.topLevelFrame.pack();
 		this.topLevelFrame.setLocationRelativeTo(null);

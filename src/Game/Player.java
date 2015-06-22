@@ -22,7 +22,12 @@ public class Player {
 	public Color getColor (){
 		return color;
 	}
-	
+	public void deltaT(Territorio t, int n){
+		for(Territorio x: territorios){
+			if(x.equals(t))
+				x.deltaTropas(n);
+		}
+	}
 	//DEBUG
 	public void listTerr(){
 		for(Territorio t:territorios){

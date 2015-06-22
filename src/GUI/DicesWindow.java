@@ -3,6 +3,7 @@ package GUI;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Observable;
+import java.util.Arrays;
 
 import etc.*;
 
@@ -15,9 +16,9 @@ public class DicesWindow extends Observable implements ActionListener {
 	final int width = 500;
 	private JLabel AttackDices [] = {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
 	private JLabel DefenseDices []= {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
-	private JLabel ResultAttack;
-	private JLabel ResultDefense;
-	private int nAttackDices=3, nDefenseDices=3;
+	private JLabel ResultAttack = new JLabel("Ataque perdeu:");
+	private JLabel ResultDefense = new JLabel("Defesa perdeu:");
+	private int nAttackDices=2, nDefenseDices=3;
 	private int result[];
 	boolean clicked;// = false;
 	private JButton rollAttackDicesBut;	
@@ -34,8 +35,6 @@ public class DicesWindow extends Observable implements ActionListener {
 		this.rollDefenseDicesBut = new JButton("Rolar Dados Defesa");
 		this.clicked = false;
 		rollDefenseDicesBut.setEnabled(false);
-		ResultAttack = new JLabel("Ataque perdeu:");
-		ResultAttack = new JLabel("Ataque perdeu:");
 		//this.nAttackDices = 
 		//this.nDefenseDices = 
 	}
@@ -125,6 +124,13 @@ public class DicesWindow extends Observable implements ActionListener {
 			if(s.equals("rollAttack"))
 			{
 				numDicesAttack= diceAttack.lancar_dados(nAttackDices);
+				Arrays.sort(numDicesAttack);
+				for(int i=0;i<numDicesAttack.length/2;i++) {
+				     // swap the elements
+				     int temp = numDicesAttack[i];
+				     numDicesAttack[i] = numDicesAttack[numDicesAttack.length-(i+1)];
+				     numDicesAttack[numDicesAttack.length-(i+1)] = temp;
+				}
 			
 				rollAttackDicesBut.setEnabled(false);
 				rollDefenseDicesBut.setEnabled(true);
@@ -137,6 +143,13 @@ public class DicesWindow extends Observable implements ActionListener {
 			else if(s.equals("rollDefense"))
 			{
 				numDicesDefense = diceDefense.lancar_dados(nDefenseDices);
+				Arrays.sort(numDicesDefense);
+				for(int i=0;i<numDicesDefense.length/2;i++) {
+				     // swap the elements
+				     int temp = numDicesDefense[i];
+				     numDicesDefense[i] = numDicesDefense[numDicesDefense.length-(i+1)];
+				     numDicesDefense[numDicesDefense.length-(i+1)] = temp;
+				}
 				
 				rollDefenseDicesBut.setEnabled(false);
 				
