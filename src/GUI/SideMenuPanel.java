@@ -32,6 +32,9 @@ public class SideMenuPanel extends Observable
 	
 	private DicesWindow diceWindow;
 	private JButton rollDicesBut;
+	
+	private JButton atacar;
+	private JButton mover;
 
 	public SideMenuPanel(){
 		this.newGameBut=new JButton("Novo Jogo");
@@ -51,12 +54,21 @@ public class SideMenuPanel extends Observable
 		alocarTropas = new JButton("Alocar Tropas");
 		alocarTropas.setActionCommand("AlocarTropas");
 		alocarTropas.addActionListener(this);
+		alocarTropas.setEnabled(false);
 		
 		
 		this.diceWindow = new DicesWindow();
 		this.rollDicesBut = new JButton("Rolar Dados");
 		rollDicesBut.setActionCommand("rollDice");
 		rollDicesBut.addActionListener(this);
+		
+		atacar = new JButton("Atacar Territorio");
+		atacar.setActionCommand("Atacar");
+		atacar.addActionListener(this);
+		
+		mover = new JButton("Mover Tropas");
+		mover.setActionCommand("Mover");
+		mover.addActionListener(this);
 	}
 
 	public JPanel getGUI(){
@@ -101,6 +113,14 @@ public class SideMenuPanel extends Observable
 		gbc.gridx=0;
 		gbc.gridy=6;
 		p.add(rollDicesBut,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=7;
+		p.add(atacar,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=8;
+		p.add(mover,gbc);
 
 		return p;
 	}
@@ -123,6 +143,14 @@ public class SideMenuPanel extends Observable
 			setChanged();
 			notifyObservers(new String ("AlocarTropas"));
 		}
+		else if(s.equals("Atacar")){
+			setChanged();
+			notifyObservers(new String ("Atacar"));
+		}
+		else if(s.equals("Mover")){
+			setChanged();
+			notifyObservers(new String ("Mover"));
+		}
 	}
 
 	public void setColorPanel(int n,Color[] order){
@@ -131,7 +159,7 @@ public class SideMenuPanel extends Observable
 		orderPanel.updateSize();
 	}
 	public void nextTurn(){
-		alocarTropas.setEnabled(true);
+		alocarTropas.setEnabled(false);
 		orderPanel.nextTurn();
 	}
 
@@ -143,9 +171,14 @@ public class SideMenuPanel extends Observable
 		corL.setText(cor);
 		nTropas.setText(Integer.toString(n)+ " tropas");
 	}
+	public int getTropasDist(){
+		return nTropasDist;
+	}
 	public void setTropasDist (int n) {
 		nTropasDist=n;
 		tropasDist.setText("Voce tem "+nTropasDist+" para distribuir");
+		if(nTropasDist==0)
+			alocarTropas.setEnabled(false);
 	}
 	public void createGUIDices()
 	{
@@ -157,10 +190,13 @@ public class SideMenuPanel extends Observable
 		super.addObserver(o);
 		diceWindow.addObserver(o);
 	}
-	public void clickAlocar(){
-		alocarTropas.setEnabled(false);
+	public void enableAlocar(boolean b){
+		if(nTropasDist!=0)
+			alocarTropas.setEnabled(b);
 	}
 	
+	
+//NESTED CLASSES	
 	private class ColorPanel extends JPanel {
 		public int n;
 		public Color[] colors;

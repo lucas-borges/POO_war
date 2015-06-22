@@ -80,6 +80,9 @@ public class Game {
 	public Color getCurrentColor ()	{
 		return players[currentPlayerIndex].getColor();
 	}
+	public void deltaT(Territorio t, int n){
+		players[currentPlayerIndex].deltaT(t, n);
+	}
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
 		// result = vetor do resultado posi��o 0 = ex�rcitos perdidos pelo ataque; posi��o 1 = ex�rcitos perdidos pela defesa
 		int contAttack=0, contDefense=0;
@@ -87,48 +90,48 @@ public class Game {
 		
 		if(attack.length == 1 || defense.length == 1){
 			
-			if(getHighest(attack)>getHighest(defense))
+			if(attack[0]>defense[0])
 				contDefense++;
 			else
 				contAttack++;
 		}
 		else if(attack.length == 3 && defense.length == 3)
 		{
-			if(getHighest(attack)>getHighest(defense))
+			if(attack[2]>defense[2])
 				contDefense++;
 			else
 				contAttack++;
 			
-			if(getSecond(attack)>getSecond(defense))
+			if(attack[1]>defense[1])
 				contDefense++;
 			else
 				contAttack++;
 			
-			if(getLowest(attack)>getLowest(defense))
+			if(attack[0]>defense[0])
 				contDefense++;
 			else
 				contAttack++;
 		}
 		else if(attack.length == 3 && defense.length == 2){
 			
-			if(getHighest(attack)>getHighest(defense))
+			if(attack[0]>defense[0])
 				contDefense++;
 			else
 				contAttack++;
 			
-			if(getSecond(attack)>getLowest(defense))
+			if(attack[1]>defense[1])
 				contDefense++;
 			else
 				contAttack++;
 		}
 		else if(attack.length == 2 && defense.length == 3)
 		{
-			if(getHighest(attack)>getHighest(defense))
+			if(attack[0]>defense[0])
 				contDefense++;
 			else
 				contAttack++;
 			
-			if(getLowest(attack)>getSecond(defense))
+			if(attack[1]>defense[1])
 				contDefense++;
 			else
 				contAttack++;
@@ -136,12 +139,12 @@ public class Game {
 		}
 		else if(attack.length == 2 && defense.length == 2){
 			
-			if(getHighest(attack)>getHighest(defense))
+			if(attack[0]>defense[0])
 				contDefense++;
 			else
 				contAttack++;
 			
-			if(getLowest(attack)>getLowest(defense))
+			if(attack[1]>defense[1])
 				contDefense++;
 			else
 				contAttack++;
@@ -155,36 +158,7 @@ public class Game {
 		
 		
 	}
-	private int getHighest(int[] vet){
-		int highest =0;
-		
-		for(int i: vet){
-			if(i>highest)
-				highest=i;
-		}
-		
-		return highest;
-	}
-	private int getSecond(int[] vet){
-		int second=0;
-		
-		for(int i: vet){
-			if(i!=getHighest(vet) && i>second)
-				second=i;
-		}
-		
-		return second;
-	}
-	private int getLowest(int[] vet){
-		int lowest=7;
-		
-		for(int i:vet){
-			if(i<lowest)
-				lowest=i;
-		}
-		
-		return lowest;
-	}
+	
 
 	
 	//DEBUG

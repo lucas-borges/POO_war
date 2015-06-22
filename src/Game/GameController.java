@@ -19,6 +19,7 @@ public class GameController implements Observer {
 	
 	/**/private MainWindow gameWin;
 	/**/private StartWindow startWin;
+		private Territorio terrCorr;
 	
 	public GameController(){
 		/**/gameWin=new MainWindow();
@@ -40,12 +41,15 @@ public class GameController implements Observer {
 		if(x.equals("startGame")){
 			int nPlayers=((StartWindow)o).getComboValue();
 			game=new Game(nPlayers);
+			
 			System.out.println("Jogo criado com " + game.getNPlayers());
 			/**/gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
 			
 			/**/game.randomizeStart();
 			/**/game.playerTerr(0);
+			
+			gameWin.setTropasDist(game.DistribuirTropas());
 		}
 		else if(x.equals("nextTurn")){
 			game.nextTurn();
@@ -74,18 +78,22 @@ public class GameController implements Observer {
 			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
 				if(t.getPoligono().contains(r.getX(),r.getY())){
 					gameWin.displayT(t.getNome().getNome(),t.getOwnerColor().toString(),t.getNTropas());
+					terrCorr = t;
 					if(t.getOwnerColor()==game.getCurrentColor()){
 						JOptionPane.showMessageDialog(null,"dono");
+						gameWin.enableAlocar(true);
 					}
 					else{
 						JOptionPane.showMessageDialog(null,"adversario");
+						gameWin.enableAlocar(false);
 					}
 				}
 			}
 		}
 		else if(x.equals("AlocarTropas")){
 			SideMenuPanel p = (SideMenuPanel)o;
-			p.clickAlocar();
+			p.setTropasDist(p.getTropasDist()-1);
+			game.deltaT(terrCorr,1);
 		}
 	}
 	public int getNPlayers (){

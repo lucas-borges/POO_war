@@ -57,4 +57,10 @@ public class MainWindow extends Observable{
 	public void displayT(String t, String cor, int nTropas){
 		side_menu_panel.setLabelTerritorio(t,cor,nTropas);
 	}
+	public void enableAlocar(boolean b){
+		side_menu_panel.enableAlocar(b);
+	}
+	public void setTropasDist(int n){
+		side_menu_panel.setTropasDist(n);
+	}
 }
