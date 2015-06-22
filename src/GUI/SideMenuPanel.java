@@ -94,11 +94,11 @@ public class SideMenuPanel extends Observable
 		gbc.gridy=2;
 		p.add(territorioL,gbc);
 		
-		gbc.gridx=0;
-		gbc.gridy=3;
+		gbc.gridx=1;
+		gbc.gridy=2;
 		p.add(corL,gbc);
 		
-		gbc.gridx=1;
+		gbc.gridx=0;
 		gbc.gridy=3;
 		p.add(nTropas,gbc);
 		
@@ -166,9 +166,10 @@ public class SideMenuPanel extends Observable
 	public void setTropas(int nTropas){ 
 	}
 	
-	public void setLabelTerritorio(String t, String cor, int n){
+	public void setLabelTerritorio(String t, Color cor, int n){
 		territorioL.setText(t);
-		corL.setText(cor);
+		corL.setForeground(cor);
+		corL.setText("   ***");
 		nTropas.setText(Integer.toString(n)+ " tropas");
 	}
 	public int getTropasDist(){

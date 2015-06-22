@@ -180,7 +180,7 @@ public class Game {
 				}
 			}
 			for(int i=0;i<resto;i++){
-				for (int j=0;j<nPlayers;j++){
+				for (int j=0;j<nPlayers && tempTerr.size()>0;j++){
 					int index=randGen.nextInt(tempTerr.size());
 					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
 					t.setOwnerColor(players[j].getColor());
