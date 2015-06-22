@@ -61,7 +61,14 @@ public class enumTerritorio {
 		public String getNome(){
 			return nome;
 		}
-		
+	}
+	public static nomePais toNomePais(String nome){
+		for(nomePais pais : nomePais.values()){
+			if(nome.equals(pais.getNome())){
+				return pais;
+			}
+		}
+		return null;
 	}
 
 }
