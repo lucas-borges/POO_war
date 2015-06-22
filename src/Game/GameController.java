@@ -4,6 +4,7 @@ import GUI.DicesWindow;
 import GUI.MainWindow;
 import GUI.StartWindow;
 import GUI.SideMenuPanel;
+import GUI.MovementWindow;
 
 import java.awt.*;
 import java.util.Observable;
@@ -16,7 +17,6 @@ import controller.Territorio;
 
 public class GameController implements Observer {
 	private Game game;
-	
 	/**/private MainWindow gameWin;
 	/**/private StartWindow startWin;
 	
@@ -72,8 +72,23 @@ public class GameController implements Observer {
 			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
 				if(t.getPoligono().contains(r.getX(),r.getY())){
 					gameWin.displayT(t.getNome().getNome(),t.getOwnerColor().toString(),t.getNTropas());
+					
+					
+					//mover exercitos
+					MovementWindow moverTropas=new MovementWindow(t);
+					moverTropas.addObserver(this);
+					moverTropas.createGUI();					
+					
+					//end mover exercitos
 				}
 			}
+		}
+		else if(x.equals("moveTropas")){
+			MovementWindow m=(MovementWindow)o;
+			Territorio source=m.getSource();
+			Territorio destination=m.getDestination();
+			destination.deltaTropas(m.getNTropas());
+			source.deltaTropas(-m.getNTropas());
 		}
 	}
 	public int getNPlayers (){
