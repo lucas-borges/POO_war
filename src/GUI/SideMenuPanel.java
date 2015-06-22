@@ -28,7 +28,7 @@ public class SideMenuPanel extends Observable
 	private JLabel nTropas;
 	private JLabel tropasDist;
 	private int nTropasDist;
-	private JButton alocarTer;
+	private JButton alocarTropas;
 	
 	private DicesWindow diceWindow;
 	private JButton rollDicesBut;
@@ -48,7 +48,10 @@ public class SideMenuPanel extends Observable
 		corL=new JLabel();
 		nTropas=new JLabel();
 		tropasDist=new JLabel("Voce tem "+nTropasDist+" para distribuir");
-		alocarTer = new JButton("Alocar Territorios");
+		alocarTropas = new JButton("Alocar Tropas");
+		alocarTropas.setActionCommand("AlocarTropas");
+		alocarTropas.addActionListener(this);
+		
 		
 		this.diceWindow = new DicesWindow();
 		this.rollDicesBut = new JButton("Rolar Dados");
@@ -93,7 +96,7 @@ public class SideMenuPanel extends Observable
 		
 		gbc.gridx=0;
 		gbc.gridy=5;
-		p.add(alocarTer,gbc);
+		p.add(alocarTropas,gbc);
 		
 		gbc.gridx=0;
 		gbc.gridy=6;
@@ -112,9 +115,13 @@ public class SideMenuPanel extends Observable
 			setChanged();
 			notifyObservers("nextTurn");
 		}
-		if(s.equals("rollDice")){
+		else if(s.equals("rollDice")){
 			setChanged();
 			notifyObservers(new String ("RollDices"));
+		}
+		else if(s.equals("AlocarTropas")){
+			setChanged();
+			notifyObservers(new String ("AlocarTropas"));
 		}
 	}
 
@@ -124,6 +131,7 @@ public class SideMenuPanel extends Observable
 		orderPanel.updateSize();
 	}
 	public void nextTurn(){
+		alocarTropas.setEnabled(true);
 		orderPanel.nextTurn();
 	}
 
@@ -137,6 +145,7 @@ public class SideMenuPanel extends Observable
 	}
 	public void setTropasDist (int n) {
 		nTropasDist=n;
+		tropasDist.setText("Voce tem "+nTropasDist+" para distribuir");
 	}
 	public void createGUIDices()
 	{
@@ -147,6 +156,9 @@ public class SideMenuPanel extends Observable
 	{
 		super.addObserver(o);
 		diceWindow.addObserver(o);
+	}
+	public void clickAlocar(){
+		alocarTropas.setEnabled(false);
 	}
 	
 	private class ColorPanel extends JPanel {
