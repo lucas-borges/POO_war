@@ -15,9 +15,6 @@ public class StartWindow extends Observable
 	private final String[] nString={"3","4","5","6"};
 	private JComboBox<String> nPlayerBox;
 	private JButton startBut;
-	/*final int xPadd=100;
-	final int yPadd=60;
-	int WIDTH, HEIGHT;*/
 	
 	public StartWindow (){
 		this.topLevelFrame = new JFrame("Novo Jogo");
