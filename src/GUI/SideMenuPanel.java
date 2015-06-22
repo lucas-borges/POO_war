@@ -8,7 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
-import java.util.Observer;
+//import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 public class SideMenuPanel extends Observable
 							implements ActionListener {
 
-	private JButton newGameBut;
 	private ColorPanel orderPanel;
 	private JButton nextTurnBut;
 	private JPanel p;
@@ -29,17 +28,15 @@ public class SideMenuPanel extends Observable
 	private JLabel tropasDist;
 	private int nTropasDist;
 	private JButton alocarTropas;
+	private JButton terminarAtaque;
 	
-	private DicesWindow diceWindow;
+	/*private DicesWindow diceWindow;
 	private JButton rollDicesBut;
-	
+	*/
 	private JButton atacar;
 	private JButton mover;
 
 	public SideMenuPanel(){
-		this.newGameBut=new JButton("Novo Jogo");
-		newGameBut.setActionCommand("newGame");
-		newGameBut.addActionListener(this);
 		
 		this.orderPanel=new ColorPanel(6,new Color[]{Color.black,Color.black,Color.black,Color.black,Color.black,Color.black});//3,new Color[]{Color.black,Color.blue,Color.red});
 		
@@ -57,19 +54,25 @@ public class SideMenuPanel extends Observable
 		alocarTropas.setEnabled(false);
 		
 		
-		this.diceWindow = new DicesWindow();
+		/*this.diceWindow = new DicesWindow();
 		this.rollDicesBut = new JButton("Rolar Dados");
 		rollDicesBut.setActionCommand("rollDice");
 		rollDicesBut.addActionListener(this);
-		
+		*/
 		atacar = new JButton("Atacar Territorio");
 		atacar.setActionCommand("Atacar");
 		atacar.addActionListener(this);
+		atacar.setEnabled(false);
 		
 		mover = new JButton("Mover Tropas");
 		mover.setActionCommand("Mover");
 		mover.addActionListener(this);
 		mover.setEnabled(false);
+		
+		terminarAtaque= new JButton("Terminar Ataque");
+		terminarAtaque.setActionCommand("TermAtaque");
+		terminarAtaque.addActionListener(this);
+		terminarAtaque.setEnabled(false);
 	}
 
 	public JPanel getGUI(){
@@ -78,10 +81,6 @@ public class SideMenuPanel extends Observable
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		//Add components
-		gbc.gridx=0;
-		gbc.gridy=0;
-		p.add(newGameBut,gbc);
-
 		gbc.gridx=1;
 		gbc.gridy=0;
 		p.add(nextTurnBut,gbc);
@@ -111,10 +110,10 @@ public class SideMenuPanel extends Observable
 		gbc.gridy=5;
 		p.add(alocarTropas,gbc);
 		
-		gbc.gridx=0;
+		/*gbc.gridx=0;
 		gbc.gridy=6;
 		p.add(rollDicesBut,gbc);
-		
+		*/
 		gbc.gridx=0;
 		gbc.gridy=7;
 		p.add(atacar,gbc);
@@ -122,6 +121,10 @@ public class SideMenuPanel extends Observable
 		gbc.gridx=0;
 		gbc.gridy=8;
 		p.add(mover,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=9;
+		p.add(terminarAtaque,gbc);
 
 		return p;
 	}
@@ -129,17 +132,15 @@ public class SideMenuPanel extends Observable
 
 	public void actionPerformed(ActionEvent e){
 		String s=e.getActionCommand();
-		if(s.equals("newGame")){
-			JOptionPane.showMessageDialog(null,"nao implementado");
-		}
-		else if(s.equals("nextTurn")){
+
+		if(s.equals("nextTurn")){
 			setChanged();
 			notifyObservers("nextTurn");
 		}
-		else if(s.equals("rollDice")){
+		/*else if(s.equals("rollDice")){
 			setChanged();
 			notifyObservers(new String ("RollDices"));
-		}
+		}*/
 		else if(s.equals("AlocarTropas")){
 			setChanged();
 			notifyObservers(new String ("AlocarTropas"));
@@ -151,6 +152,10 @@ public class SideMenuPanel extends Observable
 		else if(s.equals("Mover")){
 			setChanged();
 			notifyObservers(new String ("Mover"));
+		}
+		else if(s.equals("TermAtaque")){
+			setChanged();
+			notifyObservers(new String ("TermAtaque"));
 		}
 	}
 
@@ -182,16 +187,16 @@ public class SideMenuPanel extends Observable
 		if(nTropasDist==0)
 			alocarTropas.setEnabled(false);
 	}
-	public void createGUIDices()
+	/*public void createGUIDices()
 	{
 		diceWindow.createGUI();
         System.out.println("You clicked the button");
-	}
-	public void addObserver(Observer o)
+	}*/
+	/*public void addObserver(Observer o)
 	{
 		super.addObserver(o);
 		diceWindow.addObserver(o);
-	}
+	}*/
 	public void enableAlocar(boolean b){
 		if(nTropasDist!=0)
 			alocarTropas.setEnabled(b);
@@ -199,7 +204,12 @@ public class SideMenuPanel extends Observable
 	public void enableMover(boolean b){
 		mover.setEnabled(b);
 	}
-	
+	public void enableAtacar(boolean b){
+		atacar.setEnabled(b);
+	}
+	public void enableTerminarAtacar(boolean b){
+		terminarAtaque.setEnabled(b);
+	}
 	
 //NESTED CLASSES	
 	private class ColorPanel extends JPanel {

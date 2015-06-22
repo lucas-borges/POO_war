@@ -1,5 +1,6 @@
 package Game;
 
+import GUI.AttackWindow;
 import GUI.DicesWindow;
 import GUI.MainWindow;
 import GUI.StartWindow;
@@ -21,6 +22,8 @@ public class GameController implements Observer {
 	/**/private StartWindow startWin;
 		private Territorio terrCorr;
 		private int gameState=1;
+		Territorio source;
+		Territorio target;
 	
 	public GameController(){
 		/**/gameWin=new MainWindow();
@@ -48,7 +51,7 @@ public class GameController implements Observer {
 			gameWin.repaint();
 			
 			/**/game.randomizeStart();
-			/**/game.playerTerr(0);
+			/**///game.playerTerr(0);
 			
 			gameWin.setTropasDist(game.DistribuirTropas());
 		}
@@ -61,12 +64,13 @@ public class GameController implements Observer {
 			gameWin.nextTurn();
 			gameWin.repaint();
 			gameState=1;
+			gameWin.enableMover(false);
 		}
 
-		else if(x.equals("RollDices")){
+		/*else if(x.equals("RollDices")){
 			SideMenuPanel p = ((SideMenuPanel)o);
 			p.createGUIDices();
-		}
+		}*/
 		else if(x.equals("DadosRolados")){
 			System.out.println("entrou dados rolados");
 			DicesWindow d = (DicesWindow)o;
@@ -74,12 +78,25 @@ public class GameController implements Observer {
 			System.out.printf("%d",result[0]);
 			game.SelectWinner(d.getAttackDices(), d.getDefenseDices(), result);
 			d.setResult(result);
+			
+			source.deltaTropas(-result[0]);
+			target.deltaTropas(-result[1]);
+			
+			if(target.getNTropas()==0){
+				target.setOwnerColor(source.getOwnerColor());
+				source.deltaTropas(-1);
+				target.deltaTropas(1);
+				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
+			}
+			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
+			
+			
 		}
 		else if(x.equals("click")){
 			MapClickRedirect r=(MapClickRedirect)o;
 			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
 				if(t.getPoligono().contains(r.getX(),r.getY())){
-//<<<<<<< HEAD
+
 					
 					gameWin.displayT(t.getNome().getNome(),t.getOwnerColor(),t.getNTropas());
 					terrCorr = t;
@@ -87,30 +104,30 @@ public class GameController implements Observer {
 					
 					if(gameState==1){
 						if(t.getOwnerColor()==game.getCurrentColor()){
-							//JOptionPane.showMessageDialog(null,"dono");
 							gameWin.enableAlocar(true);
 						}
 						else{
-							//JOptionPane.showMessageDialog(null,"adversario");
 							gameWin.enableAlocar(false);
 						}
 					}
 					if(gameState==2){
+						if(t.getOwnerColor()!=game.getCurrentColor()){
+							gameWin.enableAtacar(true);
+						}
+						else{
+							gameWin.enableAtacar(false);
+						}
 					}
 					if(gameState==3){
-					
 					//mover exercitos
 						if(t.getOwnerColor()==game.getCurrentColor()){
-							//JOptionPane.showMessageDialog(null,"dono");
 							gameWin.enableMover(true);
 						}
 						else{
-							//JOptionPane.showMessageDialog(null,"adversario");
 							gameWin.enableMover(false);
 						}
 											
-					}
-					//end mover exercitos
+					}//end mover exercitos
 				}
 			}
 		}
@@ -133,8 +150,39 @@ public class GameController implements Observer {
 			game.deltaT(terrCorr,1);
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
 			if(p.getTropasDist()==0){
-				gameState=3;
+				gameState=2;
+				gameWin.enableTerminarAtacar(true);
 			}
+		}
+		else if(x.equals("Atacar")){
+			AttackWindow atacarTerritorio=new AttackWindow(terrCorr,game.getCurrentColor());
+			atacarTerritorio.addObserver(this);
+			atacarTerritorio.createGUI();
+		}
+		else if(x.equals("Atacar Territorio")){
+			AttackWindow a=(AttackWindow)o;
+			source=a.getSource();
+			target=a.getTarget();
+			int nAtaque=source.getNTropas()-1;
+			int nDefesa=target.getNTropas();
+			if(nAtaque>3){
+				nAtaque=3;
+			}
+			if(nDefesa>3){
+				nDefesa=3;
+			}
+			
+			DicesWindow dWin=new DicesWindow();
+			dWin.addObserver(this);
+			dWin.setNumDices(nAtaque, nDefesa);
+			dWin.createGUI();
+			//destination.deltaTropas(m.getNTropas());
+			//source.deltaTropas(-m.getNTropas());
+		}
+		else if(x.equals("TermAtaque")){
+			gameState=3;
+			gameWin.enableAtacar(false);
+			gameWin.enableTerminarAtacar(false);
 		}
 	}
 	public int getNPlayers (){
