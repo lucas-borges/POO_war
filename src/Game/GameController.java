@@ -52,6 +52,9 @@ public class GameController implements Observer {
 			
 			/**/game.randomizeStart();
 			/**///game.playerTerr(0);
+				game.DistribuirObjetivos();
+				
+			JOptionPane.showMessageDialog(frame, "Os Objetivos foram distribuídos");
 			
 			gameWin.setTropasDist(game.DistribuirTropas());
 		}
