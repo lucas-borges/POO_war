@@ -18,7 +18,7 @@ public class DicesWindow extends Observable implements ActionListener {
 	private JLabel DefenseDices []= {new JLabel("dado1"),new JLabel("dado2"),new JLabel("dado3")};
 	private JLabel ResultAttack = new JLabel("Ataque perdeu:");
 	private JLabel ResultDefense = new JLabel("Defesa perdeu:");
-	private int nAttackDices=2, nDefenseDices=3;
+	private int nAttackDices=3, nDefenseDices=1;
 	private int result[];
 	boolean clicked;// = false;
 	private JButton rollAttackDicesBut;	
