@@ -5,10 +5,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 //import java.util.Observer;
+
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,113 +20,160 @@ import javax.swing.JPanel;
 public class SideMenuPanel extends Observable
 							implements ActionListener {
 
-	private ColorPanel orderPanel;
-	private JButton nextTurnBut;
 	private JPanel p;
-	
-	private JLabel territorioL;
-	private JLabel corL;
-	private JLabel nTropas;
-	private JLabel tropasDist;
+	private ColorPanel orderPanel;
 	private int nTropasDist;
-	private JButton alocarTropas;
-	private JButton terminarAtaque;
 	
-	/*private DicesWindow diceWindow;
-	private JButton rollDicesBut;
-	*/
-	private JButton atacar;
-	private JButton mover;
+	private JLabel Lab_territorio;
+	private JLabel Lab_cor;
+	private JLabel Lab_nTropas;
+	private JLabel Lab_tropasDist;
+	private JLabel Lab_information;
+	
+	private JButton But_alocarTropas;
+	private JButton But_terminarAtaque;
+	private JButton But_nextTurn;
+	private JButton But_showObj;
+	private JButton But_showCards;
+	private JButton But_atacar;
+	private JButton But_mover;
+	
 
 	public SideMenuPanel(){
 		
 		this.orderPanel=new ColorPanel(6,new Color[]{Color.black,Color.black,Color.black,Color.black,Color.black,Color.black});//3,new Color[]{Color.black,Color.blue,Color.red});
 		
-		this.nextTurnBut=new JButton("Prox Turno");
-		nextTurnBut.setActionCommand("nextTurn");
-		nextTurnBut.addActionListener(this);
+		this.But_nextTurn=new JButton("Passar Turno");
+		But_nextTurn.setActionCommand("nextTurn");
+		But_nextTurn.addActionListener(this);
+		But_nextTurn.setEnabled(false);
 		
-		territorioL=new JLabel("Clique num territorio");
-		corL=new JLabel();
-		nTropas=new JLabel();
-		tropasDist=new JLabel("Voce tem "+nTropasDist+" para distribuir");
-		alocarTropas = new JButton("Alocar Tropas");
-		alocarTropas.setActionCommand("AlocarTropas");
-		alocarTropas.addActionListener(this);
-		alocarTropas.setEnabled(false);
+		Lab_territorio=new JLabel("Clique num territorio para ver informacoes");
+		Lab_cor=new JLabel();
+		Lab_nTropas=new JLabel();
+		Lab_tropasDist=new JLabel("Voce tem "+nTropasDist+" tropas para distribuir");
+		Lab_information = new JLabel();
 		
+		But_alocarTropas = new JButton("Alocar Tropas");
+		But_alocarTropas.setActionCommand("alocarTropas");
+		But_alocarTropas.addActionListener(this);
+		But_alocarTropas.setEnabled(false);
 		
-		/*this.diceWindow = new DicesWindow();
-		this.rollDicesBut = new JButton("Rolar Dados");
-		rollDicesBut.setActionCommand("rollDice");
-		rollDicesBut.addActionListener(this);
-		*/
-		atacar = new JButton("Atacar Territorio");
-		atacar.setActionCommand("Atacar");
-		atacar.addActionListener(this);
-		atacar.setEnabled(false);
+		But_showObj = new JButton ("Ver Objetivos");
+		But_showObj.setActionCommand("showObj");
+		But_showObj.addActionListener(this);
 		
-		mover = new JButton("Mover Tropas");
-		mover.setActionCommand("Mover");
-		mover.addActionListener(this);
-		mover.setEnabled(false);
+		But_showCards = new JButton ("Ver Cartas");
+		But_showCards.setActionCommand("showCards");
+		But_showCards.addActionListener(this);
+
+		But_atacar = new JButton("Atacar Territorio");
+		But_atacar.setActionCommand("atacar");
+		But_atacar.addActionListener(this);
+		But_atacar.setEnabled(false);
 		
-		terminarAtaque= new JButton("Terminar Ataque");
-		terminarAtaque.setActionCommand("TermAtaque");
-		terminarAtaque.addActionListener(this);
-		terminarAtaque.setEnabled(false);
+		But_mover = new JButton("Mover Tropas");
+		But_mover.setActionCommand("mover");
+		But_mover.addActionListener(this);
+		But_mover.setEnabled(false);
+		
+		But_terminarAtaque= new JButton("Terminar Ataque");
+		But_terminarAtaque.setActionCommand("termAtaque");
+		But_terminarAtaque.addActionListener(this);
+		But_terminarAtaque.setEnabled(false);
 	}
 
 	public JPanel getGUI(){
+		int row=0;
 		p=new JPanel();
 		p.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		//Add components
-		gbc.gridx=1;
-		gbc.gridy=0;
-		p.add(nextTurnBut,gbc);
-
 		gbc.gridx=0;
-		gbc.gridy=1;	
-		gbc.gridwidth=GridBagConstraints.REMAINDER;
+		gbc.gridy=row;
+		gbc.insets=new Insets(0,10,0,0);
+		p.add(But_showObj,gbc);
+		
+		gbc.gridx=1;
+		gbc.gridy=row;
+		p.add(But_showCards,gbc);
+		
+		row++;
+		
+		gbc.gridx=0;
+		gbc.gridy=row;
+		gbc.gridwidth=2;
+		gbc.insets=new Insets(5,0,5,0);
 		p.add(orderPanel,gbc);
 		
+		row++;
+		
 		gbc.gridx=0;
-		gbc.gridy=2;
-		p.add(territorioL,gbc);
+		gbc.gridy=row;
+		gbc.gridwidth=2;
+		p.add(Lab_territorio,gbc);
+		
+		row++;
 		
 		gbc.gridx=1;
-		gbc.gridy=2;
-		p.add(corL,gbc);
+		gbc.gridy=row;
+		gbc.gridwidth=1;
+		p.add(Lab_cor,gbc);
 		
 		gbc.gridx=0;
-		gbc.gridy=3;
-		p.add(nTropas,gbc);
+		gbc.gridy=row;
+		gbc.gridwidth=1;
+		p.add(Lab_nTropas,gbc);
+		
+		row++;
 		
 		gbc.gridx=0;
-		gbc.gridy=4;
-		p.add(tropasDist,gbc);
+		gbc.gridy=row;
+		gbc.gridwidth=2;
+		p.add(Lab_tropasDist,gbc);
+		
+		row++;
 		
 		gbc.gridx=0;
-		gbc.gridy=5;
-		p.add(alocarTropas,gbc);
+		gbc.gridy=row;
+		gbc.gridwidth=2;
+		p.add(But_alocarTropas,gbc);
 		
-		/*gbc.gridx=0;
-		gbc.gridy=6;
-		p.add(rollDicesBut,gbc);
-		*/
-		gbc.gridx=0;
-		gbc.gridy=7;
-		p.add(atacar,gbc);
+		row++;
 		
 		gbc.gridx=0;
-		gbc.gridy=8;
-		p.add(mover,gbc);
+		gbc.gridy=row;
+		gbc.gridwidth=1;
+		p.add(But_atacar,gbc);
+		
+		gbc.gridx=1;
+		gbc.gridy=row;
+		gbc.gridwidth=1;
+		p.add(But_terminarAtaque,gbc);
+		
+		row++;
 		
 		gbc.gridx=0;
-		gbc.gridy=9;
-		p.add(terminarAtaque,gbc);
+		gbc.gridy=row;
+		gbc.gridwidth=2;
+		p.add(But_mover,gbc);		
+		
+		row++;
+		
+		gbc.gridx=0;
+		gbc.gridy=row;
+		gbc.gridwidth=2;
+		p.add(But_nextTurn,gbc);
+
+		row++;
+		
+		gbc.gridx=0;
+		gbc.gridy=row;
+		gbc.gridwidth=2;
+		p.add(Lab_information,gbc);
+		
+		row++;
 
 		return p;
 	}
@@ -135,27 +184,31 @@ public class SideMenuPanel extends Observable
 
 		if(s.equals("nextTurn")){
 			setChanged();
-			notifyObservers("nextTurn");
+			notifyObservers("SideMenu_nextTurn");
 		}
-		/*else if(s.equals("rollDice")){
+		else if(s.equals("alocarTropas")){
 			setChanged();
-			notifyObservers(new String ("RollDices"));
-		}*/
-		else if(s.equals("AlocarTropas")){
-			setChanged();
-			notifyObservers(new String ("AlocarTropas"));
+			notifyObservers(new String ("SideMenu_alocarTropas"));
 		}
-		else if(s.equals("Atacar")){
+		else if(s.equals("atacar")){
 			setChanged();
-			notifyObservers(new String ("Atacar"));
+			notifyObservers(new String ("SideMenu_atacar"));
 		}
-		else if(s.equals("Mover")){
+		else if(s.equals("mover")){
 			setChanged();
-			notifyObservers(new String ("Mover"));
+			notifyObservers(new String ("SideMenu_mover"));
 		}
-		else if(s.equals("TermAtaque")){
+		else if(s.equals("termAtaque")){
 			setChanged();
-			notifyObservers(new String ("TermAtaque"));
+			notifyObservers(new String ("SideMenu_termAtaque"));
+		}
+		else if(s.equals("showObj")){
+			setChanged();
+			notifyObservers(new String ("SideMenu_showObj"));
+		}
+		else if(s.equals("showCards")){
+			setChanged();
+			notifyObservers(new String ("SideMenu_showCards"));
 		}
 	}
 
@@ -165,7 +218,7 @@ public class SideMenuPanel extends Observable
 		orderPanel.updateSize();
 	}
 	public void nextTurn(){
-		alocarTropas.setEnabled(false);
+		But_alocarTropas.setEnabled(false);
 		orderPanel.nextTurn();
 	}
 
@@ -173,42 +226,41 @@ public class SideMenuPanel extends Observable
 	}
 	
 	public void setLabelTerritorio(String t, Color cor, int n){
-		territorioL.setText(t);
-		corL.setForeground(cor);
-		corL.setText("   ***");
-		nTropas.setText(Integer.toString(n)+ " tropas");
+		Lab_territorio.setText(t);
+		Lab_cor.setForeground(cor);
+		Lab_cor.setText("   ***");
+		Lab_nTropas.setText(Integer.toString(n)+ " tropas");
+	}
+	public void setInfText (String t){
+		Lab_information.setText(t);
 	}
 	public int getTropasDist(){
 		return nTropasDist;
 	}
 	public void setTropasDist (int n) {
 		nTropasDist=n;
-		tropasDist.setText("Voce tem "+nTropasDist+" para distribuir");
-		if(nTropasDist==0)
-			alocarTropas.setEnabled(false);
+		Lab_tropasDist.setVisible(true);
+		Lab_tropasDist.setText("Voce tem "+nTropasDist+" tropas para distribuir");
+		if(nTropasDist==0){
+			Lab_tropasDist.setVisible(false);
+			But_alocarTropas.setEnabled(false);
+		}
 	}
-	/*public void createGUIDices()
-	{
-		diceWindow.createGUI();
-        System.out.println("You clicked the button");
-	}*/
-	/*public void addObserver(Observer o)
-	{
-		super.addObserver(o);
-		diceWindow.addObserver(o);
-	}*/
 	public void enableAlocar(boolean b){
 		if(nTropasDist!=0)
-			alocarTropas.setEnabled(b);
+			But_alocarTropas.setEnabled(b);
 	}
 	public void enableMover(boolean b){
-		mover.setEnabled(b);
+		But_mover.setEnabled(b);
 	}
 	public void enableAtacar(boolean b){
-		atacar.setEnabled(b);
+		But_atacar.setEnabled(b);
 	}
 	public void enableTerminarAtacar(boolean b){
-		terminarAtaque.setEnabled(b);
+		But_terminarAtaque.setEnabled(b);
+	}
+	public void enableNextTurn (boolean b){
+		But_nextTurn.setEnabled(b);
 	}
 	
 //NESTED CLASSES	
@@ -250,6 +302,7 @@ public class SideMenuPanel extends Observable
 				g.setColor(colors[i]);
 				g.fillRect(i*RECT_WIDTH+2*RECT_PADD*(i+1), RECT_OFFS+RECT_PADD, RECT_WIDTH , RECT_HEIGHT);
 				if (current==i){
+					g.setColor(Color.black);
 					g.drawRect(i*RECT_WIDTH+RECT_PADD*(2*i+1), RECT_OFFS, RECT_WIDTH+2*RECT_PADD, RECT_HEIGHT+2*RECT_PADD);
 				}
 			}

@@ -8,7 +8,7 @@ public class MapClickRedirect extends Observable {
 		this.x=x;
 		this.y=y;
 		setChanged();
-		notifyObservers(new String("click"));
+		notifyObservers(new String("MapClickRedirect_click"));
 	}
 	public int getX(){
 		return x;

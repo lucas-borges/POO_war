@@ -58,7 +58,7 @@ public class StartWindow extends Observable
 		//int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
 		//JOptionPane.showMessageDialog(null,"Que começe o jogo! ("+i+")");
 		setChanged();
-		notifyObservers(new String("startGame"));
+		notifyObservers(new String("StartWindow_startGame"));
 	}
 		
 	public int getComboValue(){

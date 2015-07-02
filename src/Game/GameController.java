@@ -42,7 +42,8 @@ public class GameController implements Observer {
 		String x=(String)arg;
 		System.out.println("entrou controller update");
 		
-		if(x.equals("startGame")){
+		/* start StartWindow events */
+		if(x.equals("StartWindow_startGame")){
 			int nPlayers=((StartWindow)o).getComboValue();
 			game=new Game(nPlayers);
 			
@@ -51,11 +52,15 @@ public class GameController implements Observer {
 			gameWin.repaint();
 			
 			/**/game.randomizeStart();
-			/**///game.playerTerr(0);
+		
 			
 			gameWin.setTropasDist(game.DistribuirTropas());
+			gameWin.setInfText("Clique num territorio seu para alocar tropas");
 		}
-		else if(x.equals("nextTurn")){
+		/* end StartWindow events */
+		
+		/* start SideMenu events */
+		else if(x.equals("SideMenu_nextTurn")){
 			game.nextTurn();
 			SideMenuPanel p = (SideMenuPanel)o;
 			p.setTropasDist(game.DistribuirTropas());
@@ -63,15 +68,34 @@ public class GameController implements Observer {
 			System.out.println("Jogador: " + game.getCurrentPlayer());
 			gameWin.nextTurn();
 			gameWin.repaint();
-			gameState=1;
-			gameWin.enableMover(false);
+			this.advanceGameState();
 		}
-
-		/*else if(x.equals("RollDices")){
-			SideMenuPanel p = ((SideMenuPanel)o);
-			p.createGUIDices();
-		}*/
-		else if(x.equals("DadosRolados")){
+		else if(x.equals("SideMenu_mover")){
+			MovementWindow moverTropas=new MovementWindow(terrCorr);
+			moverTropas.addObserver(this);
+			moverTropas.createGUI();
+		}
+		else if(x.equals("SideMenu_alocarTropas")){
+			SideMenuPanel p = (SideMenuPanel)o;
+			p.setTropasDist(p.getTropasDist()-1);
+			game.deltaT(terrCorr,1);
+			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
+			if(p.getTropasDist()==0){
+				this.advanceGameState();
+			}
+		}
+		else if(x.equals("SideMenu_atacar")){
+			AttackWindow atacarTerritorio=new AttackWindow(terrCorr,game.getCurrentColor());
+			atacarTerritorio.addObserver(this);
+			atacarTerritorio.createGUI();
+		}
+		else if(x.equals("SideMenu_termAtaque")){
+			this.advanceGameState();
+		}
+		/* end SideMenu events */
+		
+		/* start DicesWindow events */
+		else if(x.equals("DicesWindow_dadosRolados")){
 			System.out.println("entrou dados rolados");
 			DicesWindow d = (DicesWindow)o;
 			int result[] = {0,0};
@@ -89,10 +113,11 @@ public class GameController implements Observer {
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
 			}
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
-			
-			
 		}
-		else if(x.equals("click")){
+		/* end DicesWindow events */
+		
+		/* start MapClickRedirect events */
+		else if(x.equals("MapClickRedirect_click")){
 			MapClickRedirect r=(MapClickRedirect)o;
 			for(Territorio t:TerritorioDataBase.getLstTerritorios()){
 				if(t.getPoligono().contains(r.getX(),r.getY())){
@@ -131,35 +156,20 @@ public class GameController implements Observer {
 				}
 			}
 		}
-		else if(x.equals("moveTropas")){
+		/* end MapClickRedirect events */
+		
+		/* start MovementWindow events */
+		else if(x.equals("MovementWindow_moveTropas")){
 			MovementWindow m=(MovementWindow)o;
 			Territorio source=m.getSource();
 			Territorio destination=m.getDestination();
 			destination.deltaTropas(m.getNTropas());
 			source.deltaTropas(-m.getNTropas());
 		}
-		else if(x.equals("Mover")){
-			MovementWindow moverTropas=new MovementWindow(terrCorr);
-			moverTropas.addObserver(this);
-			moverTropas.createGUI();
-		}
-
-		else if(x.equals("AlocarTropas")){
-			SideMenuPanel p = (SideMenuPanel)o;
-			p.setTropasDist(p.getTropasDist()-1);
-			game.deltaT(terrCorr,1);
-			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
-			if(p.getTropasDist()==0){
-				gameState=2;
-				gameWin.enableTerminarAtacar(true);
-			}
-		}
-		else if(x.equals("Atacar")){
-			AttackWindow atacarTerritorio=new AttackWindow(terrCorr,game.getCurrentColor());
-			atacarTerritorio.addObserver(this);
-			atacarTerritorio.createGUI();
-		}
-		else if(x.equals("Atacar Territorio")){
+		/* end MovementWindow events */
+		
+		/* start AttackWindow events */
+		else if(x.equals("AttackWindow_atacarTerritorio")){
 			AttackWindow a=(AttackWindow)o;
 			source=a.getSource();
 			target=a.getTarget();
@@ -179,11 +189,8 @@ public class GameController implements Observer {
 			//destination.deltaTropas(m.getNTropas());
 			//source.deltaTropas(-m.getNTropas());
 		}
-		else if(x.equals("TermAtaque")){
-			gameState=3;
-			gameWin.enableAtacar(false);
-			gameWin.enableTerminarAtacar(false);
-		}
+		/* end AttackWindow events */
+		
 	}
 	public int getNPlayers (){
 		return game.getNPlayers();
@@ -192,8 +199,28 @@ public class GameController implements Observer {
 		return game.getColorOrder();
 	}
 	
+	private void advanceGameState (){
+		if (gameState==1){
+			gameState=2;
+			gameWin.enableTerminarAtacar(true);
+			gameWin.setInfText("Clique num territorio inimigo para atacar");
+		}
+		else if (gameState==2){
+			gameState=3;
+			gameWin.enableAtacar(false);
+			gameWin.enableTerminarAtacar(false);
+			gameWin.enableNextTurn(true);
+			gameWin.setInfText("Clique num territorio seu para mover topas");
+		}
+		else if (gameState==3){
+			gameState=1;
+			gameWin.enableMover(false);
+			gameWin.enableNextTurn(false);
+			gameWin.setInfText("Clique num territorio seu para alocar tropas");
+		}
+	}
+	
 	public static void main (String[]args){
-		GameController controller=new GameController();
-		
+		GameController controller=new GameController();	
 	}
 }

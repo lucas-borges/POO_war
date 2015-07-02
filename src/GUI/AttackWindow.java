@@ -97,7 +97,7 @@ public class AttackWindow extends Observable implements ActionListener{
 		//int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
 		//JOptionPane.showMessageDialog(null,"Que come�e o jogo! ("+i+")");
 		setChanged();
-		notifyObservers(new String("Atacar Territorio"));
+		notifyObservers(new String("AttackWindow_atacarTerritorio"));
 	}
 		
 	/*public int getNTropas(){		

@@ -97,7 +97,7 @@ public class MovementWindow extends Observable implements ActionListener{
 		//int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
 		//JOptionPane.showMessageDialog(null,"Que come�e o jogo! ("+i+")");
 		setChanged();
-		notifyObservers(new String("moveTropas"));
+		notifyObservers(new String("MovementWindow_moveTropas"));
 	}
 		
 	public int getNTropas(){		

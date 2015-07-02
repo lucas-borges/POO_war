@@ -162,9 +162,7 @@ public class DicesWindow extends Observable implements ActionListener {
 				}
 				
 				setChanged();
-				notifyObservers(new String ("DadosRolados"));
-				
-				
+				notifyObservers(new String ("DicesWindow_dadosRolados"));
 			}        	
 		}
 		

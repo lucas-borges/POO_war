@@ -57,6 +57,9 @@ public class MainWindow extends Observable{
 	public void displayT(String t, Color cor, int nTropas){
 		side_menu_panel.setLabelTerritorio(t,cor,nTropas);
 	}
+	public void setInfText(String t){
+		side_menu_panel.setInfText(t);
+	}
 	public void enableAlocar(boolean b){
 		side_menu_panel.enableAlocar(b);
 	}
@@ -71,5 +74,8 @@ public class MainWindow extends Observable{
 	}
 	public void enableTerminarAtacar(boolean b){
 		side_menu_panel.enableTerminarAtacar(b);
+	}
+	public void enableNextTurn (boolean b){
+		side_menu_panel.enableNextTurn(b);
 	}
 }
