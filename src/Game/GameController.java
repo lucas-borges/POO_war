@@ -52,10 +52,12 @@ public class GameController implements Observer {
 			gameWin.repaint();
 			
 			/**/game.randomizeStart();
-		
-			
+			/**///game.playerTerr(0);
+			game.DistribuirObjetivos();
 			gameWin.setTropasDist(game.DistribuirTropas());
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
+				
+			JOptionPane.showMessageDialog(null, "Os objetivos foram distribuídos. \nClique em ver objetivo para saber qual é o seu.");
 		}
 		/* end StartWindow events */
 		
@@ -91,6 +93,12 @@ public class GameController implements Observer {
 		}
 		else if(x.equals("SideMenu_termAtaque")){
 			this.advanceGameState();
+		}
+		else if(x.equals("SideMenu_showObj")){
+			JOptionPane.showMessageDialog(null,"Objetivo:");
+		}
+		else if(x.equals("SideMenu_showCards")){
+			JOptionPane.showMessageDialog(null,"Cartas: ");
 		}
 		/* end SideMenu events */
 		

@@ -159,6 +159,18 @@ public class Game {
 		
 	}
 	
+	public void DistribuirObjetivos(){
+		
+		ArrayList<CartaObjetivo> objetivos = CartaObjetivoDataBase.copyLstObjetivos();
+		Random randObj = new Random();
+		
+		for (int i=0;i<nPlayers;i++){
+			int index=randObj.nextInt(objetivos.size());
+			CartaObjetivo o = CartaObjetivoDataBase.buscaObjetivo(objetivos.get(index).getNome());
+			players[i].setObjetivo(objetivos.remove(index).getNome());
+			
+		}
+	}
 
 	
 	//DEBUG

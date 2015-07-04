@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import controller.Territorio;
+import etc.enumObjetivo.Objetivo;
 
 //import etc.*;
 
@@ -11,6 +12,8 @@ import controller.Territorio;
 public class Player {
 	private Color color;
 	private ArrayList<Territorio> territorios;
+	private ArrayList<Carta> cartas;
+	private Objetivo objetivo;
 	
 	public Player (Color x){
 		color=x;
@@ -27,6 +30,9 @@ public class Player {
 			if(x.equals(t))
 				x.deltaTropas(n);
 		}
+	}
+	public void setObjetivo(Objetivo o){
+		objetivo=o;
 	}
 	//DEBUG
 	public void listTerr(){
