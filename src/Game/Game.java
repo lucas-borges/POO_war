@@ -175,6 +175,25 @@ public class Game {
 		
 	}
 	
+	private void SetarObjetivo(Player p,Objetivo o){
+		
+		p.setObjetivo(o);
+		if(p.getObjetivo().startsWith("Destruir")){	
+			System.out.println("Destruir");
+			System.out.println(p.getObjetivo());
+			if(p.getObjetivo().endsWith(NamedColor.getMatch(p.getColor()).getColorPlural())){
+				p.setObjetivo(Objetivo.T24);
+				return;
+			}
+			for(Player P: players){
+				if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
+					return;
+				}
+			}
+			p.setObjetivo(Objetivo.T24);
+		}
+	}
+	
 	public void DistribuirObjetivos(){
 		
 		ArrayList<CartaObjetivo> objetivos = CartaObjetivoDataBase.copyLstObjetivos();
@@ -183,21 +202,7 @@ public class Game {
 		for (int i=0;i<nPlayers;i++){
 			int index=randObj.nextInt(objetivos.size());
 			CartaObjetivo o = CartaObjetivoDataBase.buscaObjetivo(objetivos.get(index).getNome());
-			players[i].setObjetivo(objetivos.remove(index).getNome());
-			if(players[i].getObjetivo().startsWith("Destruir")){
-				System.out.println("Destruir");
-				System.out.println(players[i].getObjetivo());
-				if(players[i].getObjetivo().endsWith(NamedColor.getMatch(players[i].getColor()).getColorPlural())){
-					players[i].setObjetivo(Objetivo.T24);
-					return;
-				}
-				for(Player p: players){
-					if(players[i].getObjetivo().endsWith(NamedColor.getMatch(p.getColor()).getColorPlural())){
-						return;
-					}
-				}
-				players[i].setObjetivo(Objetivo.T24);
-			}
+			SetarObjetivo(players[i],objetivos.remove(index).getNome());
 			
 		}
 	}
