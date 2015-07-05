@@ -9,10 +9,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import controller.Territorio;
 import etc.enumTerritorio;
 import etc.enumColor.NamedColor;
 import etc.enumObjetivo.Objetivo;
+import etc.Figura;
 
 import etc.enumTerritorio.nomePais;
 public class Game {
@@ -20,6 +25,9 @@ public class Game {
 	private Player[] players;
 	private int currentPlayerIndex;
 	private int turn;
+	private int nTrocas=0;
+	private boolean currentPlayerWonATerritory;
+	private boolean trocaRealizada=false;
 	
 	
 	public Game (int n){
@@ -43,6 +51,7 @@ public class Game {
 	}
 	public void nextTurn (){
 		turn++;
+		currentPlayerWonATerritory=false;
 		if(currentPlayerIndex==nPlayers-1){
 			currentPlayerIndex=0;
 		}
@@ -77,10 +86,12 @@ public class Game {
 	public Player getCurrentPlayer(){
 		return players[currentPlayerIndex];
 	}
-	
+	public void setCurrentPlayerWonATerritory(){
+		currentPlayerWonATerritory=true;
+	}
 	public int DistribuirTropas(){
 		
-		return players[currentPlayerIndex].getNumTropasDist()/2;
+		return ((players[currentPlayerIndex].getNumTropasDist()/2)+realizaTroca());
 		
 	}
 	public Color getCurrentColor ()	{
@@ -189,7 +200,114 @@ public class Game {
 		
 		
 	}
-
+	
+	public void recebeCarta(){
+		if(currentPlayerWonATerritory){
+			currentPlayerWonATerritory=false;
+			Carta c=CartaDataBase.puxaCarta();
+			JOptionPane.showMessageDialog(null, "Carta recebida", "Carta conquistada", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(c.getFileName()));
+			players[currentPlayerIndex].adicionaCarta(c);
+		}
+	}
+	public int realizaTroca(){
+		boolean trocaPossivel=false,randomT=true,randomQ=true,randomC=true;
+		int i=0,it=0,iq=0,ic=0,ir=0;
+		int indexCartas[]=null;
+		int indexT[]=new int[3];
+		int indexQ[]=new int[3];
+		int indexC[]=new int[3];
+		int indexR[]=new int[3];
+		for(Carta c : players[currentPlayerIndex].getCartas()){
+			switch (c.getFigura()){
+			
+			case triangulo:
+				indexT[it++]=i;
+				System.out.println("Adicionado no T");
+				if(randomT){
+					randomT=false;
+					indexR[ir++]=i;
+					System.out.println("Adicionado no random");
+				}
+				break;
+			case quadrado:
+				indexQ[iq++]=i;
+				System.out.println("Adicionado no quadrado");
+				if(randomQ){
+				    randomQ=false;
+					indexR[ir++]=i;
+					System.out.println("Adicionado no random");
+				}
+				break;
+			case circulo:
+				indexC[ic++]=i;
+				System.out.println("Adicionado no circulo");
+				if(randomC){
+					randomC=false;
+					indexR[ir++]=i;
+					System.out.println("adicionado no random");
+				}
+				break;
+			case coringa:
+				indexT[it++]=i;
+				indexQ[iq++]=i;
+				indexC[ic++]=i;
+				indexR[ir++]=i;
+				System.out.println("adicionado em todos");
+				break;
+			}
+			if(it==3){
+				System.out.println("it==3");
+				indexCartas=indexT;
+				trocaPossivel=true;
+				break;
+			}
+			if(iq==3){
+				System.out.println("iq==3");
+				indexCartas=indexQ;
+				trocaPossivel=true;
+				break;
+			}
+			if(ic==3){
+				System.out.println("ic==3");
+				indexCartas=indexC;
+				trocaPossivel=true;
+				break;
+			}
+			if(ir==3){
+				System.out.println("ir==3");
+				indexCartas=indexR;
+				trocaPossivel=true;
+				break;
+			}
+			i++;
+		}
+		
+		if (trocaPossivel) {
+			System.out.println("vai trocar");
+			trocaRealizada=true;
+			for (int icartas=2;icartas>=0;icartas--) {
+				System.out.println(indexCartas[icartas]);
+				System.out.println(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName());
+				CartaDataBase.insereCarta(players[currentPlayerIndex].getCartas().remove(indexCartas[icartas]));// devolve as cartas para o "baralho"
+			}
+			if (nTrocas < 5) {
+				return 4 + (2 * (nTrocas++));
+			}
+			return 15 + (5 * ((nTrocas++) - 5));
+		}
+		
+		return 0;
+	}
+	public boolean realizouTroca(){
+		if (trocaRealizada==true){
+			trocaRealizada=false;
+			return true;
+		}
+		return false;
+	}
+	public int getNTrocas(){
+		return nTrocas;
+	}
 	
 	//DEBUG
 		public void randomizeStart(){
@@ -242,7 +360,7 @@ public class Game {
 							while(players[i]!=null){
 								i++;
 							}
-							players[i]=new Player(namedColor.getColor(sCurrentLine.substring(1)));
+							players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1)));
 						}
 						else{
 							int div1, div2;

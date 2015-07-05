@@ -24,6 +24,7 @@ public class Player {
 	public Player (Color x){
 		color=x;
 		territorios=new ArrayList<Territorio>();
+		cartas=new ArrayList<Carta>();
 	}
 	public void addTerr (Territorio t){
 		territorios.add(t);
@@ -45,6 +46,12 @@ public class Player {
 	}
 	public void atualizaContador(Territorio t, int n){
 	
+	}
+	public void adicionaCarta(Carta c){
+		cartas.add(c);
+	}
+	public ArrayList<Carta> getCartas(){
+		return cartas;
 	}
 	//DEBUG
 	public void listTerr(){

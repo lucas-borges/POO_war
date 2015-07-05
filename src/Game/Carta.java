@@ -8,7 +8,7 @@ public class Carta {
 	private final String file_territorio;
 	private final nomePais territorio;
 	
-	public Carta (Figura figura, String continente, String file_territorio, nomePais territorio){
+	public Carta (Figura figura, String file_territorio, nomePais territorio){
 		this.figura=figura;
 		this.file_territorio=file_territorio;
 		this.territorio=territorio;
@@ -23,6 +23,10 @@ public class Carta {
 		return territorio;
 	}
 	public String getFileName(){
+		System.out.println(file_territorio);
+		if(file_territorio.equals("coringa")){
+			return "war_carta_coringa.png";
+		}
 		Territorio t=TerritorioDataBase.buscaTerritorio(territorio);
 		return ("Cartas/war_carta_"+t.getContinente().getNome()+"_"+getFileTerritorio()+".png");
 	}
