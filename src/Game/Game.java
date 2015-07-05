@@ -1,18 +1,19 @@
 package Game;
 
-//import etc.*;
-//DEBUG
 
-//DEBUG
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-
 import controller.Territorio;
+import etc.enumTerritorio;
 import etc.enumColor.NamedColor;
 import etc.enumObjetivo.Objetivo;
+
 import etc.enumTerritorio.nomePais;
 public class Game {
 	private int nPlayers;
@@ -224,5 +225,48 @@ public class Game {
 		}
 		
 		//END DEBUG
+		
+		public Game(String filename){
+			try(BufferedReader br = new BufferedReader(new FileReader(filename))){
+				String sCurrentLine;
+				
+				while((sCurrentLine = br.readLine()) != null){
+					if(!sCurrentLine.startsWith("//")){
+						if(sCurrentLine.startsWith("-")){
+							int n=Integer.parseInt(sCurrentLine.substring(1));
+							nPlayers=n;
+							players=new Player[n];
+						}
+						else if(sCurrentLine.startsWith("#")){
+							int i=0;
+							while(players[i]!=null){
+								i++;
+							}
+							players[i]=new Player(namedColor.getColor(sCurrentLine.substring(1)));
+						}
+						else{
+							int div1, div2;
+							Territorio terr; 
+							int playerIndx, nTropas; 
+							div1=sCurrentLine.indexOf(' ');
+							div2=sCurrentLine.lastIndexOf(' ');
+							
+							terr=TerritorioDataBase.buscaTerritorio(enumTerritorio.toNomePais(sCurrentLine.substring(0,div1)));
+							playerIndx=Integer.parseInt(sCurrentLine.substring(div1+1, div2))-1;
+							nTropas=Integer.parseInt(sCurrentLine.substring(div2+1));
+							
+							players[playerIndx].addTerr(terr);
+							terr.deltaTropas(nTropas);
+							
+						}
+					}
+				}
+			}
+			catch(IOException e){
+				e.printStackTrace();
+			}
+			
+			
+		}
 
 }
