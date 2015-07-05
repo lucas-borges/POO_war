@@ -44,7 +44,7 @@ public class Player {
 		return objetivo.getNome();
 	}
 	public void atualizaContador(Territorio t, int n){
-		t.
+	
 	}
 	//DEBUG
 	public void listTerr(){
