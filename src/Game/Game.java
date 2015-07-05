@@ -389,6 +389,26 @@ public class Game {
 						i++;
 						}
 					}
+					else if(sCurrentLine.startsWith("@")){
+						int div1=1,div2, i;
+						div2=sCurrentLine.indexOf(' ');
+						
+						if(div2!=-1){
+							String s=sCurrentLine.substring(div1, div2);
+							i=Integer.parseInt(s);
+							
+							while(div2!=sCurrentLine.length()){
+								div1=div2+1;
+								div2=sCurrentLine.indexOf(' ',div2+1);
+								if(div2==-1){
+									div2=sCurrentLine.length();
+								}
+								s=sCurrentLine.substring(div1, div2);
+								System.out.println(s);
+								//players[i].addCard
+							}
+						}
+					}
 					else{
 						int div1, div2;
 						Territorio terr; 
