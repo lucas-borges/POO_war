@@ -33,32 +33,32 @@ public class Player {
 		
 		if(continente.equals("as")){
 			nAsia++;
-			System.out.printf("%d",nAsia);
+			System.out.printf("%d\n",nAsia);
 		}
 		else if(continente.equals("af"))
 		{
 			nAfrica++;
-			System.out.printf("%d",nAfrica);
+			System.out.printf("%d\n",nAfrica);
 		}
 		else if(continente.equals("an"))
 		{
 			nAmNorte++;
-			System.out.printf("%d",nAmNorte);
+			System.out.printf("%d\n",nAmNorte);
 		}
 		else if(continente.equals("asl"))
 		{
 			nAmSul++;
-			System.out.printf("%d",nAmSul);
+			System.out.printf("%d\n",nAmSul);
 		}
 		else if(continente.equals("eu"))
 		{
 			nEuropa++;
-			System.out.printf("%d",nEuropa);
+			System.out.printf("%d\n",nEuropa);
 		}
 		else 
 		{
 			nOceania++;
-			System.out.printf("%d",nOceania);
+			System.out.printf("%d\n",nOceania);
 		}
 	}
 	public void removeTerr (Territorio t){
