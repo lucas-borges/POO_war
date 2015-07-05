@@ -88,8 +88,15 @@ public class Game {
 	public Color getCurrentColor ()	{
 		return players[currentPlayerIndex].getColor();
 	}
+	public Player getPlayer(Color c){
+		for(Player p: players){
+			if(p.getColor().equals(c))
+				return p;
+		}
+		return null;
+	}
 	public int getPlayerIndex(Color c){
-		for(int i=0; i<nPlayers;i++){
+		for(int i=0;i<nPlayers;i++){
 			if(players[i].getColor().equals(c))
 				return i;
 		}
@@ -175,7 +182,7 @@ public class Game {
 		
 	}
 	
-	private void SetarObjetivo(Player p,Objetivo o){
+	private void SetarObjetivo(Player p, Objetivo o){
 		
 		p.setObjetivo(o);
 		if(p.getObjetivo().startsWith("Destruir")){	
@@ -185,14 +192,20 @@ public class Game {
 				p.setObjetivo(Objetivo.T24);
 				return;
 			}
-			for(Player P: players){
-				if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
-					return;
-				}
+			for(int i=0;i<nPlayers;i++){
+				System.out.println(players[i].getColor());
 			}
-			p.setObjetivo(Objetivo.T24);
-		}
+			//for(Player P: players){
+				//Color cplayer = P.getColor();
+				//System.out.println(P.getObjetivo());
+				//System.out.println(NamedColor.getMatch(P.getColor()).getColorPlural());
+				//if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
+					//return;
+			}
 	}
+			//p.setObjetivo(Objetivo.T24);
+
+	
 	
 	public void DistribuirObjetivos(){
 		
@@ -207,7 +220,8 @@ public class Game {
 		}
 	}
 	
-	public boolean ChecarObjetivo(){
+	public boolean ChecarObjetivo1(){
+		System.out.println("Checar Objetivos");
 		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a EUROPA, a OCEANIA e mais um terceiro.")){
 			if(players[currentPlayerIndex].nEuropa==Territorio.nEuropa && players[currentPlayerIndex].nOceania==Territorio.nOceania){
 				if(players[currentPlayerIndex].nAmNorte==Territorio.nAmNorte || players[currentPlayerIndex].nAmSul==Territorio.nAmSul 
@@ -232,19 +246,7 @@ public class Game {
 				
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRITÓRIOS e ocupar cada um deles com pelo menos dois exércitos.")){
-			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
-					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
-					players[currentPlayerIndex].nOceania>=18){
-				int n=0;
-				for(Territorio t: players[currentPlayerIndex].getTerritorios()){
-					if(t.getNTropas()>=2)
-						n++;
-					if(n>=18)
-						return true;
-				}
-			}
-		}
+		
 		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a ASIA e a ÁFRICA.")){
 			if(players[currentPlayerIndex].nAsia == Territorio.nAsia && 
 					players[currentPlayerIndex].nAfrica == Territorio.nAfrica){
@@ -258,6 +260,7 @@ public class Game {
 			}
 		}
 		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar 24 TERRITÓRIOS à sua escolha.")){
+			System.out.println("Checando 24T");
 			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
 					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
 					players[currentPlayerIndex].nOceania>=24){
@@ -295,6 +298,29 @@ public class Game {
 		
 		}
 		return false;
+	}
+	
+	public boolean ChecarObjetivo2(){
+		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRITÓRIOS e ocupar cada um deles com pelo menos dois exércitos.")){
+			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
+					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
+					players[currentPlayerIndex].nOceania>=18){
+				int n=0;
+				for(Territorio t: players[currentPlayerIndex].getTerritorios()){
+					if(t.getNTropas()>=2)
+						n++;
+					if(n>=18)
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean ChecarObjetivo(int n){
+		if(n==1)
+			return ChecarObjetivo1();
+		return ChecarObjetivo2();
 	}
 		
 	//DEBUG

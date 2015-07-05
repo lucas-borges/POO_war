@@ -104,6 +104,8 @@ public class GameController implements Observer {
 			MovementWindow moverTropas=new MovementWindow(terrCorr);
 			moverTropas.addObserver(this);
 			moverTropas.createGUI();
+			if(game.ChecarObjetivo(2))
+				JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 		}
 		else if(x.equals("SideMenu_alocarTropas")){
 			SideMenuPanel p = (SideMenuPanel)o;
@@ -113,6 +115,8 @@ public class GameController implements Observer {
 			if(p.getTropasDist()==0){
 				this.advanceGameState();
 			}
+			if(game.ChecarObjetivo(2))
+				JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 		}
 		else if(x.equals("SideMenu_atacar")){
 			AttackWindow atacarTerritorio=new AttackWindow(terrCorr,game.getCurrentColor());
@@ -143,11 +147,14 @@ public class GameController implements Observer {
 			target.deltaTropas(-result[1]);
 			
 			if(target.getNTropas()==0){
-				target.setOwnerColor(source.getOwnerColor());
+				game.getPlayer(target.getOwnerColor()).removeTerr(target);
+				game.getPlayer(source.getOwnerColor()).addTerr(target);
 				source.deltaTropas(-1);
 				target.deltaTropas(1);
 				gameWin.repaint();
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
+				if(game.ChecarObjetivo(1))
+					JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 			}
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
 		}
