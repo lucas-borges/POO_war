@@ -19,12 +19,12 @@ public class CartaObjetivoDataBase {
 		lstObjetivos.add(new CartaObjetivo(Objetivo.AmNor_AFR));
 		lstObjetivos.add(new CartaObjetivo(Objetivo.T24));
 		lstObjetivos.add(new CartaObjetivo(Objetivo.AmNor_OC));
-		lstObjetivos.add(new CartaObjetivo(Objetivo.AZ));
-		lstObjetivos.add(new CartaObjetivo(Objetivo.AM));
-		lstObjetivos.add(new CartaObjetivo(Objetivo.VERM));
-		lstObjetivos.add(new CartaObjetivo(Objetivo.PR));
-		lstObjetivos.add(new CartaObjetivo(Objetivo.BR));
-		lstObjetivos.add(new CartaObjetivo(Objetivo.VERD));
+		lstObjetivos.add(new CartaObjetivo(Objetivo.Blue));
+		lstObjetivos.add(new CartaObjetivo(Objetivo.Yellow));
+		lstObjetivos.add(new CartaObjetivo(Objetivo.Red));
+		lstObjetivos.add(new CartaObjetivo(Objetivo.Black));
+		lstObjetivos.add(new CartaObjetivo(Objetivo.White));
+		lstObjetivos.add(new CartaObjetivo(Objetivo.Green));
 		
 	}
 	
