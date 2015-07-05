@@ -182,32 +182,27 @@ public class SideMenuPanel extends Observable
 	public void actionPerformed(ActionEvent e){
 		String s=e.getActionCommand();
 
+		setChanged();
+		
 		if(s.equals("nextTurn")){
-			setChanged();
 			notifyObservers("SideMenu_nextTurn");
 		}
 		else if(s.equals("alocarTropas")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_alocarTropas"));
 		}
 		else if(s.equals("atacar")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_atacar"));
 		}
 		else if(s.equals("mover")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_mover"));
 		}
 		else if(s.equals("termAtaque")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_termAtaque"));
 		}
 		else if(s.equals("showObj")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_showObj"));
 		}
 		else if(s.equals("showCards")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_showCards"));
 		}
 	}

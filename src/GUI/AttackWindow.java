@@ -94,15 +94,12 @@ public class AttackWindow extends Observable implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		topLevelFrame.dispose();
-		//int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
-		//JOptionPane.showMessageDialog(null,"Que come�e o jogo! ("+i+")");
+		
 		setChanged();
 		notifyObservers(new String("AttackWindow_atacarTerritorio"));
 	}
 		
-	/*public int getNTropas(){		
-		return 1+nTropasBox.getSelectedIndex();
-	}*/
+
 	public Territorio getSource(){
 		String destino=(String)FronteirasBox.getSelectedItem();		
 		return TerritorioDataBase.buscaTerritorio(enumTerritorio.toNomePais(destino));

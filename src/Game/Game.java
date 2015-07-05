@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
 import controller.Territorio;
+import etc.enumColor;
 import etc.enumTerritorio;
 import etc.enumColor.NamedColor;
 import etc.enumObjetivo.Objetivo;
-
 import etc.enumTerritorio.nomePais;
+
 public class Game {
 	private int nPlayers;
 	private Player[] players;
@@ -231,36 +233,48 @@ public class Game {
 				String sCurrentLine;
 				
 				while((sCurrentLine = br.readLine()) != null){
-					if(!sCurrentLine.startsWith("//")){
-						if(sCurrentLine.startsWith("-")){
-							int n=Integer.parseInt(sCurrentLine.substring(1));
-							nPlayers=n;
-							players=new Player[n];
+					System.out.println(sCurrentLine);
+					if(sCurrentLine.startsWith("//")||sCurrentLine.isEmpty() || sCurrentLine.trim().equals("") || sCurrentLine.trim().equals("\n")){
+						//do nothing
+					}
+					else if(sCurrentLine.startsWith("-")){
+						int n=Integer.parseInt(sCurrentLine.substring(1));
+						nPlayers=n;
+						players=new Player[n];
+					}
+					else if(sCurrentLine.startsWith("#")){
+						int i=0;
+						while(players[i]!=null){
+							i++;
 						}
-						else if(sCurrentLine.startsWith("#")){
-							int i=0;
-							while(players[i]!=null){
-								i++;
-							}
-							players[i]=new Player(namedColor.getColor(sCurrentLine.substring(1)));
-						}
-						else{
-							int div1, div2;
-							Territorio terr; 
-							int playerIndx, nTropas; 
-							div1=sCurrentLine.indexOf(' ');
-							div2=sCurrentLine.lastIndexOf(' ');
-							
-							terr=TerritorioDataBase.buscaTerritorio(enumTerritorio.toNomePais(sCurrentLine.substring(0,div1)));
-							playerIndx=Integer.parseInt(sCurrentLine.substring(div1+1, div2))-1;
-							nTropas=Integer.parseInt(sCurrentLine.substring(div2+1));
-							
-							players[playerIndx].addTerr(terr);
-							terr.deltaTropas(nTropas);
-							
-						}
+						players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1)));
+					}
+					else{
+						int div1, div2;
+						Territorio terr; 
+						int playerIndx, nTropas; 
+						div1=sCurrentLine.indexOf(' ');
+						div2=sCurrentLine.lastIndexOf(' ');
+						
+						System.out.println("$"+sCurrentLine.substring(0, div1) + "-"+div1+"-"+div2);
+						
+						terr=TerritorioDataBase.buscaTerritorio(nomePais.valueOf(sCurrentLine.substring(0,div1)));
+						playerIndx=Integer.parseInt(sCurrentLine.substring(div1+1, div2))-1;
+						nTropas=Integer.parseInt(sCurrentLine.substring(div2+1));
+						
+						//System.out.print("$"+sCurrentLine.substring(0,div1));
+						//System.out.println("$"+playerIndx +"*"+nTropas);
+						//System.out.println("$"+(enumTerritorio.toNomePais(sCurrentLine.substring(0,div1)).getNome()));
+						//System.out.println("$"+terr.getNome().getNome());
+						
+						players[playerIndx].addTerr(terr);
+						terr.deltaTropas(nTropas);
+						
 					}
 				}
+				
+				currentPlayerIndex=0;
+				turn=1;
 			}
 			catch(IOException e){
 				e.printStackTrace();

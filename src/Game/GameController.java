@@ -64,6 +64,16 @@ public class GameController implements Observer {
 		
 		else if(DEV_MODE && x.equals("StartWindow_loadGame")){
 			game=new Game("gameState.txt");
+			System.out.println("Jogo criado com " + game.getNPlayers());
+			/**/gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
+			gameWin.repaint();
+			
+			game.DistribuirObjetivos();
+			gameWin.setTropasDist(game.DistribuirTropas());
+			gameWin.setInfText("Clique num territorio seu para alocar tropas");
+			
+			JOptionPane.showMessageDialog(null, "Estado de jogo carregado conforme arquivo.");
+		
 		}
 		/* end StartWindow events */
 		
