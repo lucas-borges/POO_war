@@ -14,7 +14,7 @@ public class enumObjetivo {
 		Yellow("Destruir totalmente OS EXÉRCITOS AMARELOS."),
 		Red("Destruir totalmente OS EXÉRCITOS VERMELHOS."),
 		Black("Destruir totalmente OS EXÉRCITOS PRETOS."),
-		White("Destruir totalmente OS EXÉRCITOS BRANCO."),
+		White("Destruir totalmente OS EXÉRCITOS BRANCOS."),
 		Green("Destruir totalmente OS EXÉRCITOS VERDES.");
 		;
 		

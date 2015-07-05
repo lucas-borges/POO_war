@@ -14,12 +14,12 @@ public class Player {
 	private ArrayList<Territorio> territorios;
 	private ArrayList<Carta> cartas;
 	private Objetivo objetivo;
-	public int nAsia=0;
-	public int nEuropa=0;
-	public int nAfrica =0;
+	public int nAsia = 0;
+	public int nEuropa = 0;
+	public int nAfrica = 0;
 	public int nOceania = 0;
-	public int nAmSul =0;
-	public int nAmNorte =0;
+	public int nAmSul = 0;
+	public int nAmNorte = 0;
 	
 	public Player (Color x){
 		color=x;
@@ -27,6 +27,12 @@ public class Player {
 	}
 	public void addTerr (Territorio t){
 		territorios.add(t);
+		t.setOwnerColor(color);
+		//incrementa contador
+	}
+	public void removeTerr (Territorio t){
+		territorios.remove(t);
+		//decrementa contador
 	}
 	public Color getColor (){
 		return color;
@@ -43,9 +49,13 @@ public class Player {
 	public String getObjetivo(){
 		return objetivo.getNome();
 	}
-	public void atualizaContador(Territorio t, int n){
-	
+	public ArrayList<Territorio> getTerritorios(){
+		return territorios;
 	}
+	public boolean IsDead(){
+		return territorios.isEmpty();
+	}
+	
 	//DEBUG
 	public void listTerr(){
 		for(Territorio t:territorios){

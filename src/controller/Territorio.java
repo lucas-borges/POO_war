@@ -17,12 +17,12 @@ public class Territorio{
 	private List<Territorio> lstFronteiras = new ArrayList<Territorio>();
 	Color ownerColor;
 	int numTropas;
-	static final int nAsia = 20 ;
-	static final int nEuropa = 8;
-	static final int nAfrica = 6;
-	static final int nOceania = 4;
-	static final int nAmNorte = 9;
-	static final int nAmSul = 4;
+	public static final int nAsia = 20 ;
+	public static final int nEuropa = 8;
+	public static final int nAfrica = 6;
+	public static final int nOceania = 4;
+	public static final int nAmNorte = 9;
+	public static final int nAmSul = 4;
 
 	public Territorio(nomePais nome,Continente continente, Ponto p[], float x, float y) {
 		super();
