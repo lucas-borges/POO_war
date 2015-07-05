@@ -777,7 +777,7 @@ public class TerritorioDataBase {
 			lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio(nomePais.Venezuela));
 			lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio(nomePais.Peru));
 			lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio(nomePais.Argentina));
-			lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio(nomePais.Argelia));		
+			lstTerritorios.get(11).lstFronteirasAdd(buscaTerritorio(nomePais.Nigeria));		
 			//Argentina
 			lstTerritorios.get(12).lstFronteirasAdd(buscaTerritorio(nomePais.Peru));
 			lstTerritorios.get(12).lstFronteirasAdd(buscaTerritorio(nomePais.Brasil));

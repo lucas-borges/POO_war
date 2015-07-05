@@ -14,12 +14,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import controller.Territorio;
+import etc.enumColor;
 import etc.enumTerritorio;
 import etc.enumColor.NamedColor;
 import etc.enumObjetivo.Objetivo;
+
 import etc.Figura;
 
+
 import etc.enumTerritorio.nomePais;
+
 public class Game {
 	private int nPlayers;
 	private Player[] players;
@@ -97,9 +101,24 @@ public class Game {
 	public Color getCurrentColor ()	{
 		return players[currentPlayerIndex].getColor();
 	}
+	public Player getPlayer(Color c){
+		for(Player p: players){
+			if(p.getColor().equals(c))
+				return p;
+		}
+		return null;
+	}
+	public int getPlayerIndex(Color c){
+		for(int i=0;i<nPlayers;i++){
+			if(players[i].getColor().equals(c))
+				return i;
+		}
+		return -1;
+	}
 	public void deltaT(Territorio t, int n){
 		players[currentPlayerIndex].deltaT(t, n);
 	}
+	
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
 		// result = vetor do resultado posi��o 0 = ex�rcitos perdidos pelo ataque; posi��o 1 = ex�rcitos perdidos pela defesa
 		int contAttack=0, contDefense=0;
@@ -176,6 +195,31 @@ public class Game {
 		
 	}
 	
+	private void SetarObjetivo(Player p, Objetivo o){
+		
+		p.setObjetivo(o);
+		if(p.getObjetivo().startsWith("Destruir")){	
+			System.out.println("Destruir");
+			System.out.println(p.getObjetivo());
+			if(p.getObjetivo().endsWith(NamedColor.getMatch(p.getColor()).getColorPlural())){
+				p.setObjetivo(Objetivo.T24);
+				return;
+			}
+			for(int i=0;i<nPlayers;i++){
+				System.out.println(players[i].getColor());
+			}
+			//for(Player P: players){
+				//Color cplayer = P.getColor();
+				//System.out.println(P.getObjetivo());
+				//System.out.println(NamedColor.getMatch(P.getColor()).getColorPlural());
+				//if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
+					//return;
+			}
+	}
+			//p.setObjetivo(Objetivo.T24);
+
+	
+	
 	public void DistribuirObjetivos(){
 		
 		ArrayList<CartaObjetivo> objetivos = CartaObjetivoDataBase.copyLstObjetivos();
@@ -184,22 +228,91 @@ public class Game {
 		for (int i=0;i<nPlayers;i++){
 			int index=randObj.nextInt(objetivos.size());
 			CartaObjetivo o = CartaObjetivoDataBase.buscaObjetivo(objetivos.get(index).getNome());
-			players[i].setObjetivo(objetivos.remove(index).getNome());
-			if(players[i].getObjetivo().startsWith("Destruir")){
-				System.out.println("Destruir");
-				if(players[i].getObjetivo().endsWith(NamedColor.getMatch(players[i].getColor()).getColorName())){
-					players[i].setObjetivo(Objetivo.T24);
-				}
-			}
+			SetarObjetivo(players[i],objetivos.remove(index).getNome());
 			
 		}
 	}
 	
-	public boolean ChecarObjetivo(){
-		return true;
+	public boolean ChecarObjetivo1(){
+		System.out.println("Checar Objetivos");
+		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a EUROPA, a OCEANIA e mais um terceiro.")){
+			if(players[currentPlayerIndex].nEuropa==Territorio.nEuropa && players[currentPlayerIndex].nOceania==Territorio.nOceania){
+				if(players[currentPlayerIndex].nAmNorte==Territorio.nAmNorte || players[currentPlayerIndex].nAmSul==Territorio.nAmSul 
+						|| players[currentPlayerIndex].nAfrica==Territorio.nAfrica || players[currentPlayerIndex].nAsia == Territorio.nAsia){
+					return true;
+				}
+				
+			}
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a ASIA e a AM�RICA DO SUL.")){
+			if(players[currentPlayerIndex].nAsia == Territorio.nAsia && 
+					players[currentPlayerIndex].nAmSul == Territorio.nAmSul){
+				return true;
+			}
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a EUROPA, a AM�RICA DO SUL e mais um terceiro.")){
+			if(players[currentPlayerIndex].nEuropa==Territorio.nEuropa && players[currentPlayerIndex].nAmSul==Territorio.nAmSul){
+				if(players[currentPlayerIndex].nAmNorte==Territorio.nAmNorte || players[currentPlayerIndex].nAfrica==Territorio.nAfrica 
+						|| players[currentPlayerIndex].nOceania==Territorio.nOceania || players[currentPlayerIndex].nAsia == Territorio.nAsia){
+					return true;
+				}
+				
+			}
+		}
 		
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a ASIA e a �FRICA.")){
+			if(players[currentPlayerIndex].nAsia == Territorio.nAsia && 
+					players[currentPlayerIndex].nAfrica == Territorio.nAfrica){
+				return true;
+			}
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a AM�RICA DO NORTE e a �FRICA.")){
+			if(players[currentPlayerIndex].nAmNorte == Territorio.nAmNorte && 
+					players[currentPlayerIndex].nAfrica == Territorio.nAfrica){
+				return true;
+			}
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar 24 TERRIT�RIOS � sua escolha.")){
+			System.out.println("Checando 24T");
+			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
+					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
+					players[currentPlayerIndex].nOceania>=24){
+				return true;
+			}
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a AM�RICA DO NORTE e a OCEANIA.")){
+			if(players[currentPlayerIndex].nAmNorte == Territorio.nAmNorte && 
+					players[currentPlayerIndex].nOceania == Territorio.nOceania){
+				return true;
+			}
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS AZUIS.")){
+			return players[getPlayerIndex(Color.BLUE)].IsDead();
 		
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS AMARELOS.")){
+			return players[getPlayerIndex(Color.YELLOW)].IsDead();
+		
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS VERMELHOS.")){
+			return players[getPlayerIndex(Color.RED)].IsDead();
+		
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS PRETOS.")){
+			return players[getPlayerIndex(Color.BLACK)].IsDead();
+		
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS BRANCOS.")){
+			return players[getPlayerIndex(Color.WHITE)].IsDead();
+		
+		}
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS VERDES.")){
+			return players[getPlayerIndex(Color.GREEN)].IsDead();
+		
+		}
+		return false;
 	}
+
 	
 	public void recebeCarta(){
 		if(currentPlayerWonATerritory){
@@ -308,7 +421,31 @@ public class Game {
 	public int getNTrocas(){
 		return nTrocas;
 	}
+
 	
+	public boolean ChecarObjetivo2(){
+		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRIT�RIOS e ocupar cada um deles com pelo menos dois ex�rcitos.")){
+			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
+					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
+					players[currentPlayerIndex].nOceania>=18){
+				int n=0;
+				for(Territorio t: players[currentPlayerIndex].getTerritorios()){
+					if(t.getNTropas()>=2)
+						n++;
+					if(n>=18)
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean ChecarObjetivo(int n){
+		if(n==1)
+			return ChecarObjetivo1();
+		return ChecarObjetivo2();
+	}
+		
 	//DEBUG
 		public void randomizeStart(){
 			ArrayList<Territorio> tempTerr = TerritorioDataBase.copyLstTerritorios()/* TODOS OS TERRITORIOS */;
@@ -321,7 +458,6 @@ public class Game {
 				for (int j=0;j<nPlayers;j++){
 					int index=randGen.nextInt(tempTerr.size());
 					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
-					t.setOwnerColor(players[j].getColor());
 					t.deltaTropas(1);
 					players[j].addTerr(tempTerr.remove(index));
 					
@@ -331,7 +467,6 @@ public class Game {
 				for (int j=0;j<nPlayers && tempTerr.size()>0;j++){
 					int index=randGen.nextInt(tempTerr.size());
 					Territorio t=TerritorioDataBase.buscaTerritorio(tempTerr.get(index).getNome());
-					t.setOwnerColor(players[j].getColor());
 					t.deltaTropas(1);
 					players[j].addTerr(tempTerr.remove(index));
 				}
@@ -347,38 +482,75 @@ public class Game {
 		public Game(String filename){
 			try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 				String sCurrentLine;
+				Objetivo objs[] = null;
 				
 				while((sCurrentLine = br.readLine()) != null){
-					if(!sCurrentLine.startsWith("//")){
-						if(sCurrentLine.startsWith("-")){
-							int n=Integer.parseInt(sCurrentLine.substring(1));
-							nPlayers=n;
-							players=new Player[n];
+					//System.out.println(sCurrentLine);
+					if(sCurrentLine.startsWith("//")||sCurrentLine.isEmpty() || sCurrentLine.trim().equals("") || sCurrentLine.trim().equals("\n")){
+						//do nothing
+					}
+					else if(sCurrentLine.startsWith("-")){
+						int n=Integer.parseInt(sCurrentLine.substring(1));
+						nPlayers=n;
+						players=new Player[n];
+						objs=new Objetivo[n];
+					}
+					else if(sCurrentLine.startsWith("#")){
+						int i=0, div;
+						div=sCurrentLine.indexOf(' ');
+						while(players[i]!=null){
+							i++;
 						}
-						else if(sCurrentLine.startsWith("#")){
-							int i=0;
-							while(players[i]!=null){
-								i++;
-							}
-							players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1)));
-						}
-						else{
-							int div1, div2;
-							Territorio terr; 
-							int playerIndx, nTropas; 
-							div1=sCurrentLine.indexOf(' ');
-							div2=sCurrentLine.lastIndexOf(' ');
-							
-							terr=TerritorioDataBase.buscaTerritorio(enumTerritorio.toNomePais(sCurrentLine.substring(0,div1)));
-							playerIndx=Integer.parseInt(sCurrentLine.substring(div1+1, div2))-1;
-							nTropas=Integer.parseInt(sCurrentLine.substring(div2+1));
-							
-							players[playerIndx].addTerr(terr);
-							terr.deltaTropas(nTropas);
-							
+						players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1,div)));
+						objs[i]=Objetivo.valueOf(sCurrentLine.substring(div+1));
+					}
+					else if(sCurrentLine.startsWith("$")){
+						int i=0;
+						
+						for(Objetivo o:objs){
+							this.SetarObjetivo(players[i],o);
+							i++;
 						}
 					}
+					else if(sCurrentLine.startsWith("@")){
+						int div1=1,div2, i;
+						div2=sCurrentLine.indexOf(' ');
+						
+						if(div2!=-1){
+							String s=sCurrentLine.substring(div1, div2);
+							i=Integer.parseInt(s);
+							
+							while(div2!=sCurrentLine.length()){
+								div1=div2+1;
+								div2=sCurrentLine.indexOf(' ',div2+1);
+								if(div2==-1){
+									div2=sCurrentLine.length();
+								}
+								s=sCurrentLine.substring(div1, div2);
+								System.out.println(s);
+								//players[i].addCard
+							}
+						}
+					}
+					else{
+						int div1, div2;
+						Territorio terr; 
+						int playerIndx, nTropas; 
+						div1=sCurrentLine.indexOf(' ');
+						div2=sCurrentLine.lastIndexOf(' ');						
+						
+						terr=TerritorioDataBase.buscaTerritorio(nomePais.valueOf(sCurrentLine.substring(0,div1)));
+						playerIndx=Integer.parseInt(sCurrentLine.substring(div1+1, div2))-1;
+						nTropas=Integer.parseInt(sCurrentLine.substring(div2+1));
+						
+						players[playerIndx].addTerr(terr);
+						terr.deltaTropas(nTropas);
+						
+					}
 				}
+				
+				currentPlayerIndex=0;
+				turn=1;
 			}
 			catch(IOException e){
 				e.printStackTrace();

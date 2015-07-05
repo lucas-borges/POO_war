@@ -7,20 +7,35 @@ import java.util.Observable;
 
 import javax.swing.*;
 
+import static Game.GameController.DEV_MODE;
 
 public class StartWindow extends Observable
 						implements ActionListener{
+	
+	
 	private JFrame topLevelFrame;
 	private JLabel text;
 	private final String[] nString={"3","4","5","6"};
 	private JComboBox<String> nPlayerBox;
-	private JButton startBut;
+	private JButton But_start;
+	
+	//used for debug
+	private JButton But_load;
 	
 	public StartWindow (){
 		this.topLevelFrame = new JFrame("Novo Jogo");
 		this.text = new JLabel("Número de jogadores");
 		this.nPlayerBox = new JComboBox<String>(nString);
-		this.startBut = new JButton("Começar jogo");
+		
+		But_start = new JButton("Começar jogo");
+		But_start.setActionCommand("startGame");
+		But_start.addActionListener(this);
+		
+		if(DEV_MODE){
+			But_load = new JButton("Carregar estado");
+			But_load.setActionCommand("loadGame");
+			But_load.addActionListener(this);
+		}
 	}
 	
 	public void createGUI(){
@@ -42,8 +57,15 @@ public class StartWindow extends Observable
 		gbc.gridy=1;
 		gbc.ipadx=0;
 		gbc.gridwidth=2;
-		c.add(startBut,gbc);
-		startBut.addActionListener(this);//new StartGameAction());
+		c.add(But_start,gbc);
+		
+		if(DEV_MODE){
+			gbc.gridx=0;
+			gbc.gridy=2;
+			gbc.ipadx=0;
+			gbc.gridwidth=2;
+			c.add(But_load,gbc);
+		}
 
 		this.topLevelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
@@ -54,63 +76,23 @@ public class StartWindow extends Observable
 	
 	
 	public void actionPerformed(ActionEvent e){
-		topLevelFrame.dispose();
-		//int i =	Integer.parseInt((String)nPlayerBox.getSelectedItem());
-		//JOptionPane.showMessageDialog(null,"Que começe o jogo! ("+i+")");
-		setChanged();
-		notifyObservers(new String("StartWindow_startGame"));
-	}
+		String s=e.getActionCommand();
 		
+		setChanged();
+		
+		if(s.equals("startGame")){
+			topLevelFrame.dispose();
+			notifyObservers(new String("StartWindow_startGame"));
+		}
+		else if (s.equals("loadGame")){
+			notifyObservers(new String("StartWindow_loadGame"));
+		}
+	}
 	public int getComboValue(){
 		return Integer.parseInt((String)nPlayerBox.getSelectedItem());
 	}
-	
-	
-	
-	/*public StartWindow(String title){
-		super(title);
-		setLayout(null);
-		Container c=getContentPane();
-		Dimension size;
-		
-		//Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		/* Label 
-		JLabel text=new JLabel("Número de jogadores: ");
-		size=text.getPreferredSize();
-		text.setBounds(xPadd/2,yPadd/2,size.width,size.height);
-		updateSize(xPadd+text.getWidth(),yPadd);
-		c.add(text);
-		
-		/* Combo Box 
-		final String[] nPlayers={"3","4","5","6"};
-		JComboBox<String> nPlayerBox = new JComboBox<String>(nPlayers);
-		size=nPlayerBox.getPreferredSize();
-		nPlayerBox.setBounds(10+text.getX()+text.getWidth(),yPadd/2,size.width,size.height);
-		updateSize(nPlayerBox.getWidth()+10,nPlayerBox.getHeight());
-		c.add(nPlayerBox);
-		
-		/* Button 
-		JButton startBut = new JButton("Começar jogo!");
-		size=startBut.getPreferredSize();
-		startBut.setBounds((WIDTH-size.width)/2,HEIGHT,size.width,size.height);
-		updateSize(0,startBut.getHeight());
-		c.add(startBut);
-		
-		//WIDTH=nPlayerBox.getX()+nPlayerBox.getWidth()+xPadd;
-		//HEIGHT=nPlayerBox.getHeight()+yPadd+30;
-		updateSize(0,20);
-		setResizable(false);
-		setSize(WIDTH,HEIGHT+30);
-		//setLocation(new Point((screenSize.width-WIDTH)/2,(screenSize.height-HEIGHT)/2));
-		setLocationRelativeTo(null);
+	public void close(){
+		topLevelFrame.dispose();
 	}
-	
-	private void updateSize (int x, int y){
-		WIDTH+=x;
-		HEIGHT+=y;
-	}*/
 
 }

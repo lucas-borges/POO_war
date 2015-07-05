@@ -9,13 +9,15 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
-//import java.util.Observer;
+
 
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import static Game.GameController.BUTTONS_ALWAYS_ENABLED;
 
 public class SideMenuPanel extends Observable
 							implements ActionListener {
@@ -81,6 +83,14 @@ public class SideMenuPanel extends Observable
 		But_terminarAtaque.setActionCommand("termAtaque");
 		But_terminarAtaque.addActionListener(this);
 		But_terminarAtaque.setEnabled(false);
+		
+		if(BUTTONS_ALWAYS_ENABLED==true){
+			But_nextTurn.setEnabled(true);
+			But_alocarTropas.setEnabled(true);
+			But_atacar.setEnabled(true);
+			But_mover.setEnabled(true);
+			But_terminarAtaque.setEnabled(true);
+		}
 	}
 
 	public JPanel getGUI(){
@@ -182,32 +192,27 @@ public class SideMenuPanel extends Observable
 	public void actionPerformed(ActionEvent e){
 		String s=e.getActionCommand();
 
+		setChanged();
+		
 		if(s.equals("nextTurn")){
-			setChanged();
 			notifyObservers("SideMenu_nextTurn");
 		}
 		else if(s.equals("alocarTropas")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_alocarTropas"));
 		}
 		else if(s.equals("atacar")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_atacar"));
 		}
 		else if(s.equals("mover")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_mover"));
 		}
 		else if(s.equals("termAtaque")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_termAtaque"));
 		}
 		else if(s.equals("showObj")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_showObj"));
 		}
 		else if(s.equals("showCards")){
-			setChanged();
 			notifyObservers(new String ("SideMenu_showCards"));
 		}
 	}

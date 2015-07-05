@@ -8,17 +8,22 @@ import GUI.SideMenuPanel;
 import GUI.MovementWindow;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.MapClickRedirect;
 import controller.Territorio;
 
+
 public class GameController implements Observer {
 	public static final boolean DEV_MODE = true;
-	
+	public static final boolean BUTTONS_ALWAYS_ENABLED = true;
 	private Game game;
 	/**/private MainWindow gameWin;
 	/**/private StartWindow startWin;
@@ -63,7 +68,24 @@ public class GameController implements Observer {
 		}
 		
 		else if(DEV_MODE && x.equals("StartWindow_loadGame")){
-			game=new Game("gameState.txt");
+			final JFileChooser fc = new JFileChooser(new File(System.getProperty("user.dir")));
+			FileFilter filter= new FileNameExtensionFilter("Text Files", "txt");
+			fc.setFileFilter(filter);
+			
+			int returnVal =fc.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				startWin.close();
+			    String path=fc.getSelectedFile().getAbsolutePath();
+				
+				game=new Game(path);
+	
+				gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
+				gameWin.repaint();
+				gameWin.setTropasDist(game.DistribuirTropas());
+				gameWin.setInfText("Clique num territorio seu para alocar tropas");
+				
+				JOptionPane.showMessageDialog(null, "Estado de jogo carregado conforme arquivo.");
+			}
 		}
 		/* end StartWindow events */
 		
@@ -85,6 +107,8 @@ public class GameController implements Observer {
 			MovementWindow moverTropas=new MovementWindow(terrCorr);
 			moverTropas.addObserver(this);
 			moverTropas.createGUI();
+			if(game.ChecarObjetivo(2))
+				JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 		}
 		else if(x.equals("SideMenu_alocarTropas")){
 			SideMenuPanel p = (SideMenuPanel)o;
@@ -94,6 +118,8 @@ public class GameController implements Observer {
 			if(p.getTropasDist()==0){
 				this.advanceGameState();
 			}
+			if(game.ChecarObjetivo(2))
+				JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 		}
 		else if(x.equals("SideMenu_atacar")){
 			AttackWindow atacarTerritorio=new AttackWindow(terrCorr,game.getCurrentColor());
@@ -125,12 +151,15 @@ public class GameController implements Observer {
 			target.deltaTropas(-result[1]);
 			
 			if(target.getNTropas()==0){
-				target.setOwnerColor(source.getOwnerColor());
+				game.getPlayer(target.getOwnerColor()).removeTerr(target);
+				game.getPlayer(source.getOwnerColor()).addTerr(target);
 				source.deltaTropas(-1);
 				target.deltaTropas(1);
 				gameWin.repaint();
 				game.setCurrentPlayerWonATerritory();
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
+				if(game.ChecarObjetivo(1))
+					JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 			}
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
 		}
@@ -231,12 +260,22 @@ public class GameController implements Observer {
 			gameWin.enableTerminarAtacar(false);
 			gameWin.enableNextTurn(true);
 			gameWin.setInfText("Clique num territorio seu para mover topas");
+			
+			if(BUTTONS_ALWAYS_ENABLED==true){
+				gameWin.enableAtacar(true);
+				gameWin.enableTerminarAtacar(true);
+			}
 		}
 		else if (gameState==3){
 			gameState=1;
 			gameWin.enableMover(false);
 			gameWin.enableNextTurn(false);
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
+			
+			if(BUTTONS_ALWAYS_ENABLED==true){
+				gameWin.enableMover(true);
+				gameWin.enableNextTurn(true);
+			}
 		}
 	}
 	

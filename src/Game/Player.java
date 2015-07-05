@@ -14,12 +14,12 @@ public class Player {
 	private ArrayList<Territorio> territorios;
 	private ArrayList<Carta> cartas;
 	private Objetivo objetivo;
-	public int nAsia=0;
-	public int nEuropa=0;
-	public int nAfrica =0;
+	public int nAsia = 0;
+	public int nEuropa = 0;
+	public int nAfrica = 0;
 	public int nOceania = 0;
-	public int nAmSul =0;
-	public int nAmNorte =0;
+	public int nAmSul = 0;
+	public int nAmNorte = 0;
 	
 	public Player (Color x){
 		color=x;
@@ -28,6 +28,74 @@ public class Player {
 	}
 	public void addTerr (Territorio t){
 		territorios.add(t);
+		t.setOwnerColor(color);
+		
+		String continente = t.getContinente().getNome();
+		
+		if(continente.equals("as")){
+			nAsia++;
+			System.out.printf("%d\n",nAsia);
+		}
+		else if(continente.equals("af"))
+		{
+			nAfrica++;
+			System.out.printf("%d\n",nAfrica);
+		}
+		else if(continente.equals("an"))
+		{
+			nAmNorte++;
+			System.out.printf("%d\n",nAmNorte);
+		}
+		else if(continente.equals("asl"))
+		{
+			nAmSul++;
+			System.out.printf("%d\n",nAmSul);
+		}
+		else if(continente.equals("eu"))
+		{
+			nEuropa++;
+			System.out.printf("%d\n",nEuropa);
+		}
+		else 
+		{
+			nOceania++;
+			System.out.printf("%d\n",nOceania);
+		}
+	}
+	public void removeTerr (Territorio t){
+		territorios.remove(t);
+		
+		String continente = t.getContinente().getNome();
+		
+		if(continente.equals("as")){
+			nAsia++;
+			System.out.printf("%d",nAsia);
+		}
+		else if(continente.equals("af"))
+		{
+			nAfrica--;
+			System.out.printf("%d",nAfrica);
+		}
+		else if(continente.equals("an"))
+		{
+			nAmNorte--;
+			System.out.printf("%d",nAmNorte);
+		}
+		else if(continente.equals("asl"))
+		{
+			nAmSul--;
+			System.out.printf("%d",nAmSul);
+		}
+		else if(continente.equals("eu"))
+		{
+			nEuropa--;
+			System.out.printf("%d",nEuropa);
+		}
+		else 
+		{
+			nOceania--;
+			System.out.printf("%d",nOceania);
+		}
 	}
 	public Color getColor (){
 		return color;
@@ -44,15 +112,21 @@ public class Player {
 	public String getObjetivo(){
 		return objetivo.getNome();
 	}
-	public void atualizaContador(Territorio t, int n){
-	
+	public ArrayList<Territorio> getTerritorios(){
+		return territorios;
 	}
+
 	public void adicionaCarta(Carta c){
 		cartas.add(c);
 	}
 	public ArrayList<Carta> getCartas(){
 		return cartas;
 	}
+	public boolean IsDead(){
+		return territorios.isEmpty();
+	}
+	
+
 	//DEBUG
 	public void listTerr(){
 		for(Territorio t:territorios){

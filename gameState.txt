@@ -1,67 +1,74 @@
-3
-azul
-vermelho
-preto
+//numero jogadores
+-3
 
-//africa
-AfricaDoSul
-Angola
-Argelia
-Egito
-Nigeria
-Somalia
+//cor obj
+#azul Blue
+#vermelho AmNor_OC
+#preto T18
+//cartas
+$
+@1 brasil argentina
+@2
+@3
+//africa cor nTropas
+AfricaDoSul 1 1
+Angola 1 1
+Argelia 1 1
+Egito 1 1
+Nigeria 1 1
+Somalia 1 1
 
 //america do norte
-Alasca
-Calgary
-California
-Groelandia
-Mexico
-NovaYork
-Quebec
-Texas
-Vancouver
+Alasca 2 1
+Calgary 2 1
+California 2 1
+Groelandia 2 1
+Mexico 2 1
+NovaYork 2 1
+Quebec 2 1
+Texas 2 1
+Vancouver 2 1
 
 //america do sul
-Argentina
-Brasil
-Peru
-Venezuela
+Argentina 3 2
+Brasil 3 2
+Peru 3 2
+Venezuela 3 2
 
 //europa
-Espanha
-Franca
-Italia
-Polonia
-ReinoUnido
-Romenia
-Suecia
-Ucrania
+Espanha 3 3
+Franca 3 3
+Italia 3 3
+Polonia 3 3
+ReinoUnido 3 3
+Romenia 3 3
+Suecia 3 3
+Ucrania 3 3
 
 //oceania
-Australia
-Indonesia
-NovaZelandia
-Perth
+Australia 1 5
+Indonesia 1 5
+NovaZelandia 1 5
+Perth 1 5
 
 //asia
-ArabiaSaudita
-Bangladesh
-Cazaquistao
-Mongolia
-China
-CoreiaDoNorte
-CoreiaDoSul
-Estonia
-India
-Ira
-Iraque
-Japao
-Jordania
-Letonia
-Paquistao
-Russia
-Siberia
-Siria
-Tailandia
-Turquia
+ArabiaSaudita 1 5
+Bangladesh 1 5
+Cazaquistao 1 5
+Mongolia 1 5
+China 1 5
+CoreiaDoNorte 1 5
+CoreiaDoSul 1 5
+Estonia 1 5
+India 1 5
+Ira 1 5
+Iraque 1 5
+Japao 1 5
+Jordania 1 5
+Letonia 1 5
+Paquistao 1 5
+Russia 1 5
+Siberia 1 5
+Siria 1 5
+Tailandia 1 5
+Turquia 1 5
