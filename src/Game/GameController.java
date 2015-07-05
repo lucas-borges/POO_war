@@ -8,17 +8,22 @@ import GUI.SideMenuPanel;
 import GUI.MovementWindow;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.MapClickRedirect;
 import controller.Territorio;
 
+
 public class GameController implements Observer {
 	public static final boolean DEV_MODE = true;
-	
+	public static final boolean BUTTONS_ALWAYS_ENABLED = true;
 	private Game game;
 	/**/private MainWindow gameWin;
 	/**/private StartWindow startWin;
@@ -63,16 +68,24 @@ public class GameController implements Observer {
 		}
 		
 		else if(DEV_MODE && x.equals("StartWindow_loadGame")){
-			game=new Game("gameState.txt");
-			System.out.println("Jogo criado com " + game.getNPlayers());
-			/**/gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
-			gameWin.repaint();
+			final JFileChooser fc = new JFileChooser(new File(System.getProperty("user.dir")));
+			FileFilter filter= new FileNameExtensionFilter("Text Files", "txt");
+			fc.setFileFilter(filter);
 			
-			gameWin.setTropasDist(game.DistribuirTropas());
-			gameWin.setInfText("Clique num territorio seu para alocar tropas");
-			
-			JOptionPane.showMessageDialog(null, "Estado de jogo carregado conforme arquivo.");
-		
+			int returnVal =fc.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				startWin.close();
+			    String path=fc.getSelectedFile().getAbsolutePath();
+				
+				game=new Game(path);
+	
+				gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
+				gameWin.repaint();
+				gameWin.setTropasDist(game.DistribuirTropas());
+				gameWin.setInfText("Clique num territorio seu para alocar tropas");
+				
+				JOptionPane.showMessageDialog(null, "Estado de jogo carregado conforme arquivo.");
+			}
 		}
 		/* end StartWindow events */
 		
@@ -235,12 +248,22 @@ public class GameController implements Observer {
 			gameWin.enableTerminarAtacar(false);
 			gameWin.enableNextTurn(true);
 			gameWin.setInfText("Clique num territorio seu para mover topas");
+			
+			if(BUTTONS_ALWAYS_ENABLED==true){
+				gameWin.enableAtacar(true);
+				gameWin.enableTerminarAtacar(true);
+			}
 		}
 		else if (gameState==3){
 			gameState=1;
 			gameWin.enableMover(false);
 			gameWin.enableNextTurn(false);
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
+			
+			if(BUTTONS_ALWAYS_ENABLED==true){
+				gameWin.enableMover(true);
+				gameWin.enableNextTurn(true);
+			}
 		}
 	}
 	

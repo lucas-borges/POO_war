@@ -333,6 +333,7 @@ public class Game {
 		public Game(String filename){
 			try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 				String sCurrentLine;
+				Objetivo objs[] = null;
 				
 				while((sCurrentLine = br.readLine()) != null){
 					//System.out.println(sCurrentLine);
@@ -343,6 +344,7 @@ public class Game {
 						int n=Integer.parseInt(sCurrentLine.substring(1));
 						nPlayers=n;
 						players=new Player[n];
+						objs=new Objetivo[n];
 					}
 					else if(sCurrentLine.startsWith("#")){
 						int i=0, div;
@@ -351,7 +353,15 @@ public class Game {
 							i++;
 						}
 						players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1,div)));
-						this.SetarObjetivo(players[i],Objetivo.valueOf(sCurrentLine.substring(div+1)));
+						objs[i]=Objetivo.valueOf(sCurrentLine.substring(div+1));
+					}
+					else if(sCurrentLine.startsWith("$")){
+						int i=0;
+						
+						for(Objetivo o:objs){
+							this.SetarObjetivo(players[i],o);
+						i++;
+						}
 					}
 					else{
 						int div1, div2;

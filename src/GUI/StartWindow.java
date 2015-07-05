@@ -78,20 +78,21 @@ public class StartWindow extends Observable
 	public void actionPerformed(ActionEvent e){
 		String s=e.getActionCommand();
 		
-		topLevelFrame.dispose();
 		setChanged();
 		
 		if(s.equals("startGame")){
+			topLevelFrame.dispose();
 			notifyObservers(new String("StartWindow_startGame"));
 		}
 		else if (s.equals("loadGame")){
 			notifyObservers(new String("StartWindow_loadGame"));
 		}
-		
 	}
-		
 	public int getComboValue(){
 		return Integer.parseInt((String)nPlayerBox.getSelectedItem());
+	}
+	public void close(){
+		topLevelFrame.dispose();
 	}
 
 }

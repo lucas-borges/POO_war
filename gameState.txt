@@ -5,7 +5,8 @@
 #azul Blue
 #vermelho AmNor_OC
 #preto T18
-
+//separador
+$
 //africa cor nTropas
 AfricaDoSul 1 1
 Angola 1 1
