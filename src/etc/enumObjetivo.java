@@ -10,12 +10,12 @@ public class enumObjetivo {
 		AmNor_AFR("Conquistar na totalidade a AMÉRICA DO NORTE e a ÁFRICA."),
 		T24("Conquistar 24 TERRITÓRIOS à sua escolha."),
 		AmNor_OC(" Conquistar na totalidade a AMÉRICA DO NORTE e a OCEANIA."),
-		AZ(" Destruir totalmente OS EXÉRCITOS AZUIS."),
-		AM(" Destruir totalmente OS EXÉRCITOS AMARELOS."),
-		VERM(" Destruir totalmente OS EXÉRCITOS VERMELHOS."),
-		PR(" Destruir totalmente OS EXÉRCITOS PRETOS."),
-		BR(" Destruir totalmente OS EXÉRCITOS BRANCO."),
-		VERD(" Destruir totalmente OS EXÉRCITOS VERDES.");
+		Blue("Destruir totalmente OS EXÉRCITOS AZUIS."),
+		Yellow("Destruir totalmente OS EXÉRCITOS AMARELOS."),
+		Red("Destruir totalmente OS EXÉRCITOS VERMELHOS."),
+		Black("Destruir totalmente OS EXÉRCITOS PRETOS."),
+		White("Destruir totalmente OS EXÉRCITOS BRANCO."),
+		Green("Destruir totalmente OS EXÉRCITOS VERDES.");
 		;
 		
 		private final String nome;

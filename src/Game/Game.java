@@ -9,9 +9,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-
 import controller.Territorio;
 import etc.enumTerritorio;
+import etc.enumColor.NamedColor;
+import etc.enumObjetivo.Objetivo;
+
 import etc.enumTerritorio.nomePais;
 public class Game {
 	private int nPlayers;
@@ -69,8 +71,11 @@ public class Game {
 	public int getTurn(){
 		return turn;
 	}
-	public int getCurrentPlayer(){
+	public int getCurrentIndex(){
 		return currentPlayerIndex+1;
+	}
+	public Player getCurrentPlayer(){
+		return players[currentPlayerIndex];
 	}
 	
 	public int DistribuirTropas(){
@@ -169,8 +174,20 @@ public class Game {
 			int index=randObj.nextInt(objetivos.size());
 			CartaObjetivo o = CartaObjetivoDataBase.buscaObjetivo(objetivos.get(index).getNome());
 			players[i].setObjetivo(objetivos.remove(index).getNome());
+			if(players[i].getObjetivo().startsWith("Destruir")){
+				System.out.println("Destruir");
+				if(players[i].getObjetivo().endsWith(NamedColor.getMatch(players[i].getColor()).getColorName())){
+					players[i].setObjetivo(Objetivo.T24);
+				}
+			}
 			
 		}
+	}
+	
+	public boolean ChecarObjetivo(){
+		return true;
+		
+		
 	}
 
 	

@@ -73,7 +73,7 @@ public class GameController implements Observer {
 			SideMenuPanel p = (SideMenuPanel)o;
 			p.setTropasDist(game.DistribuirTropas());
 			System.out.println("Turno: " + game.getTurn());
-			System.out.println("Jogador: " + game.getCurrentPlayer());
+			System.out.println("Jogador: " + game.getCurrentIndex());
 			gameWin.nextTurn();
 			gameWin.repaint();
 			this.advanceGameState();
@@ -101,7 +101,7 @@ public class GameController implements Observer {
 			this.advanceGameState();
 		}
 		else if(x.equals("SideMenu_showObj")){
-			JOptionPane.showMessageDialog(null,"Objetivo:");
+			JOptionPane.showMessageDialog(null,"Objetivo:"+game.getCurrentPlayer().getObjetivo());
 		}
 		else if(x.equals("SideMenu_showCards")){
 			JOptionPane.showMessageDialog(null,"Cartas: ");
