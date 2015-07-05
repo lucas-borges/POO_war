@@ -2,9 +2,9 @@
 -3
 
 //cor obj
-#azul
-#vermelho
-#preto
+#azul Blue
+#vermelho AmNor_OC
+#preto T18
 
 //africa cor nTropas
 AfricaDoSul 1 1

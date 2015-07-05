@@ -340,29 +340,26 @@ public class Game {
 						players=new Player[n];
 					}
 					else if(sCurrentLine.startsWith("#")){
-						int i=0;
+						int i=0, div;
+						div=sCurrentLine.indexOf(' ');
 						while(players[i]!=null){
 							i++;
 						}
-						players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1)));
+						players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1,div)));
+						players[i].setObjetivo(Objetivo.valueOf(sCurrentLine.substring(div+1)));
+						
+						
 					}
 					else{
 						int div1, div2;
 						Territorio terr; 
 						int playerIndx, nTropas; 
 						div1=sCurrentLine.indexOf(' ');
-						div2=sCurrentLine.lastIndexOf(' ');
-						
-						System.out.println("$"+sCurrentLine.substring(0, div1) + "-"+div1+"-"+div2);
+						div2=sCurrentLine.lastIndexOf(' ');						
 						
 						terr=TerritorioDataBase.buscaTerritorio(nomePais.valueOf(sCurrentLine.substring(0,div1)));
 						playerIndx=Integer.parseInt(sCurrentLine.substring(div1+1, div2))-1;
 						nTropas=Integer.parseInt(sCurrentLine.substring(div2+1));
-						
-						//System.out.print("$"+sCurrentLine.substring(0,div1));
-						//System.out.println("$"+playerIndx +"*"+nTropas);
-						//System.out.println("$"+(enumTerritorio.toNomePais(sCurrentLine.substring(0,div1)).getNome()));
-						//System.out.println("$"+terr.getNome().getNome());
 						
 						players[playerIndx].addTerr(terr);
 						terr.deltaTropas(nTropas);
