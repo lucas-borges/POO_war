@@ -28,11 +28,39 @@ public class Player {
 	public void addTerr (Territorio t){
 		territorios.add(t);
 		t.setOwnerColor(color);
-		//incrementa contador
+		
+		String continente = t.getContinente().getNome();
+		
+		if(continente.equals("as"))
+			nAsia++;
+		else if(continente.equals("af"))
+			nAfrica++;
+		else if(continente.equals("an"))
+			nAmNorte++;
+		else if(continente.equals("asl"))
+			nAmSul++;
+		else if(continente.equals("eu"))
+			nEuropa++;
+		else 
+			nOceania++;
 	}
 	public void removeTerr (Territorio t){
 		territorios.remove(t);
-		//decrementa contador
+		
+		String continente = t.getContinente().getNome();
+		
+		if(continente.equals("as"))
+			nAsia--;
+		else if(continente.equals("af"))
+			nAfrica--;
+		else if(continente.equals("an"))
+			nAmNorte--;
+		else if(continente.equals("asl"))
+			nAmSul--;
+		else if(continente.equals("eu"))
+			nEuropa--;
+		else 
+			nOceania--;
 	}
 	public Color getColor (){
 		return color;
