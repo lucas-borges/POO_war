@@ -351,7 +351,7 @@ public class Game {
 							i++;
 						}
 						players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1,div)));
-						players[i].setObjetivo(Objetivo.valueOf(sCurrentLine.substring(div+1)));
+						this.SetarObjetivo(players[i],Objetivo.valueOf(sCurrentLine.substring(div+1)));
 					}
 					else{
 						int div1, div2;
