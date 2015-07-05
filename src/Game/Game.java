@@ -335,7 +335,7 @@ public class Game {
 				String sCurrentLine;
 				
 				while((sCurrentLine = br.readLine()) != null){
-					System.out.println(sCurrentLine);
+					//System.out.println(sCurrentLine);
 					if(sCurrentLine.startsWith("//")||sCurrentLine.isEmpty() || sCurrentLine.trim().equals("") || sCurrentLine.trim().equals("\n")){
 						//do nothing
 					}
@@ -352,8 +352,6 @@ public class Game {
 						}
 						players[i]=new Player(NamedColor.getColor(sCurrentLine.substring(1,div)));
 						players[i].setObjetivo(Objetivo.valueOf(sCurrentLine.substring(div+1)));
-						
-						
 					}
 					else{
 						int div1, div2;
