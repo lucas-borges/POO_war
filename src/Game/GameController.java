@@ -17,6 +17,8 @@ import controller.MapClickRedirect;
 import controller.Territorio;
 
 public class GameController implements Observer {
+	public static final boolean DEV_MODE = true;
+	
 	private Game game;
 	/**/private MainWindow gameWin;
 	/**/private StartWindow startWin;
@@ -58,6 +60,10 @@ public class GameController implements Observer {
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
 				
 			JOptionPane.showMessageDialog(null, "Os objetivos foram distribuídos. \nClique em ver objetivo para saber qual é o seu.");
+		}
+		
+		else if(DEV_MODE && x.equals("StartWindow_loadGame")){
+			game=new Game("gameState.txt");
 		}
 		/* end StartWindow events */
 		
@@ -118,6 +124,7 @@ public class GameController implements Observer {
 				target.setOwnerColor(source.getOwnerColor());
 				source.deltaTropas(-1);
 				target.deltaTropas(1);
+				gameWin.repaint();
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
 			}
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
