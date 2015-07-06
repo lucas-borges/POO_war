@@ -144,6 +144,9 @@ public class Game {
 		}
 		
 		tropas[0]=players[currentPlayerIndex].getNumTropasDist()/2;
+		if(tropas[0]<3){
+			tropas[0]=3;
+		}
 		
 		tropas[1]=realizaTroca();
 		
@@ -524,7 +527,7 @@ public class Game {
 			for (int icartas=2;icartas>=0;icartas--) {
 				System.out.println(indexCartas[icartas]);
 				System.out.println(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName());
-				if (!players[currentPlayerIndex].getCartas()
+				/*if (!players[currentPlayerIndex].getCartas()
 						.get(indexCartas[icartas]).getFileTerritorio()
 						.equals("coringa")) {
 					for (Territorio t : players[currentPlayerIndex]
@@ -539,7 +542,7 @@ public class Game {
 							t.deltaTropas(2);
 						}
 					}
-				}
+				}*/
 				CartaDataBase.insereCarta(players[currentPlayerIndex].getCartas().remove(indexCartas[icartas]));// devolve as cartas para o "baralho"
 			}
 			if (nTrocas < 5) {
