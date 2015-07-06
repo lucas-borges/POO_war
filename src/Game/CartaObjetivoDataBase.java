@@ -3,7 +3,6 @@ package Game;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Territorio;
 import etc.enumObjetivo.Objetivo;
 import etc.enumTerritorio.nomePais;
 

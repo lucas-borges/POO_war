@@ -8,9 +8,8 @@ import java.util.Observable;
 
 import javax.swing.*;
 
+import Game.Territorio;
 import Game.TerritorioDataBase;
-
-import controller.Territorio;
 import etc.enumTerritorio;
 import etc.enumTerritorio.nomePais;
 

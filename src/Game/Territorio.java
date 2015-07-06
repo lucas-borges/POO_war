@@ -1,12 +1,13 @@
-package controller;
+package Game;
 
 import java.awt.Color;
 import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 import java.util.List;
-import Game.TerritorioDataBase;
+
 import etc.enumTerritorio.nomePais;
 import etc.Continente;
+import etc.Ponto;
 
 public class Territorio{
 

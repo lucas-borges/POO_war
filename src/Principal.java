@@ -1,18 +1,9 @@
-/*
-import GUI.*;	
-import Game.*;
+
+
+import Game.GameController;;
 
 public class Principal  {
 	public static void main (String[]args){
-		GameController controller=new GameController();
-		MainWindow gameWin=new MainWindow();
-		StartWindow startWin=new StartWindow();
-		
-		startWin.addObserver(controller);
-		gameWin.addObserver(controller);
-		
-		gameWin.createGUI();
-		startWin.createGUI();
+		GameController controller=GameController.getInstance();
 	}
 }
-*/

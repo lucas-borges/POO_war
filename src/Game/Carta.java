@@ -2,7 +2,6 @@ package Game;
 
 import etc.enumTerritorio.nomePais;
 import etc.Figura;
-import controller.Territorio;
 public class Carta {
 	private final Figura figura;
 	private final String file_territorio;

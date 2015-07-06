@@ -1,5 +1,6 @@
 package GUI;
 import controller.*;
+import Game.Territorio;
 import Game.TerritorioDataBase;
 
 import java.awt.*;
@@ -7,7 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
+
 import java.io.*;
+
 import javax.imageio.*;
 
 public class MapPanel extends JPanel {
