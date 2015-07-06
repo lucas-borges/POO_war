@@ -13,15 +13,8 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import controller.Territorio;
-import etc.enumColor;
-import etc.enumTerritorio;
 import etc.enumColor.NamedColor;
 import etc.enumObjetivo.Objetivo;
-
-import etc.Figura;
-
-
 import etc.enumTerritorio.nomePais;
 
 public class Game {
@@ -36,7 +29,9 @@ public class Game {
 	private boolean[] isDead=null;
 	private int nPlayersAlive;
 	
-	public Game (int n){
+	private static Game gameInst=null;
+	
+	private Game (int n){
 		nPlayers=n;
 		players=new Player[n];
 		
@@ -54,6 +49,15 @@ public class Game {
 		
 		currentPlayerIndex=0;
 		turn=1;
+	}
+	@SuppressWarnings("unused")
+	private Game(){
+	}
+	public static Game getInstance (int n){
+		if(gameInst==null){
+			gameInst=new Game(n);
+		}
+		return gameInst;
 	}
 	public void nextTurn (){
 		turn++;
@@ -523,7 +527,7 @@ public class Game {
 			for (int icartas=2;icartas>=0;icartas--) {
 				System.out.println(indexCartas[icartas]);
 				System.out.println(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName());
-				if (!players[currentPlayerIndex].getCartas()
+				/*if (!players[currentPlayerIndex].getCartas()
 						.get(indexCartas[icartas]).getFileTerritorio()
 						.equals("coringa")) {
 					for (Territorio t : players[currentPlayerIndex]
@@ -538,7 +542,7 @@ public class Game {
 							t.deltaTropas(2);
 						}
 					}
-				}
+				}*/
 				CartaDataBase.insereCarta(players[currentPlayerIndex].getCartas().remove(indexCartas[icartas]));// devolve as cartas para o "baralho"
 			}
 			if (nTrocas < 5) {
