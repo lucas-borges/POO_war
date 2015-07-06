@@ -54,7 +54,6 @@ public class GameController implements Observer {
 			int nPlayers=((StartWindow)o).getComboValue();
 			game=new Game(nPlayers);
 			
-			System.out.println("Jogo criado com " + game.getNPlayers());
 			gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
 			
@@ -100,7 +99,7 @@ public class GameController implements Observer {
 			gameWin.nextTurn();
 			gameWin.repaint();
 			this.advanceGameState();
-			if(game.realizouTroca()){//---------------------------------------------------------------------------
+			if(game.realizouTroca()){
 				JOptionPane.showMessageDialog(null, (game.getNTrocas())+ " troca realizada!");
 			}
 		}
@@ -136,24 +135,29 @@ public class GameController implements Observer {
 		}
 		else if(x.equals("SideMenu_showCards")){
 			CardsWindow cardsWin = new CardsWindow();
+			cardsWin.createGUI();
 			String s[];
 			System.out.println("cartas size "+game.getCurrentPlayer().getCartas().size());
 			s=new String [game.getCurrentPlayer().getCartas().size()];
 			Iterator<Carta> i=	game.getCurrentPlayer().getCartas().iterator();
+			int j=0;
 			while(i.hasNext()){
-				int j=0;
+				
+				//System.out.println("String "+i.next().getFileName());
 				s[j]=i.next().getFileName();
+				System.out.println("String2 "+ s[j]);
+				j++;
+				
 			}
+			System.out.println("J: "+j);
 			cardsWin.setCards(s);
 		}
 		/* end SideMenu events */
 		
 		/* start DicesWindow events */
 		else if(x.equals("DicesWindow_dadosRolados")){
-			System.out.println("entrou dados rolados");
 			DicesWindow d = (DicesWindow)o;
 			int result[] = {0,0};
-			System.out.printf("%d",result[0]);
 			game.SelectWinner(d.getAttackDices(), d.getDefenseDices(), result);
 			d.setResult(result);
 			
@@ -163,6 +167,8 @@ public class GameController implements Observer {
 			if(target.getNTropas()==0){
 				game.getPlayer(target.getOwnerColor()).removeTerr(target);
 				if(game.getPlayer(target.getOwnerColor()).IsDead()){
+					game.setDead(game.getPlayerIndex(target.getOwnerColor()));
+					gameWin.setColorPanel(game.getNPlayersAlive(),game.getAliveColorOrder());
 					if(game.ChecarMorteJogador(game.getPlayer(target.getOwnerColor())))
 						JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 				}

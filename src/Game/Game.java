@@ -33,6 +33,8 @@ public class Game {
 	private boolean currentPlayerWonATerritory;
 	private boolean trocaRealizada=false;
 	
+	private boolean[] isDead=null;
+	private int nPlayersAlive;
 	
 	public Game (int n){
 		nPlayers=n;
@@ -54,7 +56,6 @@ public class Game {
 		turn=1;
 	}
 	public void nextTurn (){
-		
 		turn++;
 
 		currentPlayerWonATerritory=false;
@@ -66,38 +67,53 @@ public class Game {
 			currentPlayerIndex++;
 		}
 		
-		/*while(players[currentPlayerIndex].IsDead()){
-			
-			if(currentPlayerIndex==nPlayers-1){
-				currentPlayerIndex=0;
-			}
-			else {
-				currentPlayerIndex++;
+		if(isDead!=null){
+			while(isDead[currentPlayerIndex]==true){
+				if(currentPlayerIndex==nPlayers-1){
+					currentPlayerIndex=0;
+				}
+				else {
+					currentPlayerIndex++;
+				}
 			}
 		}
-		System.out.println(players[currentPlayerIndex].getColor());*/
+		System.out.println("turno atual: "+players[currentPlayerIndex].getColor());
+	}
+	public void setDead (int i){
+		if(isDead==null){
+			isDead=new boolean[nPlayers];
+			for(int j=0;j<nPlayers;j++){
+				isDead[j]=false;
+			}
+			nPlayersAlive=nPlayers;
+		}
+		isDead[i]=true;
+		nPlayersAlive--;
+	}
+	public int getNPlayersAlive (){
+		return nPlayersAlive;
+	}
+	public Color[] getAliveColorOrder(){
+		Color order[]=new Color[nPlayersAlive];
+		int j=0;
+		
+		for(int i=0;i<nPlayers;i++){
+			if(isDead[i]==false){
+				order[j]=players[i].getColor();
+				j++;
+			}
+		}
+		return order;
 	}
 	
-	
 	public Color[] getColorOrder(){
-		/*int n = nPlayers;
-		for(Player p: players){
-			if (p.IsDead()){
-				n--;
-			}
-		}*/
 		Color order[]=new Color[nPlayers];
 		int i=0;
 		
 		for(Player p:players){
-			//if(!p.IsDead()){
-				order[i]=p.getColor();
-				i++;
-			//}
-		}
-		/*for(Color c:order){
-			System.out.println(c.name());
-		}*/
+			order[i]=p.getColor();
+			i++;
+		}	
 		return order;
 	}
 	public int getNPlayers(){
@@ -199,9 +215,8 @@ public class Game {
 	}
 	
 	public void SelectWinner(int[] attack, int[] defense, int[] result){
-		// result = vetor do resultado posi��o 0 = ex�rcitos perdidos pelo ataque; posi��o 1 = ex�rcitos perdidos pela defesa
+		// result = vetor do resultado posicao 0 = exercitos perdidos pelo ataque; posicao 1 = exercitos perdidos pela defesa
 		int contAttack=0, contDefense=0;
-		System.out.println("Entrou no selectWinner");
 		
 		if(attack.length == 1 || defense.length == 1){
 			
@@ -267,25 +282,15 @@ public class Game {
 		
 		result[0]=contAttack;
 		result[1]=contDefense;
-		
-		System.out.printf("Ataque perdeu %d territorios\n",result[0]);
-		System.out.printf("Defesa perdeu %d territorios",result[1]);
-		
-		
 	}
 	
 	private void SetarObjetivo(Player p, Objetivo o){
 		
 		p.setObjetivo(o);
 		if(p.getObjetivo().startsWith("Destruir")){	
-			System.out.println("Destruir");
-			System.out.println(p.getObjetivo());
 			if(p.getObjetivo().endsWith(NamedColor.getMatch(p.getColor()).getColorPlural())){
 				p.setObjetivo(Objetivo.T24);
 				return;
-			}
-			for(int i=0;i<nPlayers;i++){
-				System.out.println(players[i].getColor());
 			}
 			for(Player P: players){
 				if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
@@ -315,7 +320,6 @@ public class Game {
 
 	
 	public boolean ChecarObjetivo1(){
-		System.out.println("Checar Objetivos");
 		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a EUROPA, a OCEANIA e mais um terceiro.")){
 			if(players[currentPlayerIndex].nEuropa==Territorio.nEuropa && players[currentPlayerIndex].nOceania==Territorio.nOceania){
 				if(players[currentPlayerIndex].nAmNorte==Territorio.nAmNorte || players[currentPlayerIndex].nAmSul==Territorio.nAmSul 
@@ -354,7 +358,6 @@ public class Game {
 			}
 		}
 		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar 24 TERRIT�RIOS � sua escolha.")){
-			System.out.println("Checando 24T");
 			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
 					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
 					players[currentPlayerIndex].nOceania>=24){
@@ -560,7 +563,6 @@ public class Game {
 		return ChecarObjetivo2();
 	}
 		
-	//DEBUG
 		public void randomizeStart(){
 			ArrayList<Territorio> tempTerr = TerritorioDataBase.copyLstTerritorios()/* TODOS OS TERRITORIOS */;
 			Random randGen = new Random();
@@ -591,7 +593,7 @@ public class Game {
 			players[n].listTerr();
 		}
 		
-		//END DEBUG
+		// DEBUG
 		
 		public Game(String filename){
 			try(BufferedReader br = new BufferedReader(new FileReader(filename))){
@@ -641,8 +643,6 @@ public class Game {
 									div2=sCurrentLine.length();
 								}
 								s=sCurrentLine.substring(div1, div2);
-								//System.out.println(s);
-								System.out.println(CartaDataBase.getCarta(s).getFileTerritorio());
 								players[i].adicionaCarta(CartaDataBase.getCarta(s));
 							}
 						}

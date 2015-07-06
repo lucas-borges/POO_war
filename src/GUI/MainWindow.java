@@ -48,7 +48,6 @@ public class MainWindow extends Observable{
 	}
 	public void repaint(){
 		topLevelFrame.repaint();
-		System.out.println("gameWin repaint");
 		topLevelFrame.pack();
 	}
 	public void nextTurn(){

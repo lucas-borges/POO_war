@@ -34,32 +34,21 @@ public class Player {
 		
 		if(continente.equals("as")){
 			nAsia++;
-			System.out.printf("%d\n",nAsia);
 		}
-		else if(continente.equals("af"))
-		{
+		else if(continente.equals("af")){
 			nAfrica++;
-			System.out.printf("%d\n",nAfrica);
 		}
-		else if(continente.equals("an"))
-		{
+		else if(continente.equals("an")){
 			nAmNorte++;
-			System.out.printf("%d\n",nAmNorte);
 		}
-		else if(continente.equals("asl"))
-		{
+		else if(continente.equals("asl")){
 			nAmSul++;
-			System.out.printf("%d\n",nAmSul);
 		}
-		else if(continente.equals("eu"))
-		{
+		else if(continente.equals("eu")){
 			nEuropa++;
-			System.out.printf("%d\n",nEuropa);
 		}
-		else 
-		{
+		else {
 			nOceania++;
-			System.out.printf("%d\n",nOceania);
 		}
 	}
 	public void removeTerr (Territorio t){
@@ -69,32 +58,21 @@ public class Player {
 		
 		if(continente.equals("as")){
 			nAsia++;
-			System.out.printf("%d",nAsia);
 		}
-		else if(continente.equals("af"))
-		{
+		else if(continente.equals("af")){
 			nAfrica--;
-			System.out.printf("%d",nAfrica);
 		}
-		else if(continente.equals("an"))
-		{
+		else if(continente.equals("an")){
 			nAmNorte--;
-			System.out.printf("%d",nAmNorte);
 		}
-		else if(continente.equals("asl"))
-		{
+		else if(continente.equals("asl")){
 			nAmSul--;
-			System.out.printf("%d",nAmSul);
 		}
-		else if(continente.equals("eu"))
-		{
+		else if(continente.equals("eu")){
 			nEuropa--;
-			System.out.printf("%d",nEuropa);
 		}
-		else 
-		{
+		else {
 			nOceania--;
-			System.out.printf("%d",nOceania);
 		}
 	}
 	public Color getColor (){
@@ -118,7 +96,6 @@ public class Player {
 
 	public void adicionaCarta(Carta c){
 		cartas.add(c);
-		System.out.println("in player: carta size"+ cartas.size());
 	}
 	public ArrayList<Carta> getCartas(){
 		return cartas;

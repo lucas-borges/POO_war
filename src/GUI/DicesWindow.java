@@ -110,7 +110,6 @@ public class DicesWindow extends Observable implements ActionListener {
 	}
 	public void setResult(int[] result)
 	{
-		System.out.println("Entrou set");
 		this.result=result;
 		
 		ResultAttack.setText("Ataque perdeu:" + result[0] );
