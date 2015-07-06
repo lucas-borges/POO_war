@@ -25,7 +25,7 @@ import controller.Territorio;
 
 public class GameController implements Observer {
 	public static final boolean DEV_MODE = true;
-	public static final boolean BUTTONS_ALWAYS_ENABLED = true;
+	public static final boolean BUTTONS_ALWAYS_ENABLED = false;
 	private Game game;
 	/**/private MainWindow gameWin;
 	/**/private StartWindow startWin;
@@ -164,6 +164,10 @@ public class GameController implements Observer {
 			
 			if(target.getNTropas()==0){
 				game.getPlayer(target.getOwnerColor()).removeTerr(target);
+				if(game.getPlayer(target.getOwnerColor()).IsDead()){
+					if(game.ChecarMorteJogador(game.getPlayer(target.getOwnerColor())))
+						JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
+				}
 				game.getPlayer(source.getOwnerColor()).addTerr(target);
 				source.deltaTropas(-1);
 				target.deltaTropas(1);
@@ -172,6 +176,7 @@ public class GameController implements Observer {
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
 				if(game.ChecarObjetivo(1))
 					JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
+				
 			}
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
 		}
