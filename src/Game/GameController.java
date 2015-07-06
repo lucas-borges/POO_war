@@ -112,10 +112,95 @@ public class GameController implements Observer {
 		}
 		else if(x.equals("SideMenu_alocarTropas")){
 			SideMenuPanel p = (SideMenuPanel)o;
-			p.setTropasDist(p.getTropasDist()-1);
+			int tropas[]=p.getTropasDist();
+			
+			switch (terrCorr.getContinente()){
+			
+			case AmericaDoNorte:
+				if(tropas[2]>0){
+					tropas[2]--;
+				}
+				else{
+					if(tropas[1]>0){
+						tropas[1]--;
+					}
+					else{
+						tropas[0]--;
+					}
+				}
+				break;
+				
+			case AmericaDoSul:
+				if(tropas[3]>0){
+					tropas[3]--;
+				}
+				else{
+					if(tropas[1]>0){
+						tropas[1]--;
+					}
+					else{
+						tropas[0]--;
+					}
+				}
+				break;
+			case Africa:
+				if(tropas[4]>0){
+					tropas[4]--;
+				}
+				else{
+					if(tropas[1]>0){
+						tropas[1]--;
+					}
+					else{
+						tropas[0]--;
+					}
+				}
+				break;
+			case Europa:
+				if(tropas[5]>0){
+					tropas[5]--;
+				}
+				else{
+					if(tropas[1]>0){
+						tropas[1]--;
+					}
+					else{
+						tropas[0]--;
+					}
+				}
+				break;
+			case Asia:
+				if(tropas[6]>0){
+					tropas[6]--;
+				}
+				else{
+					if(tropas[1]>0){
+						tropas[1]--;
+					}
+					else{
+						tropas[0]--;
+					}
+				}
+				break;
+			case Oceania:
+				if(tropas[7]>0){
+					tropas[7]--;
+				}
+				else{
+					if(tropas[1]>0){
+						tropas[1]--;
+					}
+					else{
+						tropas[0]--;
+					}					
+				}
+				break;
+			}
+			p.setTropasDist(tropas);
+			
 			game.deltaT(terrCorr,1);
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
-			if(p.getTropasDist()==0){
+			if(tropas[0]==0&&tropas[2]==0&&tropas[3]==0&&tropas[4]==0&&tropas[5]==0&&tropas[6]==0&&tropas[7]==0){
 				this.advanceGameState();
 			}
 			if(game.ChecarObjetivo(2))
