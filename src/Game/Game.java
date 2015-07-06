@@ -140,6 +140,9 @@ public class Game {
 		}
 		
 		tropas[0]=players[currentPlayerIndex].getNumTropasDist()/2;
+		if(tropas[0]<3){
+			tropas[0]=3;
+		}
 		
 		tropas[1]=realizaTroca();
 		
