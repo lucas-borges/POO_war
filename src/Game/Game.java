@@ -564,7 +564,7 @@ public class Game {
 						
 						if(div2!=-1){
 							String s=sCurrentLine.substring(div1, div2);
-							i=Integer.parseInt(s);
+							i=Integer.parseInt(s)-1;
 							
 							while(div2!=sCurrentLine.length()){
 								div1=div2+1;
@@ -573,8 +573,9 @@ public class Game {
 									div2=sCurrentLine.length();
 								}
 								s=sCurrentLine.substring(div1, div2);
-								System.out.println(s);
-								//players[i].addCard
+								//System.out.println(s);
+								System.out.println(CartaDataBase.getCarta(s).getFileTerritorio());
+								players[i].adicionaCarta(CartaDataBase.getCarta(s));
 							}
 						}
 					}

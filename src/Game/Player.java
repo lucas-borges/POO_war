@@ -118,6 +118,7 @@ public class Player {
 
 	public void adicionaCarta(Carta c){
 		cartas.add(c);
+		System.out.println("in player: carta size"+ cartas.size());
 	}
 	public ArrayList<Carta> getCartas(){
 		return cartas;

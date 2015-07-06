@@ -1,6 +1,7 @@
 package Game;
 
 import GUI.AttackWindow;
+import GUI.CardsWindow;
 import GUI.DicesWindow;
 import GUI.MainWindow;
 import GUI.StartWindow;
@@ -9,6 +10,7 @@ import GUI.MovementWindow;
 
 import java.awt.*;
 import java.io.File;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,30 +26,28 @@ import controller.Territorio;
 public class GameController implements Observer {
 	public static final boolean DEV_MODE = true;
 	public static final boolean BUTTONS_ALWAYS_ENABLED = false;
+	
 	private Game game;
-	/**/private MainWindow gameWin;
-	/**/private StartWindow startWin;
-		private Territorio terrCorr;
-		private int gameState=1;
-		Territorio source;
-		Territorio target;
+	private MainWindow gameWin;
+	private StartWindow startWin;
+	private Territorio terrCorr;
+	private int gameState=1;
+	Territorio source;
+	Territorio target;
 	
 	public GameController(){
-		/**/gameWin=new MainWindow();
-		/**/startWin=new StartWindow();
+		gameWin=new MainWindow();
+		startWin=new StartWindow();
 		
-		/**/startWin.addObserver(this);
-		/**/gameWin.addObserver(this);
+		startWin.addObserver(this);
+		gameWin.addObserver(this);
 		
-		/**/gameWin.createGUI();
-		/**/startWin.createGUI();
+		gameWin.createGUI();
+		startWin.createGUI();
 	}
-	
-	
 	
 	public void update (Observable o, Object arg){
 		String x=(String)arg;
-		System.out.println("entrou controller update");
 		
 		/* start StartWindow events */
 		if(x.equals("StartWindow_startGame")){
@@ -64,7 +64,7 @@ public class GameController implements Observer {
 			gameWin.setTropasDist(game.DistribuirTropas());
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
 				
-			JOptionPane.showMessageDialog(null, "Os objetivos foram distribu�dos. \nClique em ver objetivo para saber qual � o seu.");
+			JOptionPane.showMessageDialog(null, "Os objetivos foram distribuidos. \nClique em ver objetivo para saber qual e o seu.");
 		}
 		
 		else if(DEV_MODE && x.equals("StartWindow_loadGame")){
@@ -135,7 +135,16 @@ public class GameController implements Observer {
 			JOptionPane.showMessageDialog(null,"Objetivo:"+game.getCurrentPlayer().getObjetivo());
 		}
 		else if(x.equals("SideMenu_showCards")){
-			JOptionPane.showMessageDialog(null,"Cartas: ");
+			CardsWindow cardsWin = new CardsWindow();
+			String s[];
+			System.out.println("cartas size "+game.getCurrentPlayer().getCartas().size());
+			s=new String [game.getCurrentPlayer().getCartas().size()];
+			Iterator<Carta> i=	game.getCurrentPlayer().getCartas().iterator();
+			while(i.hasNext()){
+				int j=0;
+				s[j]=i.next().getFileName();
+			}
+			cardsWin.setCards(s);
 		}
 		/* end SideMenu events */
 		
