@@ -1,0 +1,71 @@
+//numero jogadores
+-3
+
+//cor obj
+#azul 18T
+#vermelho AS_AFR
+#preto AmNor_AFR
+//separador
+$
+//africa cor nTropas
+AfricaDoSul 3 1
+Angola 3 10
+Argelia 3 2
+Egito 3 2
+Nigeria 3 2
+Somalia 3 2
+
+//america do norte
+Alasca 3 1
+Calgary 3 1
+California 3 1
+Groelandia 3 1
+Mexico 3 1
+NovaYork 3 1
+Quebec 3 1
+Texas 3 5
+Vancouver 3 1
+
+//america do sul
+Argentina 3 5
+Brasil 3 1
+Peru 3 6
+Venezuela 1 2
+
+//europa
+Espanha 1 3
+Franca 1 3
+Italia 1 3
+Polonia 1 3
+ReinoUnido 1 3
+Romenia 1 3
+Suecia 1 3
+Ucrania 1 3
+
+//oceania
+Australia 1 5
+Indonesia 1 5
+NovaZelandia 1 5
+Perth 2 1
+
+//asia
+ArabiaSaudita 3 5
+Bangladesh 3 5
+Cazaquistao 3 5
+Mongolia 3 1
+China 3 5
+CoreiaDoNorte 3 5
+CoreiaDoSul 3 5
+Estonia 3 5
+India 3 5
+Ira 3 5
+Iraque 3 5
+Japao 3 5
+Jordania 3 5
+Letonia 3 5
+Paquistao 3 5
+Russia 3 5
+Siberia 3 5
+Siria 3 5
+Tailandia 3 5
+Turquia 3 5
