@@ -26,14 +26,12 @@ public class MovementWindow extends Observable implements ActionListener{
 	private Territorio territorioSource;
 	
 	public MovementWindow (Territorio t){
-		System.out.println(t.getNome().getNome());
 		territorioSource=t;
 		this.nString=new ArrayList<String>();
 		this.topLevelFrame = new JFrame("Mover Tropas");
 		this.textFronteiras = new JLabel("Fronteira de destino:");
 		this.textTropas = new JLabel("Quantidade de tropas a mover:");
 		for(Territorio f:t.getLstFronteiras()){
-			System.out.println("Fronteira:"+f.getNome().getNome());
 			if(t.getOwnerColor()==f.getOwnerColor()){
 				this.nString.add(f.getNome().getNome());
 			}
@@ -42,7 +40,6 @@ public class MovementWindow extends Observable implements ActionListener{
 		String []nTropas=new String[t.getNTropas()-1];
 		for(int i=1;i<t.getNTropas();i++){
 			nTropas[i-1]=String.valueOf(i);
-			System.out.println(nTropas[i-1]);
 		}
 		String[] arrayString=new String[1];
 		arrayString=nString.toArray(arrayString);
@@ -52,7 +49,6 @@ public class MovementWindow extends Observable implements ActionListener{
 	}
 	
 	public void createGUI(){
-		System.out.println("Criou GUI da movement window");
 		Container c = this.topLevelFrame.getContentPane();
 		c.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();

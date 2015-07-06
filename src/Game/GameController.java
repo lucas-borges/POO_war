@@ -54,7 +54,6 @@ public class GameController implements Observer {
 			int nPlayers=((StartWindow)o).getComboValue();
 			game=new Game(nPlayers);
 			
-			System.out.println("Jogo criado com " + game.getNPlayers());
 			gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
 			
@@ -100,7 +99,7 @@ public class GameController implements Observer {
 			gameWin.nextTurn();
 			gameWin.repaint();
 			this.advanceGameState();
-			if(game.realizouTroca()){//---------------------------------------------------------------------------
+			if(game.realizouTroca()){
 				JOptionPane.showMessageDialog(null, (game.getNTrocas())+ " troca realizada!");
 			}
 		}
@@ -150,10 +149,8 @@ public class GameController implements Observer {
 		
 		/* start DicesWindow events */
 		else if(x.equals("DicesWindow_dadosRolados")){
-			System.out.println("entrou dados rolados");
 			DicesWindow d = (DicesWindow)o;
 			int result[] = {0,0};
-			System.out.printf("%d",result[0]);
 			game.SelectWinner(d.getAttackDices(), d.getDefenseDices(), result);
 			d.setResult(result);
 			
