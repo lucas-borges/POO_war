@@ -131,9 +131,66 @@ public class Game {
 	public void setCurrentPlayerWonATerritory(){
 		currentPlayerWonATerritory=true;
 	}
-	public int DistribuirTropas(){
+	public int[] DistribuirTropas(){
 		
-		return ((players[currentPlayerIndex].getNumTropasDist()/2)+realizaTroca());
+		int tropas[]=new int[8];
+		int an=0,asl=0,af=0,eu=0,as=0,oc=0;
+		for(int i=2;i<8;i++){
+			tropas[i]=0;
+		}
+		
+		tropas[0]=players[currentPlayerIndex].getNumTropasDist()/2;
+		
+		tropas[1]=realizaTroca();
+		
+		for(Territorio t:players[currentPlayerIndex].getTerritorios()){
+			switch (t.getContinente()){
+			
+			case AmericaDoNorte:
+				af++;
+				if(af==t.nAmNorte){
+					tropas[2]=5;
+				}
+				break;
+				
+			case AmericaDoSul:
+				asl++;
+				if(asl==t.nAmSul){
+					tropas[3]=2;
+				}
+				break;
+			
+			case Africa:
+				af++;
+				if(af==t.nAfrica){
+					tropas[4]=3;
+				}
+				break;
+				
+			case Europa:
+				eu++;
+				if(asl==t.nEuropa){
+					tropas[5]=5;
+				}
+				break;
+			
+			case Asia:
+				as++;
+				if(as==t.nAsia){
+					tropas[6]=7;
+				}
+				break;
+			
+			case Oceania:
+				oc++;
+				if(asl==t.nOceania){
+					tropas[7]=2;
+				}
+				break;			
+			}
+		}
+		
+		return tropas;
 		
 	}
 	public Color getCurrentColor ()	{
@@ -263,6 +320,7 @@ public class Game {
 
 	
 	public boolean ChecarObjetivo1(){
+		System.out.println("Checar Objetivo 1");
 		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a EUROPA, a OCEANIA e mais um terceiro.")){
 			if(players[currentPlayerIndex].nEuropa==Territorio.nEuropa && players[currentPlayerIndex].nOceania==Territorio.nOceania){
 				if(players[currentPlayerIndex].nAmNorte==Territorio.nAmNorte || players[currentPlayerIndex].nAmSul==Territorio.nAmSul 
@@ -288,52 +346,53 @@ public class Game {
 			}
 		}
 		
-		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a ASIA e a �FRICA.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a ASIA e a AFRICA.")){
 			if(players[currentPlayerIndex].nAsia == Territorio.nAsia && 
 					players[currentPlayerIndex].nAfrica == Territorio.nAfrica){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a AM�RICA DO NORTE e a �FRICA.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a AMERICA DO NORTE e a AFRICA.")){
 			if(players[currentPlayerIndex].nAmNorte == Territorio.nAmNorte && 
 					players[currentPlayerIndex].nAfrica == Territorio.nAfrica){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar 24 TERRIT�RIOS � sua escolha.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar 24 TERRITORIOS a sua escolha.")){
+			System.out.println("Checar 24T");
 			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
 					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
 					players[currentPlayerIndex].nOceania>=24){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a AM�RICA DO NORTE e a OCEANIA.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a AMERICA DO NORTE e a OCEANIA.")){
 			if(players[currentPlayerIndex].nAmNorte == Territorio.nAmNorte && 
 					players[currentPlayerIndex].nOceania == Territorio.nOceania){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS AZUIS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXERCITOS AZUIS.")){
 			return players[getPlayerIndex(Color.BLUE)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS AMARELOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXERCITOS AMARELOS.")){
 			return players[getPlayerIndex(Color.YELLOW)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS VERMELHOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXERCITOS VERMELHOS.")){
 			return players[getPlayerIndex(Color.RED)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS PRETOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXERCITOS PRETOS.")){
 			return players[getPlayerIndex(Color.BLACK)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS BRANCOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXERCITOS BRANCOS.")){
 			return players[getPlayerIndex(Color.WHITE)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EX�RCITOS VERDES.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXERCITOS VERDES.")){
 			return players[getPlayerIndex(Color.GREEN)].IsDead();
 		
 		}
@@ -341,7 +400,8 @@ public class Game {
 	}
 
 	public boolean ChecarObjetivo2(){
-		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRIT�RIOS e ocupar cada um deles com pelo menos dois ex�rcitos.")){
+		System.out.println("Checar Objetivo 2");
+		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRITORIOS e ocupar cada um deles com pelo menos dois exercitos.")){
 			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
 					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
 					players[currentPlayerIndex].nOceania>=18){
@@ -501,6 +561,7 @@ public class Game {
 	
 	
 	public boolean ChecarObjetivo(int n){
+		System.out.println("Checar Objetivo 1");
 		if(n==1)
 			return ChecarObjetivo1();
 		return ChecarObjetivo2();
