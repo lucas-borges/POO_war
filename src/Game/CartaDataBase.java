@@ -80,4 +80,13 @@ public class CartaDataBase {
 	public static void insereCarta(Carta c){
 		listaCartas.add(c);
 	}
+
+	public Carta getCarta (String fileTerritorio){
+		for(Carta c:listaCartas){
+			if(c.getFileTerritorio()==fileTerritorio){
+				return c;
+			}
+		}
+		return null;
+	}
 }
