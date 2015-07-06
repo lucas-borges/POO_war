@@ -528,7 +528,7 @@ public class Game {
 								}
 								s=sCurrentLine.substring(div1, div2);
 								System.out.println(s);
-								//players[i].addCard
+								players[i].adicionaCarta(CartaDataBase.);
 							}
 						}
 					}

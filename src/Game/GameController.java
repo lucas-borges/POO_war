@@ -1,6 +1,7 @@
 package Game;
 
 import GUI.AttackWindow;
+import GUI.CardsWindow;
 import GUI.DicesWindow;
 import GUI.MainWindow;
 import GUI.StartWindow;
@@ -9,6 +10,7 @@ import GUI.MovementWindow;
 
 import java.awt.*;
 import java.io.File;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -135,7 +137,16 @@ public class GameController implements Observer {
 			JOptionPane.showMessageDialog(null,"Objetivo:"+game.getCurrentPlayer().getObjetivo());
 		}
 		else if(x.equals("SideMenu_showCards")){
-			JOptionPane.showMessageDialog(null,"Cartas: ");
+			CardsWindow cardsWin = new CardsWindow();
+			String s[];
+			System.out.println("cartas size "+game.getCurrentPlayer().getCartas().size());
+			s=new String [game.getCurrentPlayer().getCartas().size()];
+			Iterator<Carta> i=	game.getCurrentPlayer().getCartas().iterator();
+			while(i.hasNext()){
+				int j=0;
+				s[j]=i.next().getFileName();
+			}
+			cardsWin.setCards(s);
 		}
 		/* end SideMenu events */
 		
