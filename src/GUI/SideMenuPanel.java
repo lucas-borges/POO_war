@@ -26,13 +26,14 @@ public class SideMenuPanel extends Observable
 
 	private JPanel p;
 	private ColorPanel orderPanel;
-	private int nTropasDist;
+	private int nTropasDist[];
 	
 	private JLabel Lab_territorio;
 	private JLabel Lab_cor;
 	private JLabel Lab_nTropas;
-	private JLabel Lab_tropasDist;
 	private JLabel Lab_information;
+	
+	private JLabel Lab_tropasDist[];
 	
 	private JButton But_alocarTropas;
 	private JButton But_terminarAtaque;
@@ -55,8 +56,13 @@ public class SideMenuPanel extends Observable
 		Lab_territorio=new JLabel("Clique num territorio para ver informacoes");
 		Lab_cor=new JLabel();
 		Lab_nTropas=new JLabel();
-		Lab_tropasDist=new JLabel("Voce tem "+nTropasDist+" tropas para distribuir");
 		Lab_information = new JLabel();
+		
+		//Lab_tropasDist=new JLabel("Voce tem "+nTropasDist+" tropas para distribuir");
+		Lab_tropasDist=new JLabel[7];
+		for(int i=0;i<7;i++){
+			Lab_tropasDist[i]= new JLabel();
+		}
 		
 		But_alocarTropas = new JButton("Alocar Tropas");
 		But_alocarTropas.setActionCommand("alocarTropas");
@@ -140,12 +146,14 @@ public class SideMenuPanel extends Observable
 		
 		row++;
 		
-		gbc.gridx=0;
-		gbc.gridy=row;
-		gbc.gridwidth=2;
-		p.add(Lab_tropasDist,gbc);
+		for(int i=0;i<7;i++){
+			gbc.gridx=0;
+			gbc.gridy=row;
+			gbc.gridwidth=2;
+			p.add(Lab_tropasDist[0],gbc);
 		
-		row++;
+			row++;
+		}
 		
 		gbc.gridx=0;
 		gbc.gridy=row;
@@ -228,9 +236,6 @@ public class SideMenuPanel extends Observable
 		But_alocarTropas.setEnabled(false);
 		orderPanel.nextTurn();
 	}
-
-	public void setTropas(int nTropas){ 
-	}
 	
 	public void setLabelTerritorio(String t, Color cor, int n){
 		Lab_territorio.setText(t);
@@ -244,20 +249,61 @@ public class SideMenuPanel extends Observable
 	public void setInfText (String t){
 		Lab_information.setText(t);
 	}
-	public int getTropasDist(){
+	public int[] getTropasDist(){
 		return nTropasDist;
 	}
-	public void setTropasDist (int n) {
-		nTropasDist=n;
-		Lab_tropasDist.setVisible(true);
-		Lab_tropasDist.setText("Voce tem "+nTropasDist+" tropas para distribuir");
-		if(nTropasDist==0){
-			Lab_tropasDist.setVisible(false);
+	public void setTropasDist (int[] v) {
+		nTropasDist=v;
+		int n=nTropasDist[0]+nTropasDist[1];
+		int sum=n;
+		Lab_tropasDist[0].setVisible(true);
+		Lab_tropasDist[0].setText("Voce tem "+n+" tropas para distribuir");
+		
+		int j=1;
+		for(int i=2;i<8;i++){
+			if(nTropasDist[i]>0){
+				String s=null;
+				switch(i){
+				case 2:
+					s = new String("Am do Norte");
+					break;
+				case 3:
+					s = new String("Am do Sul");
+					break;
+				case 4:
+					s = new String("Africa");
+					break;
+				case 5:
+					s = new String("Europa");
+					break;
+				case 6:
+					s = new String("Asia");
+					break;
+				case 7:
+					s = new String("Oceania");
+					break;
+				}
+				Lab_tropasDist[j].setVisible(true);
+				Lab_tropasDist[j].setText("Voce tem "+nTropasDist[i]+" tropas para distribuir na "+s);
+				sum+=nTropasDist[i];
+				j++;
+			}
+			else{
+				Lab_tropasDist[j].setVisible(false);
+			}
+		}
+		
+		if(sum==0){
+			Lab_tropasDist[0].setVisible(false);
 			But_alocarTropas.setEnabled(false);
 		}
 	}
 	public void enableAlocar(boolean b){
-		if(nTropasDist!=0)
+		int sum=0;
+		for (int i=0;i<8;i++){
+			sum+=nTropasDist[i];
+		}
+		if(sum!=0)
 			But_alocarTropas.setEnabled(b);
 	}
 	public void enableMover(boolean b){
