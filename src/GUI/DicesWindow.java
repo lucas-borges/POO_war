@@ -27,6 +27,7 @@ public class DicesWindow extends Observable implements ActionListener {
 	private int numDicesAttack [];
 	private Dices diceDefense = new Dices();
 	private int numDicesDefense [];
+	private JButton But_close;
 	
 	public DicesWindow()
 	{
@@ -35,6 +36,11 @@ public class DicesWindow extends Observable implements ActionListener {
 		this.rollDefenseDicesBut = new JButton("Rolar Dados Defesa");
 		this.clicked = false;
 		rollDefenseDicesBut.setEnabled(false);
+		
+		But_close = new JButton ("OK");
+		But_close.setActionCommand("closeWin");
+		But_close.addActionListener(this);
+		But_close.setEnabled(false);
 		//this.nAttackDices = 
 		//this.nDefenseDices = 
 	}
@@ -87,6 +93,13 @@ public class DicesWindow extends Observable implements ActionListener {
 		gbc.gridy=3;
 		c.add(ResultDefense, gbc);
 		
+		gbc.gridx=1;
+		gbc.gridy=2;
+		gbc.gridheight=2;
+		gbc.gridwidth=GridBagConstraints.REMAINDER;
+		c.add(But_close, gbc);
+		
+		
 		this.topLevelFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
 		this.topLevelFrame.pack();
@@ -119,49 +132,51 @@ public class DicesWindow extends Observable implements ActionListener {
 		return result;
 	}
 	
-		public void actionPerformed(ActionEvent e){
-			
-			String s=e.getActionCommand();
-			
-			if(s.equals("rollAttack"))
-			{
-				numDicesAttack= diceAttack.lancar_dados(nAttackDices);
-				Arrays.sort(numDicesAttack);
-				for(int i=0;i<numDicesAttack.length/2;i++) {
-				     // swap the elements
-				     int temp = numDicesAttack[i];
-				     numDicesAttack[i] = numDicesAttack[numDicesAttack.length-(i+1)];
-				     numDicesAttack[numDicesAttack.length-(i+1)] = temp;
-				}
-			
-				rollAttackDicesBut.setEnabled(false);
-				rollDefenseDicesBut.setEnabled(true);
-			
-				for(int i=0;i<nAttackDices;i++)
-				{
-					AttackDices[i].setIcon(new ImageIcon("Dados/dado_ataque_"+numDicesAttack[i]+".png"));		
-				}
+	public void actionPerformed(ActionEvent e){
+		
+		String s=e.getActionCommand();
+		
+		if(s.equals("rollAttack")){
+			numDicesAttack= diceAttack.lancar_dados(nAttackDices);
+			Arrays.sort(numDicesAttack);
+			for(int i=0;i<numDicesAttack.length/2;i++) {
+			     // swap the elements
+			     int temp = numDicesAttack[i];
+			     numDicesAttack[i] = numDicesAttack[numDicesAttack.length-(i+1)];
+			     numDicesAttack[numDicesAttack.length-(i+1)] = temp;
 			}
-			else if(s.equals("rollDefense"))
+		
+			rollAttackDicesBut.setEnabled(false);
+			rollDefenseDicesBut.setEnabled(true);
+		
+			for(int i=0;i<nAttackDices;i++)
 			{
-				numDicesDefense = diceDefense.lancar_dados(nDefenseDices);
-				Arrays.sort(numDicesDefense);
-				for(int i=0;i<numDicesDefense.length/2;i++) {
-				     // swap the elements
-				     int temp = numDicesDefense[i];
-				     numDicesDefense[i] = numDicesDefense[numDicesDefense.length-(i+1)];
-				     numDicesDefense[numDicesDefense.length-(i+1)] = temp;
-				}
-				
-				rollDefenseDicesBut.setEnabled(false);
-				
-				for(int i=0;i<nDefenseDices;i++)
-				{
-					DefenseDices[i].setIcon(new ImageIcon("Dados/dado_defesa_"+numDicesDefense[i]+".png"));		
-				}
-				
-				setChanged();
-				notifyObservers(new String ("DicesWindow_dadosRolados"));
-			}        	
+				AttackDices[i].setIcon(new ImageIcon("Dados/dado_ataque_"+numDicesAttack[i]+".png"));		
+			}
 		}
+		else if(s.equals("rollDefense")){
+			numDicesDefense = diceDefense.lancar_dados(nDefenseDices);
+			Arrays.sort(numDicesDefense);
+			for(int i=0;i<numDicesDefense.length/2;i++) {
+			     // swap the elements
+			     int temp = numDicesDefense[i];
+			     numDicesDefense[i] = numDicesDefense[numDicesDefense.length-(i+1)];
+			     numDicesDefense[numDicesDefense.length-(i+1)] = temp;
+			}
+			
+			rollDefenseDicesBut.setEnabled(false);
+			But_close.setEnabled(true);
+			
+			for(int i=0;i<nDefenseDices;i++)
+			{
+				DefenseDices[i].setIcon(new ImageIcon("Dados/dado_defesa_"+numDicesDefense[i]+".png"));		
+			}
+			
+			setChanged();
+			notifyObservers(new String ("DicesWindow_dadosRolados"));
+		}
+		else if(s.equals("closeWin")){
+			topLevelFrame.dispose();
+		}
+	}
 }
