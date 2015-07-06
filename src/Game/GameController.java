@@ -88,7 +88,6 @@ public class GameController implements Observer {
 				game=new Game(path);
 	
 				gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
-				gameWin.repaint();
 				gameWin.setTropasDist(game.DistribuirTropas());
 				gameWin.setInfText("Clique num territorio seu para alocar tropas");
 				
@@ -239,6 +238,7 @@ public class GameController implements Observer {
 			
 			
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
+			gameWin.repaint();
 			if(tropas[0]==0&&tropas[2]==0&&tropas[3]==0&&tropas[4]==0&&tropas[5]==0&&tropas[6]==0&&tropas[7]==0){
 				this.advanceGameState();
 			}
