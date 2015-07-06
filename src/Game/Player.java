@@ -24,6 +24,7 @@ public class Player {
 	public Player (Color x){
 		color=x;
 		territorios=new ArrayList<Territorio>();
+		cartas=new ArrayList<Carta>();
 	}
 	public void addTerr (Territorio t){
 		territorios.add(t);
@@ -114,10 +115,18 @@ public class Player {
 	public ArrayList<Territorio> getTerritorios(){
 		return territorios;
 	}
+
+	public void adicionaCarta(Carta c){
+		cartas.add(c);
+	}
+	public ArrayList<Carta> getCartas(){
+		return cartas;
+	}
 	public boolean IsDead(){
 		return territorios.isEmpty();
 	}
 	
+
 	//DEBUG
 	public void listTerr(){
 		for(Territorio t:territorios){

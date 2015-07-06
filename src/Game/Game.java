@@ -10,11 +10,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import controller.Territorio;
 import etc.enumColor;
 import etc.enumTerritorio;
 import etc.enumColor.NamedColor;
 import etc.enumObjetivo.Objetivo;
+
+import etc.Figura;
+
+
 import etc.enumTerritorio.nomePais;
 
 public class Game {
@@ -22,6 +29,9 @@ public class Game {
 	private Player[] players;
 	private int currentPlayerIndex;
 	private int turn;
+	private int nTrocas=0;
+	private boolean currentPlayerWonATerritory;
+	private boolean trocaRealizada=false;
 	
 	
 	public Game (int n){
@@ -46,7 +56,11 @@ public class Game {
 	public void nextTurn (){
 		
 		turn++;
+<<<<<<< HEAD
 		
+=======
+		currentPlayerWonATerritory=false;
+>>>>>>> origin/master
 		if(currentPlayerIndex==nPlayers-1){
 			currentPlayerIndex=0;
 		}
@@ -99,10 +113,12 @@ public class Game {
 	public Player getCurrentPlayer(){
 		return players[currentPlayerIndex];
 	}
-	
+	public void setCurrentPlayerWonATerritory(){
+		currentPlayerWonATerritory=true;
+	}
 	public int DistribuirTropas(){
 		
-		return players[currentPlayerIndex].getNumTropasDist()/2;
+		return ((players[currentPlayerIndex].getNumTropasDist()/2)+realizaTroca());
 		
 	}
 	public Color getCurrentColor ()	{
@@ -255,13 +271,13 @@ public class Game {
 				
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a ASIA e a AMÉRICA DO SUL.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a ASIA e a AMï¿½RICA DO SUL.")){
 			if(players[currentPlayerIndex].nAsia == Territorio.nAsia && 
 					players[currentPlayerIndex].nAmSul == Territorio.nAmSul){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a EUROPA, a AMÉRICA DO SUL e mais um terceiro.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a EUROPA, a AMï¿½RICA DO SUL e mais um terceiro.")){
 			if(players[currentPlayerIndex].nEuropa==Territorio.nEuropa && players[currentPlayerIndex].nAmSul==Territorio.nAmSul){
 				if(players[currentPlayerIndex].nAmNorte==Territorio.nAmNorte || players[currentPlayerIndex].nAfrica==Territorio.nAfrica 
 						|| players[currentPlayerIndex].nOceania==Territorio.nOceania || players[currentPlayerIndex].nAsia == Territorio.nAsia){
@@ -271,19 +287,19 @@ public class Game {
 			}
 		}
 		
-		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a ASIA e a ÁFRICA.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a ASIA e a ï¿½FRICA.")){
 			if(players[currentPlayerIndex].nAsia == Territorio.nAsia && 
 					players[currentPlayerIndex].nAfrica == Territorio.nAfrica){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a AMÉRICA DO NORTE e a ÁFRICA.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar na totalidade a AMï¿½RICA DO NORTE e a ï¿½FRICA.")){
 			if(players[currentPlayerIndex].nAmNorte == Territorio.nAmNorte && 
 					players[currentPlayerIndex].nAfrica == Territorio.nAfrica){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar 24 TERRITÓRIOS à sua escolha.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Conquistar 24 TERRITï¿½RIOS ï¿½ sua escolha.")){
 			System.out.println("Checando 24T");
 			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
 					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
@@ -291,41 +307,151 @@ public class Game {
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a AMÉRICA DO NORTE e a OCEANIA.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar na totalidade a AMï¿½RICA DO NORTE e a OCEANIA.")){
 			if(players[currentPlayerIndex].nAmNorte == Territorio.nAmNorte && 
 					players[currentPlayerIndex].nOceania == Territorio.nOceania){
 				return true;
 			}
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXÉRCITOS AZUIS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXï¿½RCITOS AZUIS.")){
 			return players[getPlayerIndex(Color.BLUE)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXÉRCITOS AMARELOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXï¿½RCITOS AMARELOS.")){
 			return players[getPlayerIndex(Color.YELLOW)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXÉRCITOS VERMELHOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXï¿½RCITOS VERMELHOS.")){
 			return players[getPlayerIndex(Color.RED)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXÉRCITOS PRETOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXï¿½RCITOS PRETOS.")){
 			return players[getPlayerIndex(Color.BLACK)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXÉRCITOS BRANCOS.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXï¿½RCITOS BRANCOS.")){
 			return players[getPlayerIndex(Color.WHITE)].IsDead();
 		
 		}
-		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXÉRCITOS VERDES.")){
+		else if(players[currentPlayerIndex].getObjetivo().equals("Destruir totalmente OS EXï¿½RCITOS VERDES.")){
 			return players[getPlayerIndex(Color.GREEN)].IsDead();
 		
 		}
 		return false;
 	}
+
+	
+	public void recebeCarta(){
+		if(currentPlayerWonATerritory){
+			currentPlayerWonATerritory=false;
+			Carta c=CartaDataBase.puxaCarta();
+			JOptionPane.showMessageDialog(null, "Carta recebida", "Carta conquistada", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(c.getFileName()));
+			players[currentPlayerIndex].adicionaCarta(c);
+		}
+	}
+	public int realizaTroca(){
+		boolean trocaPossivel=false,randomT=true,randomQ=true,randomC=true;
+		int i=0,it=0,iq=0,ic=0,ir=0;
+		int indexCartas[]=null;
+		int indexT[]=new int[3];
+		int indexQ[]=new int[3];
+		int indexC[]=new int[3];
+		int indexR[]=new int[3];
+		for(Carta c : players[currentPlayerIndex].getCartas()){
+			switch (c.getFigura()){
+			
+			case triangulo:
+				indexT[it++]=i;
+				System.out.println("Adicionado no T");
+				if(randomT){
+					randomT=false;
+					indexR[ir++]=i;
+					System.out.println("Adicionado no random");
+				}
+				break;
+			case quadrado:
+				indexQ[iq++]=i;
+				System.out.println("Adicionado no quadrado");
+				if(randomQ){
+				    randomQ=false;
+					indexR[ir++]=i;
+					System.out.println("Adicionado no random");
+				}
+				break;
+			case circulo:
+				indexC[ic++]=i;
+				System.out.println("Adicionado no circulo");
+				if(randomC){
+					randomC=false;
+					indexR[ir++]=i;
+					System.out.println("adicionado no random");
+				}
+				break;
+			case coringa:
+				indexT[it++]=i;
+				indexQ[iq++]=i;
+				indexC[ic++]=i;
+				indexR[ir++]=i;
+				System.out.println("adicionado em todos");
+				break;
+			}
+			if(it==3){
+				System.out.println("it==3");
+				indexCartas=indexT;
+				trocaPossivel=true;
+				break;
+			}
+			if(iq==3){
+				System.out.println("iq==3");
+				indexCartas=indexQ;
+				trocaPossivel=true;
+				break;
+			}
+			if(ic==3){
+				System.out.println("ic==3");
+				indexCartas=indexC;
+				trocaPossivel=true;
+				break;
+			}
+			if(ir==3){
+				System.out.println("ir==3");
+				indexCartas=indexR;
+				trocaPossivel=true;
+				break;
+			}
+			i++;
+		}
+		
+		if (trocaPossivel) {
+			System.out.println("vai trocar");
+			trocaRealizada=true;
+			for (int icartas=2;icartas>=0;icartas--) {
+				System.out.println(indexCartas[icartas]);
+				System.out.println(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName());
+				CartaDataBase.insereCarta(players[currentPlayerIndex].getCartas().remove(indexCartas[icartas]));// devolve as cartas para o "baralho"
+			}
+			if (nTrocas < 5) {
+				return 4 + (2 * (nTrocas++));
+			}
+			return 15 + (5 * ((nTrocas++) - 5));
+		}
+		
+		return 0;
+	}
+	public boolean realizouTroca(){
+		if (trocaRealizada==true){
+			trocaRealizada=false;
+			return true;
+		}
+		return false;
+	}
+	public int getNTrocas(){
+		return nTrocas;
+	}
+
 	
 	public boolean ChecarObjetivo2(){
-		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRITÓRIOS e ocupar cada um deles com pelo menos dois exércitos.")){
+		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRITï¿½RIOS e ocupar cada um deles com pelo menos dois exï¿½rcitos.")){
 			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
 					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
 					players[currentPlayerIndex].nOceania>=18){
@@ -410,7 +536,27 @@ public class Game {
 						
 						for(Objetivo o:objs){
 							this.SetarObjetivo(players[i],o);
-						i++;
+							i++;
+						}
+					}
+					else if(sCurrentLine.startsWith("@")){
+						int div1=1,div2, i;
+						div2=sCurrentLine.indexOf(' ');
+						
+						if(div2!=-1){
+							String s=sCurrentLine.substring(div1, div2);
+							i=Integer.parseInt(s);
+							
+							while(div2!=sCurrentLine.length()){
+								div1=div2+1;
+								div2=sCurrentLine.indexOf(' ',div2+1);
+								if(div2==-1){
+									div2=sCurrentLine.length();
+								}
+								s=sCurrentLine.substring(div1, div2);
+								System.out.println(s);
+								//players[i].addCard
+							}
 						}
 					}
 					else{

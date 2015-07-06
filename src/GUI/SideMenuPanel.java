@@ -85,6 +85,7 @@ public class SideMenuPanel extends Observable
 		But_terminarAtaque.setEnabled(false);
 		
 		if(BUTTONS_ALWAYS_ENABLED==true){
+			But_nextTurn.setEnabled(true);
 			But_alocarTropas.setEnabled(true);
 			But_atacar.setEnabled(true);
 			But_mover.setEnabled(true);
