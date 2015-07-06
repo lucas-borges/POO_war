@@ -12,6 +12,8 @@ import java.util.Observable;
 
 
 
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -233,6 +235,9 @@ public class SideMenuPanel extends Observable
 	public void setLabelTerritorio(String t, Color cor, int n){
 		Lab_territorio.setText(t);
 		Lab_cor.setForeground(cor);
+		Lab_cor.setBackground(cor);
+		Lab_cor.setOpaque(true);
+		Lab_cor.setBorder(BorderFactory.createLineBorder(Color.black));
 		Lab_cor.setText("   ***");
 		Lab_nTropas.setText(Integer.toString(n)+ " tropas");
 	}
@@ -268,7 +273,8 @@ public class SideMenuPanel extends Observable
 		But_nextTurn.setEnabled(b);
 	}
 	
-//NESTED CLASSES	
+//NESTED CLASSES
+	
 	private class ColorPanel extends JPanel {
 		public int n;
 		public Color[] colors;
