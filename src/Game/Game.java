@@ -169,7 +169,7 @@ public class Game {
 				
 			case Europa:
 				eu++;
-				if(asl==t.nEuropa){
+				if(eu==t.nEuropa){
 					tropas[5]=5;
 				}
 				break;
@@ -183,7 +183,7 @@ public class Game {
 			
 			case Oceania:
 				oc++;
-				if(asl==t.nOceania){
+				if(oc==t.nOceania){
 					tropas[7]=2;
 				}
 				break;			

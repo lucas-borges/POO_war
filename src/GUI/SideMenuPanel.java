@@ -150,7 +150,7 @@ public class SideMenuPanel extends Observable
 			gbc.gridx=0;
 			gbc.gridy=row;
 			gbc.gridwidth=2;
-			p.add(Lab_tropasDist[0],gbc);
+			p.add(Lab_tropasDist[i],gbc);
 		
 			row++;
 		}
@@ -263,7 +263,6 @@ public class SideMenuPanel extends Observable
 		for(int i=2;i<8;i++){
 			System.out.println("vetor de tropas: "+nTropasDist[i]);
 			if(nTropasDist[i]>0){
-				System.out.println("entrou em maior que 0");
 				String s=null;
 				switch(i){
 				case 2:
@@ -285,16 +284,18 @@ public class SideMenuPanel extends Observable
 					s = new String("Oceania");
 					break;
 				}
+				System.out.println("entrou em maior que 0");
 				Lab_tropasDist[j].setVisible(true);
 				Lab_tropasDist[j].setText("Voce tem "+nTropasDist[i]+" tropas para distribuir na "+s);
 				sum+=nTropasDist[i];
 				j++;
 			}
 			else{
+				System.out.println("entro em menor que 0");
 				Lab_tropasDist[j].setVisible(false);
 			}
 		}
-		
+		System.out.println(sum);
 		if(sum==0){
 			Lab_tropasDist[0].setVisible(false);
 			But_alocarTropas.setEnabled(false);
