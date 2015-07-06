@@ -84,6 +84,7 @@ public class CartaDataBase {
 	public Carta getCarta (String fileTerritorio){
 		for(Carta c:listaCartas){
 			if(c.getFileTerritorio()==fileTerritorio){
+				listaCartas.remove(c);
 				return c;
 			}
 		}
