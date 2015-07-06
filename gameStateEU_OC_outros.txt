@@ -1,0 +1,71 @@
+//numero jogadores
+-3
+
+//cor obj
+#azul T24
+#vermelho AmNor_OC
+#preto EU_OC_outros
+//separador
+$
+//africa cor nTropas
+AfricaDoSul 2 1
+Angola 1 10
+Argelia 1 1
+Egito 1 1
+Nigeria 1 1
+Somalia 1 1
+
+//america do norte
+Alasca 1 1
+Calgary 1 1
+California 1 1
+Groelandia 1 1
+Mexico 1 1
+NovaYork 1 1
+Quebec 1 1
+Texas 1 1
+Vancouver 1 1
+
+//america do sul
+Argentina 1 2
+Brasil 1 2
+Peru 3 2
+Venezuela 3 2
+
+//europa
+Espanha 3 3
+Franca 3 3
+Italia 3 3
+Polonia 3 3
+ReinoUnido 3 3
+Romenia 3 3
+Suecia 3 3
+Ucrania 3 3
+
+//oceania
+Australia 3 5
+Indonesia 3 5
+NovaZelandia 3 5
+Perth 1 1
+
+//asia
+ArabiaSaudita 1 5
+Bangladesh 1 5
+Cazaquistao 1 5
+Mongolia 1 5
+China 2 5
+CoreiaDoNorte 2 5
+CoreiaDoSul 2 5
+Estonia 2 5
+India 2 5
+Ira 2 5
+Iraque 2 5
+Japao 2 5
+Jordania 2 5
+Letonia 2 5
+Paquistao 2 5
+Russia 2 5
+Siberia 2 5
+Siria 2 5
+Tailandia 2 5
+Turquia 2 5
