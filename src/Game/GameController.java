@@ -163,6 +163,8 @@ public class GameController implements Observer {
 			if(target.getNTropas()==0){
 				game.getPlayer(target.getOwnerColor()).removeTerr(target);
 				if(game.getPlayer(target.getOwnerColor()).IsDead()){
+					game.setDead(game.getPlayerIndex(target.getOwnerColor()));
+					gameWin.setColorPanel(game.getNPlayersAlive(),game.getAliveColorOrder());
 					if(game.ChecarMorteJogador(game.getPlayer(target.getOwnerColor())))
 						JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
 				}
