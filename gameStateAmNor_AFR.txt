@@ -2,7 +2,7 @@
 -3
 
 //cor obj
-#azul 18T
+#azul T18
 #vermelho AS_AFR
 #preto AmNor_AFR
 //separador
