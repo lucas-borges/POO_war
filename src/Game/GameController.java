@@ -119,13 +119,18 @@ public class GameController implements Observer {
 			case AmericaDoNorte:
 				if(tropas[2]>0){
 					tropas[2]--;
+					game.deltaT(terrCorr,1);
 				}
 				else{
 					if(tropas[1]>0){
 						tropas[1]--;
+						game.deltaT(terrCorr,1);
 					}
 					else{
-						tropas[0]--;
+						if(tropas[0]>0){
+							tropas[0]--;
+							game.deltaT(terrCorr,1);
+						}
 					}
 				}
 				break;
@@ -133,72 +138,98 @@ public class GameController implements Observer {
 			case AmericaDoSul:
 				if(tropas[3]>0){
 					tropas[3]--;
+					game.deltaT(terrCorr,1);
 				}
 				else{
 					if(tropas[1]>0){
 						tropas[1]--;
+						game.deltaT(terrCorr,1);
 					}
 					else{
-						tropas[0]--;
+						if(tropas[0]>0){
+						
+							tropas[0]--;
+							game.deltaT(terrCorr,1);
+						}
 					}
 				}
 				break;
 			case Africa:
 				if(tropas[4]>0){
 					tropas[4]--;
+					game.deltaT(terrCorr,1);
 				}
 				else{
 					if(tropas[1]>0){
 						tropas[1]--;
+						game.deltaT(terrCorr,1);
 					}
 					else{
-						tropas[0]--;
+						if(tropas[0]>0){
+							tropas[0]--;
+							game.deltaT(terrCorr,1);
+						}
 					}
 				}
 				break;
 			case Europa:
 				if(tropas[5]>0){
 					tropas[5]--;
+					game.deltaT(terrCorr,1);
 				}
 				else{
 					if(tropas[1]>0){
 						tropas[1]--;
+						game.deltaT(terrCorr,1);
 					}
 					else{
-						tropas[0]--;
+						if(tropas[0]>0){
+							tropas[0]--;
+							game.deltaT(terrCorr,1);
+						}
 					}
 				}
 				break;
 			case Asia:
 				if(tropas[6]>0){
 					tropas[6]--;
+					game.deltaT(terrCorr,1);
 				}
 				else{
 					if(tropas[1]>0){
 						tropas[1]--;
+						game.deltaT(terrCorr,1);
 					}
 					else{
-						tropas[0]--;
+						if(tropas[0]>0){
+							tropas[0]--;
+							game.deltaT(terrCorr,1);
+						}
 					}
 				}
 				break;
 			case Oceania:
 				if(tropas[7]>0){
 					tropas[7]--;
+					game.deltaT(terrCorr,1);
 				}
 				else{
 					if(tropas[1]>0){
 						tropas[1]--;
+						game.deltaT(terrCorr,1);
 					}
 					else{
-						tropas[0]--;
+						if(tropas[0]>0){
+							tropas[0]--;
+							game.deltaT(terrCorr,1);
+						}
 					}					
 				}
 				break;
 			}
 			p.setTropasDist(tropas);
 			
-			game.deltaT(terrCorr,1);
+			
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
 			if(tropas[0]==0&&tropas[2]==0&&tropas[3]==0&&tropas[4]==0&&tropas[5]==0&&tropas[6]==0&&tropas[7]==0){
 				this.advanceGameState();

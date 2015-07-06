@@ -284,14 +284,12 @@ public class SideMenuPanel extends Observable
 					s = new String("Oceania");
 					break;
 				}
-				System.out.println("entrou em maior que 0");
 				Lab_tropasDist[j].setVisible(true);
 				Lab_tropasDist[j].setText("Voce tem "+nTropasDist[i]+" tropas para distribuir na "+s);
 				sum+=nTropasDist[i];
 				j++;
 			}
 			else{
-				System.out.println("entro em menor que 0");
 				Lab_tropasDist[j].setVisible(false);
 			}
 		}
