@@ -55,11 +55,11 @@ public class GameController implements Observer {
 			game=new Game(nPlayers);
 			
 			System.out.println("Jogo criado com " + game.getNPlayers());
-			/**/gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
+			gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
 			
-			/**/game.randomizeStart();
-			/**///game.playerTerr(0);
+			game.randomizeStart();
+			
 			game.DistribuirObjetivos();
 			gameWin.setTropasDist(game.DistribuirTropas());
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
@@ -71,6 +71,7 @@ public class GameController implements Observer {
 			final JFileChooser fc = new JFileChooser(new File(System.getProperty("user.dir")));
 			FileFilter filter= new FileNameExtensionFilter("Text Files", "txt");
 			fc.setFileFilter(filter);
+			fc.setSelectedFile(new File("gameState.txt"));
 			
 			int returnVal =fc.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -160,6 +161,7 @@ public class GameController implements Observer {
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
 				if(game.ChecarObjetivo(1))
 					JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
+				
 			}
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
 		}
