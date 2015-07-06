@@ -66,7 +66,7 @@ public class Game {
 			currentPlayerIndex++;
 		}
 		
-		while(players[currentPlayerIndex].IsDead()){
+		/*while(players[currentPlayerIndex].IsDead()){
 			
 			if(currentPlayerIndex==nPlayers-1){
 				currentPlayerIndex=0;
@@ -75,25 +75,25 @@ public class Game {
 				currentPlayerIndex++;
 			}
 		}
-		System.out.println(players[currentPlayerIndex].getColor());
+		System.out.println(players[currentPlayerIndex].getColor());*/
 	}
 	
 	
 	public Color[] getColorOrder(){
-		int n = nPlayers;
+		/*int n = nPlayers;
 		for(Player p: players){
 			if (p.IsDead()){
 				n--;
 			}
-		}
-		Color order[]=new Color[n];
+		}*/
+		Color order[]=new Color[nPlayers];
 		int i=0;
 		
 		for(Player p:players){
-			if(!p.IsDead()){
+			//if(!p.IsDead()){
 				order[i]=p.getColor();
 				i++;
-			}
+			//}
 		}
 		/*for(Color c:order){
 			System.out.println(c.name());
@@ -457,6 +457,11 @@ public class Game {
 			for (int icartas=2;icartas>=0;icartas--) {
 				System.out.println(indexCartas[icartas]);
 				System.out.println(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName());
+				for(Territorio t:players[currentPlayerIndex].getTerritorios()){
+					if(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName().equalsIgnoreCase(nomePais.valueOf(t.toString()).toString())){
+						t.deltaTropas(2);
+					}
+				}
 				CartaDataBase.insereCarta(players[currentPlayerIndex].getCartas().remove(indexCartas[icartas]));// devolve as cartas para o "baralho"
 			}
 			if (nTrocas < 5) {
