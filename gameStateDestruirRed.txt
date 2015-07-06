@@ -2,9 +2,9 @@
 -3
 
 //cor obj
-#azul Red
+#azul T24
 #vermelho AmNor_OC
-#preto T18
+#preto Red
 //separador
 $
 //africa cor nTropas
