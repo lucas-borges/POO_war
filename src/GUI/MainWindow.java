@@ -68,7 +68,7 @@ public class MainWindow extends Observable{
 	public void enableAtacar(boolean b){
 		side_menu_panel.enableAtacar(b);
 	}
-	public void setTropasDist(int n){
+	public void setTropasDist(int[] n){
 		side_menu_panel.setTropasDist(n);
 	}
 	public void enableTerminarAtacar(boolean b){

@@ -147,8 +147,8 @@ public class Game {
 			switch (t.getContinente()){
 			
 			case AmericaDoNorte:
-				af++;
-				if(af==t.nAmNorte){
+				an++;
+				if(an==t.nAmNorte){
 					tropas[2]=5;
 				}
 				break;

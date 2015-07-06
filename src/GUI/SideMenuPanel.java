@@ -258,10 +258,12 @@ public class SideMenuPanel extends Observable
 		int sum=n;
 		Lab_tropasDist[0].setVisible(true);
 		Lab_tropasDist[0].setText("Voce tem "+n+" tropas para distribuir");
-		
+		System.out.println("vetor de tropas: "+n);
 		int j=1;
 		for(int i=2;i<8;i++){
+			System.out.println("vetor de tropas: "+nTropasDist[i]);
 			if(nTropasDist[i]>0){
+				System.out.println("entrou em maior que 0");
 				String s=null;
 				switch(i){
 				case 2:
