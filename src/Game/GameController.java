@@ -136,14 +136,21 @@ public class GameController implements Observer {
 		}
 		else if(x.equals("SideMenu_showCards")){
 			CardsWindow cardsWin = new CardsWindow();
+			cardsWin.createGUI();
 			String s[];
 			System.out.println("cartas size "+game.getCurrentPlayer().getCartas().size());
 			s=new String [game.getCurrentPlayer().getCartas().size()];
 			Iterator<Carta> i=	game.getCurrentPlayer().getCartas().iterator();
+			int j=0;
 			while(i.hasNext()){
-				int j=0;
+				
+				//System.out.println("String "+i.next().getFileName());
 				s[j]=i.next().getFileName();
+				System.out.println("String2 "+ s[j]);
+				j++;
+				
 			}
+			System.out.println("J: "+j);
 			cardsWin.setCards(s);
 		}
 		/* end SideMenu events */

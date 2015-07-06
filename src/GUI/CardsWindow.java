@@ -18,17 +18,22 @@ public class CardsWindow extends Observable
 	private JFrame topLevelFrame;
 	
 	private JButton But_close;
-	private JLabel Lab_vet[];
+	private JLabel Lab_vet[] = {new JLabel(),new JLabel(), new JLabel(), new JLabel(), new JLabel()};
 	
 	
 	public CardsWindow (){
 		topLevelFrame = new JFrame("Cartas");
 		
-		Lab_vet = new JLabel[5];
+		//Lab_vet = new JLabel[5];
 		
-		for(JLabel l:Lab_vet){
+		/*for(JLabel l:Lab_vet){
 			l=new JLabel();
-		}
+		}*/
+		
+		/*for(int i=0;i<5;i++){
+			Lab_vet[i] = new JLabel("Carta"+i);
+			Lab_vet[i].setVisible(true);
+		}*/
 		
 		But_close = new JButton("OK");
 		But_close.setActionCommand("closeWindow");
@@ -55,7 +60,7 @@ public class CardsWindow extends Observable
 		
 		this.topLevelFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.topLevelFrame.setResizable(false);
-		this.topLevelFrame.pack();
+		
 		this.topLevelFrame.setLocationRelativeTo(null);
 		this.topLevelFrame.setVisible(true);
 	}
@@ -65,18 +70,22 @@ public class CardsWindow extends Observable
 		System.out.println(s.length);
 		for(String path:s){
 			System.out.println("i::"+i);
+			System.out.println(path);
 			Icon ic=new ImageIcon(path);
 			if(Lab_vet[i]==null){
 				System.out.println("ee nullllll");
 			}
 			Lab_vet[i].setIcon(ic);
-			i++;
 			Lab_vet[i].setVisible(true);
+			
+			i++;
 		}
-		for(;i<5;i++){
+		/*for(;i<5;i++){
 			System.out.println(i);
 			Lab_vet[i].setVisible(false);
-		}
+		}*/
+		
+		this.topLevelFrame.pack();
 	}
 	
 	public void actionPerformed(ActionEvent e){
