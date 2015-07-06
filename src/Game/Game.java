@@ -56,11 +56,9 @@ public class Game {
 	public void nextTurn (){
 		
 		turn++;
-<<<<<<< HEAD
-		
-=======
+
 		currentPlayerWonATerritory=false;
->>>>>>> origin/master
+
 		if(currentPlayerIndex==nPlayers-1){
 			currentPlayerIndex=0;
 		}
