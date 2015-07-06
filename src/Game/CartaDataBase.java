@@ -86,6 +86,7 @@ public class CartaDataBase {
 			//System.out.println(c.getFileTerritorio());
 			if(c.getFileTerritorio().equals(fileTerritorio)){
 				//System.out.println(c.getFileTerritorio());
+				listaCartas.remove(c);
 				return c;
 			}
 		}
