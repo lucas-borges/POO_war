@@ -155,6 +155,7 @@ public class GameController implements Observer {
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
 				if(game.ChecarObjetivo(1))
 					JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
+				
 			}
 			gameWin.displayT(terrCorr.getNome().getNome(),terrCorr.getOwnerColor(),terrCorr.getNTropas());
 		}

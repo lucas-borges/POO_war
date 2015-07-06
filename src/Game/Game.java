@@ -44,23 +44,43 @@ public class Game {
 		turn=1;
 	}
 	public void nextTurn (){
+		
 		turn++;
+		
 		if(currentPlayerIndex==nPlayers-1){
 			currentPlayerIndex=0;
 		}
 		else {
 			currentPlayerIndex++;
 		}
+		
+		while(players[currentPlayerIndex].IsDead()){
+			
+			if(currentPlayerIndex==nPlayers-1){
+				currentPlayerIndex=0;
+			}
+			else {
+				currentPlayerIndex++;
+			}
+		}
 	}
 	
 	
 	public Color[] getColorOrder(){
-		Color order[]=new Color[nPlayers];
+		int n = nPlayers;
+		for(Player p: players){
+			if (p.IsDead()){
+				n--;
+			}
+		}
+		Color order[]=new Color[n];
 		int i=0;
 		
 		for(Player p:players){
-			order[i]=p.getColor();
-			i++;
+			if(!p.IsDead()){
+				order[i]=p.getColor();
+				i++;
+			}
 		}
 		/*for(Color c:order){
 			System.out.println(c.name());
@@ -195,16 +215,19 @@ public class Game {
 			for(int i=0;i<nPlayers;i++){
 				System.out.println(players[i].getColor());
 			}
-			//for(Player P: players){
-				//Color cplayer = P.getColor();
-				//System.out.println(P.getObjetivo());
-				//System.out.println(NamedColor.getMatch(P.getColor()).getColorPlural());
-				//if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
-					//return;
+			for(Player P: players){
+				Color cplayer = P.getColor();
+				System.out.println(NamedColor.getMatch(P.getColor()).getColorPlural());
+				if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
+					return;
+				}
+				
 			}
-	}
-			//p.setObjetivo(Objetivo.T24);
+			p.setObjetivo(Objetivo.T24);
 
+		}
+	}
+			
 	
 	
 	public void DistribuirObjetivos(){
@@ -219,6 +242,7 @@ public class Game {
 			
 		}
 	}
+
 	
 	public boolean ChecarObjetivo1(){
 		System.out.println("Checar Objetivos");
