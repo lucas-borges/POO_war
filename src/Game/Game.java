@@ -115,9 +115,66 @@ public class Game {
 	public void setCurrentPlayerWonATerritory(){
 		currentPlayerWonATerritory=true;
 	}
-	public int DistribuirTropas(){
+	public int[] DistribuirTropas(){
 		
-		return ((players[currentPlayerIndex].getNumTropasDist()/2)+realizaTroca());
+		int tropas[]=new int[8];
+		int an=0,asl=0,af=0,eu=0,as=0,oc=0;
+		for(int i=2;i<8;i++){
+			tropas[i]=0;
+		}
+		
+		tropas[0]=players[currentPlayerIndex].getNumTropasDist()/2;
+		
+		tropas[1]=realizaTroca();
+		
+		for(Territorio t:players[currentPlayerIndex].getTerritorios()){
+			switch (t.getContinente()){
+			
+			case AmericaDoNorte:
+				af++;
+				if(af==t.nAmNorte){
+					tropas[2]=5;
+				}
+				break;
+				
+			case AmericaDoSul:
+				asl++;
+				if(asl==t.nAmSul){
+					tropas[3]=2;
+				}
+				break;
+			
+			case Africa:
+				af++;
+				if(af==t.nAfrica){
+					tropas[4]=3;
+				}
+				break;
+				
+			case Europa:
+				eu++;
+				if(asl==t.nEuropa){
+					tropas[5]=5;
+				}
+				break;
+			
+			case Asia:
+				as++;
+				if(as==t.nAsia){
+					tropas[6]=7;
+				}
+				break;
+			
+			case Oceania:
+				oc++;
+				if(asl==t.nOceania){
+					tropas[7]=2;
+				}
+				break;			
+			}
+		}
+		
+		return tropas;
 		
 	}
 	public Color getCurrentColor ()	{
