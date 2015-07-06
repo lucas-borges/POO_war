@@ -8,7 +8,7 @@
 //cartas
 $
 @1 brasil argentina
-@2
+@2 coringa
 @3
 //africa cor nTropas
 AfricaDoSul 1 1

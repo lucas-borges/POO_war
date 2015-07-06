@@ -25,7 +25,7 @@ public class Carta {
 	public String getFileName(){
 		System.out.println(file_territorio);
 		if(file_territorio.equals("coringa")){
-			return "war_carta_coringa.png";
+			return "Cartas/war_carta_coringa.png";
 		}
 		Territorio t=TerritorioDataBase.buscaTerritorio(territorio);
 		return ("Cartas/war_carta_"+t.getContinente().getNome()+"_"+getFileTerritorio()+".png");
