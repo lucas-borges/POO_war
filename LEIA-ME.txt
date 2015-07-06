@@ -1,0 +1,28 @@
+****************************************************************************************
+
+                              INSTRUÇÕES DE UTILIZAÇÃO DO JOGO
+
+****************************************************************************************
+
+Após rodar a aplicação, escolha o número de jogadores, 
+ou carregue um arquivo de estado.
+
+Com o início do jogo, a ordem dos jogadores foi definida, e cada jogador 
+possui um objetivo e territórios. O jogador da vez é indicado por um quadrado preto 
+em torno da cor correspondente.
+
+É possível ver seu objetivo na sua vez, clicando no botão a direita "Ver Objetivo"
+
+No início da vez de cada jogador, está escrito do lado direito a quantas tropas o
+jogador tem direito. O jogador deverá clicar em um território que possua e depois no
+botão "Alocar Tropas" para posicionar 1 tropa naquele território.
+
+Depois de posicionar todas as suas tropas, o jogador pode atacar territórios clicando 
+em territórios adversários vizinhos e depois no botão "Atacar Território". Quando desejar
+parar de atacar, o jogador deve clicar em "Terminar Ataque".
+
+Para mover suas tropas entre seus territórios ou territórios conquistados, o jogador deve
+clicar no território de qual deseja retirar as tropas, clicar em "Mover Tropas" e escolher
+o território de destino e quantas tropas deseja mover.
+
+Para finalizar sua vez, o jogador deve clicar em "Passar Turno".

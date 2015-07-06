@@ -66,7 +66,7 @@ public class Game {
 			currentPlayerIndex++;
 		}
 		
-		while(players[currentPlayerIndex].IsDead()){
+		/*while(players[currentPlayerIndex].IsDead()){
 			
 			if(currentPlayerIndex==nPlayers-1){
 				currentPlayerIndex=0;
@@ -75,24 +75,25 @@ public class Game {
 				currentPlayerIndex++;
 			}
 		}
+		System.out.println(players[currentPlayerIndex].getColor());*/
 	}
 	
 	
 	public Color[] getColorOrder(){
-		int n = nPlayers;
+		/*int n = nPlayers;
 		for(Player p: players){
 			if (p.IsDead()){
 				n--;
 			}
-		}
-		Color order[]=new Color[n];
+		}*/
+		Color order[]=new Color[nPlayers];
 		int i=0;
 		
 		for(Player p:players){
-			if(!p.IsDead()){
+			//if(!p.IsDead()){
 				order[i]=p.getColor();
 				i++;
-			}
+			//}
 		}
 		/*for(Color c:order){
 			System.out.println(c.name());
@@ -230,8 +231,6 @@ public class Game {
 				System.out.println(players[i].getColor());
 			}
 			for(Player P: players){
-				Color cplayer = P.getColor();
-				System.out.println(NamedColor.getMatch(P.getColor()).getColorPlural());
 				if(p.getObjetivo().endsWith(NamedColor.getMatch(P.getColor()).getColorPlural())){
 					return;
 				}
@@ -338,6 +337,38 @@ public class Game {
 		return false;
 	}
 
+	public boolean ChecarObjetivo2(){
+		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRIT�RIOS e ocupar cada um deles com pelo menos dois ex�rcitos.")){
+			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
+					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
+					players[currentPlayerIndex].nOceania>=18){
+				int n=0;
+				for(Territorio t: players[currentPlayerIndex].getTerritorios()){
+					if(t.getNTropas()>=2)
+						n++;
+					if(n>=18)
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean ChecarMorteJogador(Player p){
+		
+		for(Player p1: players){
+			if(p1.getObjetivo().endsWith(NamedColor.getMatch(p.getColor()).getColorPlural())){
+				if(p1.equals(p))
+					return true;
+				else
+					p1.setObjetivo(Objetivo.T24);
+			}
+			
+		}
+		
+		return false;
+		
+	}
 	
 	public void recebeCarta(){
 		if(currentPlayerWonATerritory){
@@ -453,22 +484,7 @@ public class Game {
 	}
 
 	
-	public boolean ChecarObjetivo2(){
-		if(players[currentPlayerIndex].getObjetivo().equals(" Conquistar 18 TERRIT�RIOS e ocupar cada um deles com pelo menos dois ex�rcitos.")){
-			if(players[currentPlayerIndex].nAfrica+players[currentPlayerIndex].nAmNorte+players[currentPlayerIndex].nAmSul+
-					players[currentPlayerIndex].nAsia+players[currentPlayerIndex].nEuropa+
-					players[currentPlayerIndex].nOceania>=18){
-				int n=0;
-				for(Territorio t: players[currentPlayerIndex].getTerritorios()){
-					if(t.getNTropas()>=2)
-						n++;
-					if(n>=18)
-						return true;
-				}
-			}
-		}
-		return false;
-	}
+	
 	
 	public boolean ChecarObjetivo(int n){
 		if(n==1)
