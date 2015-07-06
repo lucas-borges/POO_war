@@ -26,30 +26,28 @@ import controller.Territorio;
 public class GameController implements Observer {
 	public static final boolean DEV_MODE = true;
 	public static final boolean BUTTONS_ALWAYS_ENABLED = false;
+	
 	private Game game;
-	/**/private MainWindow gameWin;
-	/**/private StartWindow startWin;
-		private Territorio terrCorr;
-		private int gameState=1;
-		Territorio source;
-		Territorio target;
+	private MainWindow gameWin;
+	private StartWindow startWin;
+	private Territorio terrCorr;
+	private int gameState=1;
+	Territorio source;
+	Territorio target;
 	
 	public GameController(){
-		/**/gameWin=new MainWindow();
-		/**/startWin=new StartWindow();
+		gameWin=new MainWindow();
+		startWin=new StartWindow();
 		
-		/**/startWin.addObserver(this);
-		/**/gameWin.addObserver(this);
+		startWin.addObserver(this);
+		gameWin.addObserver(this);
 		
-		/**/gameWin.createGUI();
-		/**/startWin.createGUI();
+		gameWin.createGUI();
+		startWin.createGUI();
 	}
-	
-	
 	
 	public void update (Observable o, Object arg){
 		String x=(String)arg;
-		System.out.println("entrou controller update");
 		
 		/* start StartWindow events */
 		if(x.equals("StartWindow_startGame")){
@@ -66,7 +64,7 @@ public class GameController implements Observer {
 			gameWin.setTropasDist(game.DistribuirTropas());
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
 				
-			JOptionPane.showMessageDialog(null, "Os objetivos foram distribu�dos. \nClique em ver objetivo para saber qual � o seu.");
+			JOptionPane.showMessageDialog(null, "Os objetivos foram distribuidos. \nClique em ver objetivo para saber qual e o seu.");
 		}
 		
 		else if(DEV_MODE && x.equals("StartWindow_loadGame")){

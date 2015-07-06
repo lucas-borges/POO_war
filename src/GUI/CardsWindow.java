@@ -64,7 +64,11 @@ public class CardsWindow extends Observable
 		int i=0;
 		System.out.println(s.length);
 		for(String path:s){
+			System.out.println("i::"+i);
 			Icon ic=new ImageIcon(path);
+			if(Lab_vet[i]==null){
+				System.out.println("ee nullllll");
+			}
 			Lab_vet[i].setIcon(ic);
 			i++;
 			Lab_vet[i].setVisible(true);

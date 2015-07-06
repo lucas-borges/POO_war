@@ -81,9 +81,11 @@ public class CartaDataBase {
 		listaCartas.add(c);
 	}
 
-	public Carta getCarta (String fileTerritorio){
+	public static Carta getCarta (String fileTerritorio){
 		for(Carta c:listaCartas){
-			if(c.getFileTerritorio()==fileTerritorio){
+			//System.out.println(c.getFileTerritorio());
+			if(c.getFileTerritorio().equals(fileTerritorio)){
+				//System.out.println(c.getFileTerritorio());
 				return c;
 			}
 		}
