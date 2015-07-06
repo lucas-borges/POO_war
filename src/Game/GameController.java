@@ -64,7 +64,7 @@ public class GameController implements Observer {
 			gameWin.setTropasDist(game.DistribuirTropas());
 			gameWin.setInfText("Clique num territorio seu para alocar tropas");
 				
-			JOptionPane.showMessageDialog(null, "Os objetivos foram distribuídos. \nClique em ver objetivo para saber qual é o seu.");
+			JOptionPane.showMessageDialog(null, "Os objetivos foram distribuï¿½dos. \nClique em ver objetivo para saber qual ï¿½ o seu.");
 		}
 		
 		else if(DEV_MODE && x.equals("StartWindow_loadGame")){
@@ -100,6 +100,9 @@ public class GameController implements Observer {
 			gameWin.nextTurn();
 			gameWin.repaint();
 			this.advanceGameState();
+			if(game.realizouTroca()){//---------------------------------------------------------------------------
+				JOptionPane.showMessageDialog(null, (game.getNTrocas())+ " troca realizada!");
+			}
 		}
 		else if(x.equals("SideMenu_mover")){
 			MovementWindow moverTropas=new MovementWindow(terrCorr);
@@ -125,6 +128,7 @@ public class GameController implements Observer {
 			atacarTerritorio.createGUI();
 		}
 		else if(x.equals("SideMenu_termAtaque")){
+			game.recebeCarta();
 			this.advanceGameState();
 		}
 		else if(x.equals("SideMenu_showObj")){
@@ -153,6 +157,7 @@ public class GameController implements Observer {
 				source.deltaTropas(-1);
 				target.deltaTropas(1);
 				gameWin.repaint();
+				game.setCurrentPlayerWonATerritory();
 				JOptionPane.showMessageDialog(null, target.getNome().getNome()+" conquistado!");
 				if(game.ChecarObjetivo(1))
 					JOptionPane.showMessageDialog(null, "Parabens!Voce Ganhou!");
