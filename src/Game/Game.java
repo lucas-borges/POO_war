@@ -457,9 +457,20 @@ public class Game {
 			for (int icartas=2;icartas>=0;icartas--) {
 				System.out.println(indexCartas[icartas]);
 				System.out.println(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName());
-				for(Territorio t:players[currentPlayerIndex].getTerritorios()){
-					if(players[currentPlayerIndex].getCartas().get(indexCartas[icartas]).getFileName().equalsIgnoreCase(nomePais.valueOf(t.toString()).toString())){
-						t.deltaTropas(2);
+				if (!players[currentPlayerIndex].getCartas()
+						.get(indexCartas[icartas]).getFileTerritorio()
+						.equals("coringa")) {
+					for (Territorio t : players[currentPlayerIndex]
+							.getTerritorios()) {
+						if (players[currentPlayerIndex]
+								.getCartas()
+								.get(indexCartas[icartas])
+								.getFileName()
+								.equalsIgnoreCase(
+										nomePais.valueOf(t.toString())
+												.toString())) {
+							t.deltaTropas(2);
+						}
 					}
 				}
 				CartaDataBase.insereCarta(players[currentPlayerIndex].getCartas().remove(indexCartas[icartas]));// devolve as cartas para o "baralho"
