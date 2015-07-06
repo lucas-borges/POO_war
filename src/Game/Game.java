@@ -13,15 +13,8 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import controller.Territorio;
-import etc.enumColor;
-import etc.enumTerritorio;
 import etc.enumColor.NamedColor;
 import etc.enumObjetivo.Objetivo;
-
-import etc.Figura;
-
-
 import etc.enumTerritorio.nomePais;
 
 public class Game {
@@ -36,7 +29,9 @@ public class Game {
 	private boolean[] isDead=null;
 	private int nPlayersAlive;
 	
-	public Game (int n){
+	private static Game gameInst=null;
+	
+	private Game (int n){
 		nPlayers=n;
 		players=new Player[n];
 		
@@ -54,6 +49,15 @@ public class Game {
 		
 		currentPlayerIndex=0;
 		turn=1;
+	}
+	@SuppressWarnings("unused")
+	private Game(){
+	}
+	public static Game getInstance (int n){
+		if(gameInst==null){
+			gameInst=new Game(n);
+		}
+		return gameInst;
 	}
 	public void nextTurn (){
 		turn++;

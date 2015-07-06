@@ -20,12 +20,13 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.MapClickRedirect;
-import controller.Territorio;
 
 
 public class GameController implements Observer {
 	public static final boolean DEV_MODE = true;
 	public static final boolean BUTTONS_ALWAYS_ENABLED = false;
+	
+	private static GameController ctrl=null;
 	
 	private Game game;
 	private MainWindow gameWin;
@@ -35,7 +36,7 @@ public class GameController implements Observer {
 	Territorio source;
 	Territorio target;
 	
-	public GameController(){
+	private GameController(){
 		gameWin=new MainWindow();
 		startWin=new StartWindow();
 		
@@ -46,13 +47,20 @@ public class GameController implements Observer {
 		startWin.createGUI();
 	}
 	
+	public static GameController getInstance(){
+		if(ctrl==null){
+			ctrl=new GameController();
+		}
+		return ctrl;
+	}
+	
 	public void update (Observable o, Object arg){
 		String x=(String)arg;
 		
 		/* start StartWindow events */
 		if(x.equals("StartWindow_startGame")){
 			int nPlayers=((StartWindow)o).getComboValue();
-			game=new Game(nPlayers);
+			game=Game.getInstance(nPlayers);
 			
 			gameWin.setColorPanel(game.getNPlayers(),game.getColorOrder());
 			gameWin.repaint();
@@ -416,7 +424,7 @@ public class GameController implements Observer {
 		}
 	}
 	
-	public static void main (String[]args){
+	/*public static void main (String[]args){
 		GameController controller=new GameController();	
-	}
+	}*/
 }

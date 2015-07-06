@@ -1,4 +1,4 @@
-package controller;
+package etc;
 
 public class Ponto {
 
